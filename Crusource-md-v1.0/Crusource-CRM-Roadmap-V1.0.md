@@ -1,13 +1,12 @@
-# Crusource CRM
-## Build Roadmap
+# Crusource CRM — Build Roadmap
 
-# Phase 1 — Foundation, Access Control & Core Sales Records
+## Phase 1 — Foundation, Access Control & Core Sales Records
 
-**Duration: 12 days**
+**Duration:** 12 days
 
-*Why this comes here: Every other module needs to know who is logged in and what they're allowed to see, and Leads, Contacts, Accounts, and Deals are what a sales rep spends their day in. Access control and the core sales data model are combined into a single foundation phase, since nothing downstream (activities, reports, AI) means anything without both existing first.*
+**Why this comes here:** Every other module needs to know who is logged in and what they're allowed to see, and Leads, Contacts, Accounts, and Deals are what a sales rep spends their day in. Access control and the core sales data model are combined into a single foundation phase, since nothing downstream (activities, reports, AI) means anything without both existing first.
 
-## What ships
+**What ships**
 
 - Single-organization login (email + password)
 - Admin can add users and assign roles: Admin / Sales Manager / Sales Rep
@@ -25,18 +24,16 @@
 
 **Stakeholder demo at end of phase:** Log in as three different role types and show each sees a correctly scoped view; walk a lead from creation through conversion into a Deal, dragging it across pipeline stages on the Kanban board, and show the duplicate-account check firing on a repeat company name.
 
----
+## Phase 2 — Activities, Documents, Dashboards & Reporting
 
-# Phase 2 — Activities, Documents, Dashboards & Reporting
+**Duration:** 12 days
 
-**Duration: 12 days**
+**Why this comes here:** Once Deals and Contacts exist, the day-to-day work of engaging with them (calls, meetings, tasks, notes) needs a home — and that same activity and pipeline data is what makes dashboards and reporting meaningful rather than empty or fake. These two phases are combined since reporting is built directly on top of the activity data shipped earlier in the same phase.
 
-*Why this comes here: Once Deals and Contacts exist, the day-to-day work of engaging with them (calls, meetings, tasks, notes) needs a home — and that same activity and pipeline data is what makes dashboards and reporting meaningful rather than empty or fake. These two phases are combined since reporting is built directly on top of the activity data shipped earlier in the same phase.*
-
-## What ships
+**What ships**
 
 - Tasks — subject, due date, status, priority, linked to any record
-- Meetings — title, time range, host, linked to any record; meetings can be recorded to feed the AI summarization feature
+- Meetings — title, time range, host, linked to any record;
 - Calls — inbound/outbound, duration, linked to any record
 - Notes — free-form notes attachable to any Lead, Contact, Account, or Deal, shown on the shared timeline
 - Activity Timeline — unified, date-ordered history on every Lead/Contact/Account/Deal page
@@ -48,15 +45,13 @@
 
 **Stakeholder demo at end of phase:** Open a Deal and show its full timeline of calls, meetings, tasks, notes, and attached documents in one scroll; then show a manager logging in and immediately seeing team health at a glance, without asking a rep for a status update.
 
----
+## Phase 3 — AI Capabilities
 
-# Phase 3 — AI Capabilities
+**Duration:** 12 days
 
-**Duration: 12 days**
+**Why this comes here:** Every AI feature here is a layer on top of real behavioral data — lead source/response time, deal activity gaps, call/meeting notes. Building AI first would mean scoring and flagging against empty records, which produces meaningless (or untestable) output. This phase is also explicitly designed so the AI never acts unilaterally — it scores, drafts, flags, and summarizes, but a person always makes the final call, and it never grants access beyond what a user could already see.
 
-*Why this comes here: Every AI feature here is a layer on top of real behavioral data — lead source/response time, deal activity gaps, call/meeting notes. Building AI first would mean scoring and flagging against empty records, which produces meaningless (or untestable) output. This phase is also explicitly designed so the AI never acts unilaterally — it scores, drafts, flags, and summarizes, but a person always makes the final call, and it never grants access beyond what a user could already see.*
-
-## What ships
+**What ships**
 
 - Smart Lead Scoring — 0–100 score with plain-language reasoning, refreshed automatically overnight and instantly on status/activity changes; scoring weights are Admin-tunable
 - AI-Drafted Follow-up Emails — editable drafts generated from record + activity history, never auto-sent
@@ -68,6 +63,6 @@
 
 ---
 
-**Total V1 build time: 36 days across three phases (12 days each).**
+Total V1 build time: 36 days across three phases (12 days each).
 
-*Note: this document sequences features by dependency, not by calendar time beyond the stated per-phase durations. Actual delivery dates depend on team velocity and staffing.*
+Note: this document sequences features by dependency, not by calendar time beyond the stated per-phase durations. Actual delivery dates depend on team velocity and staffing.

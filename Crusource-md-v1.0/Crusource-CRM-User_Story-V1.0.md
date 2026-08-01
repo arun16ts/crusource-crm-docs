@@ -32,7 +32,7 @@
 - See each open lead's AI-generated score (0–100) with a plain-language reason, and sort my lead list by score so the highest-priority leads rise to the top.
 - Get AI-drafted follow-up emails, and AI deal-risk alerts — with a short reason for each — that I can dismiss or clear by logging an activity, to work faster.
 - Ask a conversational AI chatbot questions about my records in plain language, with answers linked back to their source.
-- ***(Planned)*** Get daily task reminders, on-demand data summaries, and an automatic next-day Workqueue built from my end-of-day chat wrap-up, all through the chatbot.
+- (Planned) Get daily task reminders, on-demand data summaries, and an automatic next-day Workqueue built from my end-of-day chat wrap-up, all through the chatbot.
 
 ## Sales Manager
 
@@ -58,4 +58,4 @@
 - Pull the same Lead, Deal, Activity, and Sales Rep Performance reports available across the organization.
 - Customize how lead-scoring points are assigned, so scoring reflects what our organization values in a lead.
 - Customize the pipeline's stage names, order, and win probabilities to match how we actually sell.
-- ***(Planned)*** Roll out document version control and a custom report builder as they become available.
+- (Planned) Roll out document version control and a custom report builder as they become available.
