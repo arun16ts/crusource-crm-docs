@@ -1,7 +1,18 @@
+Git Reset commands:
+
 git reset --hard origin/dev-advaith
 
 git clean -fd
 
+App Runner:
+
 npx next dev --turbopack -p 3000
 
 uvicorn src.main:app --reload
+
+
+Docker Compose:
+
+docker compose up -d --build --force-recreate frontend
+
+docker compose up -d --build --force-recreate backend
