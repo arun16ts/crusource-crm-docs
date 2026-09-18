@@ -105,15 +105,22 @@ ngrok http --host-header=rewrite 3000
 
 ---
 
-### 3. Production Build Mode (Recommended for Client Presentations)
-In production mode, all pages, routes, and bundles are pre-compiled during image creation. This eliminates cold-compilation delays, uses minimal memory (~120MB), and ensures instant sub-50ms page loads:
+### 3. Switching Between Development & Production Mode
 
+You don't need to remember complex commands. Simply open your `.env` file and change **`FRONTEND_TARGET`**:
+
+* **For Coding / Hot-Reloading:**
+  ```env
+  FRONTEND_TARGET=dev
+  ```
+* **For Ultra-Fast Client Presentations (Sub-50ms):**
+  ```env
+  FRONTEND_TARGET=prod
+  ```
+
+Then run your standard command as usual:
 ```bash
-# Build & run production bundle
-FRONTEND_TARGET=prod docker compose up -d --build --force-recreate frontend
-
-# Or run entire stack in production target
-BACKEND_TARGET=prod FRONTEND_TARGET=prod docker compose up --build -d
+docker compose --profile ngrok up --build -d
 ```
 
 ---
