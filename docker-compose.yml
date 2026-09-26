@@ -1,0 +1,146 @@
+# ==============================================================================
+# CRUSOURCE CRM - MASTER DOCKER COMPOSE CONFIGURATION
+#
+# Usage:
+#   1. Development Mode (Postgres + Redis + Backend + Frontend with hot reload):
+#      docker compose up --build
+#
+#   2. With Ngrok Public Internet Tunnel:
+#      docker compose --profile ngrok up --build
+#
+#   3. Hardened Production Mode:
+#      docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. PostgreSQL Database Service
+  # ----------------------------------------------------------------------------
+  postgres:
+    image: postgres:17-alpine
+    container_name: crusource-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-crusource_password}
+      POSTGRES_DB: ${POSTGRES_DB:-crusource_db}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - crm_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-admin} -d $${POSTGRES_DB:-crusource_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ----------------------------------------------------------------------------
+  # 2. Redis Cache & Queue Broker
+  # ----------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: crusource-redis
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"
+    volumes:
+      - crm_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ----------------------------------------------------------------------------
+  # 3. FastAPI Backend (FastAPI / Python 3.12 / Alembic / Uvicorn)
+  # ----------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./crusource-crm-backend
+      dockerfile: Dockerfile
+      target: ${BACKEND_TARGET:-dev}
+    container_name: crusource-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-8001}:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-admin}:${POSTGRES_PASSWORD:-crusource_password}@postgres:5432/${POSTGRES_DB:-crusource_db}
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: ${SECRET_KEY:-dev_secret_key_crusource_super_secure_jwt_12345}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3001}
+      BACKEND_URL: ${BACKEND_URL:-http://localhost:8001}
+      QUEUE_MODE: ${QUEUE_MODE:-sync}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./crusource-crm-backend:/app
+      - crm_backend_storage:/app/storage
+      - crm_backend_public:/app/public
+
+  # ----------------------------------------------------------------------------
+  # 4. Next.js 16 Frontend (Next.js 16 / React 19 / Turbopack)
+  # ----------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./crusource-crm-frontend
+      dockerfile: Dockerfile
+      target: ${FRONTEND_TARGET:-dev}
+      args:
+        INTERNAL_BACKEND_URL: ${INTERNAL_BACKEND_URL:-http://backend:8000}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+        NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-}
+    container_name: crusource-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3001}:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+      INTERNAL_BACKEND_URL: http://backend:8000
+      NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-}
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+      NODE_OPTIONS: "--max-old-space-size=8192"
+    volumes:
+      - ./crusource-crm-frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+
+  # ----------------------------------------------------------------------------
+  # 5. Ngrok Internet Tunneling (Optional Profile - v3.16+ Ready)
+  # ----------------------------------------------------------------------------
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: crusource-ngrok
+    restart: unless-stopped
+    profiles: ["ngrok"]
+    entrypoint:
+      - "sh"
+      - "-c"
+      - |
+        if [ -n "$${NGROK_DOMAIN}" ]; then
+          echo "Starting Ngrok tunnel for frontend:3000 with domain: $${NGROK_DOMAIN}"
+          exec ngrok http --url="$${NGROK_DOMAIN}" --host-header=rewrite frontend:3000
+        else
+          echo "Starting Ngrok tunnel for frontend:3000"
+          exec ngrok http --host-header=rewrite frontend:3000
+        fi
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+      NGROK_DOMAIN: ${NGROK_DOMAIN:-}
+    ports:
+      - "127.0.0.1:4040:4040"
+    depends_on:
+      - frontend
+
+volumes:
+  crm_postgres_data:
+  crm_redis_data:
+  crm_backend_storage:
+  crm_backend_public:
