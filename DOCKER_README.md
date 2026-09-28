@@ -107,21 +107,27 @@ ngrok http --host-header=rewrite 3000
 
 ### 3. Switching Between Development & Production Mode
 
-You don't need to remember complex commands. Simply open your `.env` file and change **`FRONTEND_TARGET`**:
+Use separate Compose configurations for development and production. The base
+configuration includes source bind mounts and file polling for hot reload; it
+must not be used by itself for a production deployment.
 
-* **For Coding / Hot-Reloading:**
-  ```env
-  FRONTEND_TARGET=dev
-  ```
-* **For Ultra-Fast Client Presentations (Sub-50ms):**
-  ```env
-  FRONTEND_TARGET=prod
-  ```
+**Development / hot reload**
 
-Then run your standard command as usual:
 ```bash
-docker compose --profile ngrok up --build -d
+docker compose up --build
 ```
+
+**Production**
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+```
+
+The production override selects the `prod` Dockerfile stages, removes host
+source mounts, uses the Next.js standalone runtime, and builds the frontend
+proxy with `http://backend:8000` as its internal API destination. Do not set a
+browser-facing `NEXT_PUBLIC_API_URL` to `localhost` for a remote deployment;
+the production application uses same-origin `/api/v1` requests.
 
 ---
 
@@ -163,9 +169,8 @@ docker compose exec backend alembic revision --autogenerate -m "add_new_feature"
 ### 1. Ngrok Returns `502 Bad Gateway` / `Could not connect to upstream`
 * **Cause**: Node.js dev server memory exhausted or cold-compiling.
 * **Fix**:
-  * Set `NODE_OPTIONS="--max-old-space-size=4096"` in `docker-compose.yml`.
   * Ensure ngrok has `--host-header=rewrite` configured.
-  * For live presentations, use `FRONTEND_TARGET=prod`.
+  * For a live deployment, start the production Compose configuration shown above.
 
 ### 2. Cross-Origin / Invalid Host Header on Ngrok
 * **Cause**: Next.js blocks unrecognized host headers by default.
