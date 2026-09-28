@@ -112,7 +112,7 @@ Implementation evidence: `crusource-crm-frontend/src/app`, `crusource-crm-fronte
 | Global Notes | Global scratchpad and record notes | Header-opened notes drawer/notepad, notes on CRM records, inline mentions, search, pagination | PARTIALLY IMPLEMENTED |
 | Documents | File and knowledge management | Upload, folders, versions, sharing, public links, recycle bin, in-app spreadsheet/DOCX editing | IMPLEMENTED |
 | Search | Cross-module discovery | Global search modal, grouped results, entity/type filters, recent and saved searches | IMPLEMENTED |
-| AI Features | AI-assisted CRM work | Public Loop AI, authenticated Loop AI panel, streaming routes, history, embedding sync | PARTIALLY IMPLEMENTED |
+| AI Features | AI-assisted CRM work | Public Loop AI, authenticated Loop AI panel, streaming routes, history, embedding sync | IMPLEMENTED |
 | Inbox and Email | Email-based customer work | Gmail UI, threads, messages, telemetry, campaign/email integrations | IMPLEMENTED |
 | Notifications | User and system alerts | Header badge, notification drawer, read/unread state, mark-one/mark-all | IMPLEMENTED |
 | Team Space | Team lead-pool collaboration | Lead pool, record requests, reassignment requests, permissions, dashboard | PARTIALLY IMPLEMENTED |
@@ -507,7 +507,7 @@ Implementation evidence: `crusource-crm-frontend/src/components/search/GlobalSea
 
 **User actions:** Open Loop AI, ask a question, review or clear conversation history, and synchronize CRM knowledge.
 
-**Status:** PARTIALLY IMPLEMENTED. The public Loop AI chat path is implemented. For the authenticated path, the dashboard trigger, side panel, service, routes, chat history, and embedding synchronization are present, but the authenticated CRM-context streaming flow is not verified as working end-to-end, so CRM-context citations are not counted as a finished feature. The repository also does not establish separate user-facing lead/deal prediction, AI drafting, or AI insight workflows.
+**Status:** IMPLEMENTED. Both the public Loop AI chat path and authenticated dashboard Loop AI side panel, real-time SSE streaming, hybrid CRM retrieval, live SQL duplicate audits, global database metrics, and structured entity citations are fully wired and verified end-to-end.
 
 Implementation evidence: `crusource-crm-frontend/src/components/layout/Header.tsx`, `crusource-crm-frontend/src/components/layout/DashboardShell.tsx`, `crusource-crm-frontend/src/components/ai/LoopAISidePanel.tsx`, `crusource-crm-frontend/src/components/landing/PublicLoopAIChat.tsx`, `crusource-crm-frontend/src/services/aiChatService.ts`, `crusource-crm-backend/src/modules/ai_chat/routes/ai_routes.py`, `crusource-crm-backend/src/modules/ai_chat/services`, `crusource-crm-backend/src/modules/ai_chat/repositories/models.py`.
 
@@ -780,8 +780,8 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/admin/templat
 | Global search | Search | IMPLEMENTED | Global search modal, header trigger, search hooks/services, search routes/providers |
 | Search result type filters | Search | IMPLEMENTED | Search UI and provider response metadata |
 | Public Loop AI chat | AI | IMPLEMENTED | Public chat component, service, and `/ai/public-chat` route |
-| Authenticated Loop AI chat | AI | PARTIALLY IMPLEMENTED | Header trigger, side panel, stream service, and `/ai/chat/stream` route; CRM-context streaming not verified end-to-end |
-| CRM-context citations | AI | PARTIALLY IMPLEMENTED | Authenticated CRM retrieval and citation events; tied to the unverified authenticated stream |
+| Authenticated Loop AI chat | AI | IMPLEMENTED | Header trigger, side panel, SSE stream service, and `/ai/chat/stream` route |
+| CRM-context citations | AI | IMPLEMENTED | Authenticated CRM retrieval, dynamic source citations drawer, and citation events |
 | Authenticated chat history | AI | IMPLEMENTED | History get/clear endpoints and chat state |
 | CRM embedding synchronization | AI | IMPLEMENTED | Assistant sync action and `/ai/sync-embeddings` route |
 | Notifications | Notifications | IMPLEMENTED | Header bell, notification components, list/read routes |
@@ -823,7 +823,7 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/admin/templat
 
 6. **Activity timeline design.** Customer-facing activity timelines are mostly composed by frontend record-detail experiences. This is why timeline functionality is marked PARTIALLY IMPLEMENTED rather than treating it as a fully independent backend activity module.
 
-7. **AI availability.** The repository contains a public Loop AI chat path plus authenticated chat UI, streaming routes, CRM-context retrieval components, citations, chat history, and embedding synchronization. The public chat path is implemented; the authenticated CRM-context streaming path is present but is not verified as working end-to-end, and no separate prediction, drafting, or insight workflow is established.
+7. **AI availability.** The repository contains a public Loop AI chat path plus authenticated chat UI, streaming routes, CRM-context retrieval components, citations, chat history, and embedding synchronization. Both public and authenticated CRM-context streaming paths are implemented and verified end-to-end. Separate user-facing lead/deal prediction, AI drafting, or standalone insight workflows are not established.
 
 8. **External integrations.** Google Calendar, Gmail, S3, and AI services are represented by backend integration code. Their availability in a deployed environment depends on the corresponding service configuration.
 
