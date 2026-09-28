@@ -120,14 +120,27 @@ docker compose up --build
 **Production**
 
 ```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d postgres redis
+docker compose -f docker-compose.yml -f docker-compose.prod.yml run --rm backend python scripts/run_migrations.py
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+```
+
+Before the first production start, set the public browser URL in the root
+`.env`. It is used for invitation, document-share, campaign unsubscribe, and
+OAuth return links; it must be a reachable HTTPS URL, not `localhost`.
+
+```env
+PUBLIC_APP_URL=https://crm.example.com
 ```
 
 The production override selects the `prod` Dockerfile stages, removes host
 source mounts, uses the Next.js standalone runtime, and builds the frontend
 proxy with `http://backend:8000` as its internal API destination. Do not set a
 browser-facing `NEXT_PUBLIC_API_URL` to `localhost` for a remote deployment;
-the production application uses same-origin `/api/v1` requests.
+the production application uses same-origin `/api/v1` requests. Migrations run
+once as an explicit deployment step rather than every time an API container
+restarts. The override also pins `NODE_ENV=production`, preventing development
+values in the shared root `.env` from enabling Webpack compilation at runtime.
 
 ---
 
