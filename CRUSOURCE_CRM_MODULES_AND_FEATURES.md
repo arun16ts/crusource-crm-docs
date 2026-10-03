@@ -727,12 +727,17 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/admin/templat
 
 ### Team Space relationship
 
-`Lead / Contact / Account / Deal → Team Pool / Access Request / Reassignment Request / Permission`
+`Lead / Deal / Task / Call / Meeting ? Persistent Team / Personal Assignee View / Action Request / Timed Permission`
 
-- Authorized team members can work with pooled leads.
-- Users can request `edit` access to restricted lead or deal records, and approved grants carry active/expired/revoked status.
-- Leads and deals can be submitted for reassignment.
-- Approved actions are recorded for audit and team oversight.
+- Personal and Teamspace show the same records; Teamspace follows persistent team affiliation and personal lists follow assignment.
+- Tasks, Calls and Meetings require an assignee. Teamspace Leads and Deals may use an unassigned team pool.
+- Profiles expose five-module Teamspace settings with module/field ceilings and explicit denial over timed grants.
+- Critical actions stage frozen requests, same-team leaders review without self-approval, and requesters can withdraw pending actions.
+- Personal and team record actions notify reporting leadership, while routine emails use grouped digests.
+
+**Status:** PARTIALLY IMPLEMENTED for the new five-module rollout: UI/API paths and tests are present, but historical remediation, coordinated schema deployment, interactive browser acceptance and live-provider validation remain release gates. Standalone Contacts/Accounts/Notes/Documents redesigns are deferred.
+
+Implementation evidence: frontend `src/components/teamspace/TeamsPoolSection.tsx`, `GovernedActionDialog.tsx`, `GovernedRequestsInbox.tsx`, `src/services/teamspace/teamspaceActionService.ts` and Profiles permission tab; backend `src/shared/auth/record_team_scope.py`, `src/modules/teamspace/services/record_policy.py`, `src/modules/approvals/services/governed_actions.py`, `src/modules/teamspace/routes/teamspace_action_routes.py`, `src/modules/notifications/services/digest_service.py`, `scripts/reconcile_record_teams.py`. See root `teamspace_implementation_execution.md` for deployment and validation evidence.
 
 ### Administration relationship
 
