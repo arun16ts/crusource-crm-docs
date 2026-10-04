@@ -4,6 +4,8 @@
 **Product:** Crusource CRM  
 **Snapshot:** 26 September 2026
 
+Public-page and public AI allowance entries below were updated on 4 October 2026; this is not a re-audit of the remaining modules.
+
 ## 1. Application Overview
 
 Crusource CRM is a multi-tenant web application for managing sales prospects, customer relationships, deals, campaigns, activities, documents, analytics, collaboration, and organization administration.
@@ -44,6 +46,13 @@ Implementation evidence: `crusource-crm-frontend/src/app`, `crusource-crm-fronte
 | `/integrations` | Public integrations and supported-setup page | IMPLEMENTED |
 | `/docs` | Public product/help area | IMPLEMENTED |
 | `/faq` | Public frequently asked questions page | IMPLEMENTED |
+| `/docs/[slug]` | Published task guides with prerequisites, steps and troubleshooting | IMPLEMENTED |
+| `/integrations/[slug]` | Integration availability and setup/limitations articles | IMPLEMENTED |
+| `/security` | Public overview of permissions and recovery limitations | IMPLEMENTED |
+| `/privacy`, `/terms` | Informational routes; formal policies await approved company content | PARTIALLY IMPLEMENTED |
+| `/contact` | Help links; public contact and delivery flow await confirmation | PARTIALLY IMPLEMENTED |
+
+Public-page evidence: `crusource-crm-frontend/src/components/landing/{PublicCatalogue,PublicFAQ,PublicPageShell,PublicInformation}.tsx`, `src/app/docs/[slug]/page.tsx`, `src/app/integrations/[slug]/page.tsx`, `src/data/{publicFaqs,publicGuides}.json`, `src/hooks/marketing/usePublicFilters.ts`, and `tests/{test_public_pages_browser,test_public_routes,test_public_live_browser}.mjs`. These pages render through the App Router. All Buddy is displayed as Planned; that catalogue entry is not a working CRM connection. The former Client Portal footer label now reads CRM Sign In and still uses `/login`; a separate customer portal is PLANNED / DOCUMENTED ONLY.
 
 ### Main dashboard navigation
 
@@ -503,7 +512,13 @@ Implementation evidence: `crusource-crm-frontend/src/components/search/GlobalSea
 - CRM record embedding/index synchronization from the assistant.
 - Hybrid retrieval services for CRM context and document/record text.
 - Suggested questions and Markdown-formatted AI responses.
-- Public-chat query limiting for unauthenticated visitors.
+- Unlimited static public FAQ answers, backed by one published EN/NL registry used by the FAQ page, widget and generated backend knowledge.
+- Server-controlled anonymous public AI allowance: five provider dispatches per UTC day; static FAQ answers do not consume it. Redis enforces atomic allowance, active-stream and global dispatch limits; duplicate request IDs cannot dispatch twice within a bucket.
+- Public chat reset-time display, safe streamed errors and source labels. Conversation reset clears messages without granting allowance.
+
+Public allowance evidence: frontend `src/hooks/ai/usePublicAIChat.ts`, `src/services/aiChatService.ts`, `src/data/publicFaqs.json`, `scripts/sync-public-knowledge.mjs`; backend `src/modules/ai_chat/{handlers/public_chat_handler.py,services/public_usage.py,services/public_knowledge.py,routes/ai_routes.py}`; `tests/test_public_ai_usage.py` and frontend public stream/browser tests. Super Admin controls are PLANNED / DOCUMENTED ONLY.
+
+Public-page Vercel/Mixpanel analytics is PARTIALLY IMPLEMENTED: opt-in collection is wired through `src/app/layout.tsx`, `src/components/providers/PublicAnalyticsProvider.tsx`, `src/services/publicAnalyticsService.ts` and `src/lib/marketing/publicAnalyticsPolicy.ts`. FAQ page/chat engagement and AI-answer engagement are separate events; backend logs remain authoritative for dispatched AI usage. `tests/test_public_analytics_browser.mjs` verifies privacy, route exclusion and failure isolation using offline SDK doubles. Production accounts/policy activation and Super Admin aggregate reporting are pending; no live provider connection was verified.
 
 **User actions:** Open Loop AI, ask a question, review or clear conversation history, and synchronize CRM knowledge.
 
