@@ -1,6 +1,6 @@
 # Super Admin Upgrade Plan: Analytics, Error Tickets and Application Logs
 
-Date: 4 October 2026
+Date: 4 October 2026; source-checked revision: 5 October 2026
 Status: proposed implementation plan; no application changes or provider setup performed.
 
 Confirmed hosting: frontend on Vercel, backend on AWS. Mixpanel account/project still needs to be created. AWS compute type (ECS, EC2, Lambda or another service), Vercel account capabilities and existing AWS logging setup remain to be confirmed.
@@ -22,7 +22,8 @@ Example: a Teamspace import fails. Its failure appears in Error Center, with the
 | Platform dashboard | Organization/user/subscription/feedback and record-volume aggregates | Product usage, operational health and real failure metrics |
 | Portal navigation | Overview, tenants/members, login tracking, trial extensions, feedback, owner-only platform access | Analytics, Error Center and Application Logs |
 | Platform authentication | Separate platform accounts, server sessions, MFA enrollment/challenge, CSRF protection and owner-only access management | Reuse this boundary; add capabilities for sensitive observability operations |
-| Backend logs | JSON formatter, configurable severity, exception logging, request/correlation IDs | Redaction, request summaries, consistent worker format, central collection and searchable storage |
+| Backend logs | JSON formatter, configurable severity and request/correlation middleware; generic 500 handling currently loses its request ID and traceback | Fix error handling first; then redaction, request summaries, consistent worker format, central collection and searchable storage |
+| Health | Existing database/Redis checks, S3 configuration inspection and process-local scheduler inspection; public detailed/readiness routes expose diagnostics | Minimal public probes, guarded detailed health, remote worker heartbeat and measured dashboard states |
 | Frontend errors | Shared API console logging and a Teamspace error boundary | Central capture, application-wide boundaries and persistent issue tracking |
 | Organization audit | Organization-scoped business audit records | Add a guarded platform search view; preserve organization access restrictions |
 | Feedback | Read/search/statistics across tenants | Allow feedback-to-ticket linking; feedback itself is not an error occurrence database |
@@ -31,12 +32,32 @@ Example: a Teamspace import fails. Its failure appears in Error Center, with the
 Source evidence:
 
 - Frontend: `src/components/superadmin/SuperAdminSidebar.tsx`, `src/app/superadmin/dashboard/page.tsx`, `src/app/superadmin/layout.tsx`, `src/lib/api/platformHttpClient.ts`, `src/lib/api/httpClient.ts`, `src/app/dashboard/teamspace/error.tsx`, `src/app/layout.tsx`.
-- Backend: `src/shared/auth/superadmin_guard.py`, `src/modules/platform_auth/services/sessions.py`, `src/modules/platform_auth/handlers/login.py`, `src/modules/superadmin/repositories/superadmin_dashboard_repo.py`, `src/modules/superadmin/routes/feedback_routes.py`, `src/shared/logging/structured_logger.py`, `src/shared/middleware/correlation_middleware.py`, `src/shared/exceptions/global_handlers.py`, `src/worker.py`, `src/shared/services/queue_service.py`, `src/modules/audit_logs/repositories/models.py`.
+- Backend: `src/shared/auth/superadmin_guard.py`, `src/modules/platform_auth/services/sessions.py`, `src/modules/platform_auth/handlers/login.py`, `src/modules/superadmin/repositories/superadmin_dashboard_repo.py`, `src/modules/superadmin/routes/feedback_routes.py`, `src/shared/logging/structured_logger.py`, `src/shared/middleware/correlation_middleware.py`, `src/shared/exceptions/global_handlers.py`, `src/shared/routes/health_routes.py`, `src/shared/services/health_service.py`, `src/main.py`, `src/modules/pipelines/services/pipeline_seed_service.py`, `src/worker.py`, `src/shared/services/queue_service.py`, `src/modules/audit_logs/repositories/models.py`.
 
-Two verified operational issues belong in the first phase:
+## Audit findings and planning corrections
 
-- The dashboard renders ALL SYSTEMS HEALTHY as a literal badge, without a health query. Replace it with measured Healthy / Degraded / Unavailable / Unknown states and a last-checked timestamp.
-- `src/main.py` calls `reset_all_org_lead_pipelines()` at startup. Its implementation deletes nonstandard lead pipelines/stages and document rules and clears some stage-history references. Remove automatic destructive resets from startup; use safe default seeding for provisioning and a separately reviewed maintenance command for intentional resets. Add a restart regression test preserving custom pipelines.
+The supplied audit was checked against the current source. A synthetic FastAPI app using the existing correlation middleware and exception handlers reproduced the error-path findings without starting the CRM lifespan or connecting to its database:
+
+```text
+Unexpected RuntimeError: HTTP 500, request_id="", X-Request-ID absent, traceback absent from the handler log record.
+Oversized request ID containing a newline: echoed unchanged.
+Internal ValueError: HTTP 400, raw exception message returned.
+```
+
+| Priority | Verified defect | Required correction |
+|---|---|---|
+| Critical | Startup calls `reset_all_org_lead_pipelines()`. Successful resets delete custom stages/document rules, clear stage-history references, overwrite canonical probabilities/colours/order, remap every lead by status and delete other lead pipelines | Remove the startup caller. Preserve provisioning through existing lazy seeding; test custom pipelines, canonical customizations, lead placement and history across restarts |
+| Critical | The generic exception handler runs outside the correlation context and logs with `exc_info=True` outside an active exception context | Persist IDs in request state, explicitly supply the exception/traceback tuple, and attach response headers in the outer error handler |
+| High | Both request and correlation IDs accept unchecked values | Validate and bound both IDs; replace invalid values, including control characters and excessive length |
+| High | All `ValueError`s become raw-message 400s; SQLAlchemy errors interpolate exception text, including SQL parameters, into logs | Introduce explicit domain validation errors; preserve intended client errors while returning generic 500s for unknown bugs. Emit sanitized database diagnostics without SQL parameters |
+| High | Detailed health and readiness are public; readiness includes the same database error/pool details | Make both public probe variants minimal; move sanitized details behind platform authentication |
+| High, planning | `public_analytics_setup.md` claims implementation, but the SDK dependencies, analytics example configuration, named analytics test and claimed backend public-AI events are absent | Mark that document as `PLANNED / DOCUMENTED ONLY`. Establish rollback provenance before choosing restoration or reimplementation |
+| Medium | Worker logging is plain text, frontend capture has only the Teamspace boundary, and the platform has no granular capability model | Reuse existing logging/platform-session foundations; add consistent worker context, app-wide capture and explicit capabilities |
+| Medium | ALL SYSTEMS HEALTHY is literal text; scheduler inspection sees only the API process; S3 inspection checks configuration rather than reachability | Use measured health and freshness. Add worker/scheduler heartbeats; do not label configured storage as verified healthy |
+
+`alembic heads` returned the single repository head `20261005_standard_team_pool` on 5 October 2026. This verifies the migration graph, not whether any deployed database has applied it. Keep the existing explicit model imports in `tests/conftest.py`, including `PlatformSecurityEvent`.
+
+The audit's corrected phases need three adjustments. An API-hosted telemetry endpoint is a development bridge, not independent production collection. Repository implementation of capabilities and grouping can proceed before AWS decisions, but enabling their production capture requires the independent collector. Safety fixes are enabled changes, not default-off features; a rollback must not restore destructive startup behavior or diagnostic disclosure. The claim that analytics disappeared in a rollback remains an inference until Git history identifies the relevant change. No `PlatformAnalyticsProvider.tsx` exists; any such provider is a proposed new file.
 
 ## Proposed Super Admin experience
 
@@ -184,15 +205,54 @@ Include environment in provider queries; a platform-wide result must be an expli
 
 ## Delivery phases and exit criteria
 
-| Phase | Deliverables | Completion evidence |
-|---|---|---|
-| 0. Operational foundation | Remove destructive startup reset, measured health, telemetry contracts/redaction, provider/deployment inventory | Restart preserves custom pipelines; health correctly reports failed/unknown dependencies; production logs exclude test secrets |
-| 1. Collection and log search | Unified API/worker logs, request context, frontend/server capture, independent collector/storage, guarded log UI | Trace one browser failure through API/job; continue capturing when CRM DB is unavailable; ordinary users blocked |
-| 2. Error tickets | Grouping/delivery dedupe, occurrence search, assignments/comments/statuses, recurrence rules and logs linkage | Repeated error yields one ticket; concurrent updates are safe; verified-release recurrence reopens correctly; expected validation searchable |
-| 3. Analytics | Vercel and Mixpanel event collection, identity/privacy lifecycle, server-side reports and Analytics UI | Synthetic funnel verified; logout/tenant switching clears context; committed completions counted once; blocked/offline provider does not break CRM |
-| 4. Alerts and operations | Severity/rate alerts, real health overview, deployment markers, source maps, saved views, retention and ingestion monitoring | Synthetic incident reaches alert and ticket; fix verified; collector outage/lag shown; retention/purge and export audit tested |
+### Phase 0: Safety fixes and existing health hardening
 
-Deliver the first useful release with log search and error triage before extensive analytics dashboards. Optional later improvements: distributed trace waterfalls, availability/performance objectives, tenant-impact dashboards, usage/cost monitoring, feedback-to-ticket conversion, and an external issue tracker integration if the team already uses one. Keep email/Slack alert delivery disabled until recipients/channels are configured.
+This phase needs no new infrastructure and is enabled on release.
+
+1. Remove the startup reset caller while retaining the function for deliberate maintenance. Existing lazy seed callers remain. They can add missing stages and backfill unassigned leads, so they are not read-only; test that assigned lead stages, customized canonical stage values, custom pipelines, rules and history survive. An explicit reset is separate owner-authorized maintenance with tenant selection, dry-run impact, an audit record and recovery prerequisites; never execute it during startup or ordinary provisioning.
+2. Replace `BaseHTTPMiddleware` correlation handling with pure ASGI middleware and persist IDs in request state. Accept only bounded safe IDs, such as `[A-Za-z0-9-]{1,64}`, for both headers; generate replacements otherwise. Pure ASGI alone does not fix an outer Starlette 500 handler: that handler must read request state, attach both headers and log with `exc_info=(type(exc), exc, exc.__traceback__)`. Test handled errors, unexpected 500s and concurrent request isolation; keep IDs available to formatter records emitted by the outer handler.
+3. Inventory intentional `ValueError` usage and migrate it to explicit domain validation exceptions before removing the blanket mapping. Preserve Pydantic request-validation 422s and established business-error contracts. Unknown/internal `ValueError`s return a generic 500. Check endpoint behavior as well as existing tests.
+4. Centralize recursive redaction before text/JSON logging and export. Redact nested structured fields and exclude unsafe payloads and SQL parameters at the logging call site; key redaction or regular expressions alone cannot reliably remove arbitrary customer data from exception strings. Preserve sanitized stack frames without locals. Switch workers to shared `setup_logging()` and carry/reset job/request context around every delivery, including retries and failures.
+5. Reuse `HealthService`. Keep `/health/live`, `/api/v1/health/live`, `/health/ready` and `/api/v1/health/ready` public with minimal status bodies. Remove public detailed diagnostics from `/health` and `/api/v1/health`; inventory current consumers and move legitimate operator use to `GET /api/v1/superadmin/observability/health` behind the existing platform boundary. Add Redis heartbeat keys with TTLs for expected worker/scheduler instances. Report unavailable heartbeat storage as Unknown, not a healthy worker or a proven worker failure; represent Healthy, Degraded, Unavailable and Unknown with observation freshness. Drive the platform badge from that endpoint. Storage configuration alone does not prove service availability.
+6. Reconcile the public analytics document with the missing implementation. Do not install SDKs or restore an unidentified commit as part of this safety phase.
+
+Exit checks: a restart preserves customer pipeline configuration and lead placement; a forced 500 has a non-empty matching body/header request ID and a sanitized traceback; oversized/newline request and correlation IDs are replaced; planted nested secrets and SQL parameters do not appear in either logging format; public health probes expose no error strings/pool/bucket details; a logged-in ordinary CRM user cannot access platform diagnostics (401 or 403 according to the existing authentication boundary); touched backend tests, TypeScript, focused ESLint and localization checks pass.
+
+### Phase 1: Capabilities and capture contracts in the repository
+
+- Add owner-managed capability grants linked to platform credentials, using stable capability keys such as `view_observability`, `manage_issues`, `export_diagnostics` and `configure_providers`. The platform owner implicitly holds them; other accounts receive no new privileges by default. Require the existing platform session/MFA boundary and capability checks on every operator endpoint, with CSRF checks on writes, not only sidebar items. Protect detailed health with `view_observability` once this model exists.
+- Add application/global boundaries and Next.js client/server instrumentation, checking supported APIs against the installed Next.js 16.2.12 before implementation. Use an independent telemetry transport, a re-entrancy guard, sampling, payload limits and bounded best-effort delivery. Never collect forms, query strings or wholesale console output. Exclude the transport's own failures from capture.
+- For development only, propose `POST /api/v1/telemetry/client-errors` outside `/superadmin`, without CRM-database or platform-session dependencies. Validate a fixed untrusted schema and emit sanitized structured events without inserting issue rows. The existing rate limiter may serve this bridge; its in-memory fallback is per process. Production independent collection needs its own receiver-level abuse controls.
+- Define source/event IDs, trust classification, fingerprint version, safe envelope and disabled-by-default capture flags. An application endpoint must not be the production fallback during a FastAPI outage.
+
+Exit checks: owner and capability revocation are enforced; an operator lacking the capability is denied; an ordinary CRM token cannot authorize a platform operation; a synthetic browser/server error yields a sanitized event with its correlation reference; failed transport neither blocks the CRM interaction nor loops; oversized and identity-forging payloads are rejected or kept explicitly unverified.
+
+### Phase 2: Error Center metadata and workflow
+
+- Add the four issue models described above using portable SQLAlchemy `JSON`, explicit test-model registration and a migration from the verified current head, rechecking that head at implementation time.
+- Group outside request transactions. Use a bounded development buffer/consumer with visible drops and documented restart loss for local work; use the independent durable production queue/consumer from Phase 3 for production. Neither synchronous `queue_service.enqueue()` nor an in-memory buffer is durable outage capture.
+- Enforce issue and occurrence uniqueness, atomic counters, immutable activity, authorized assignments and optimistic edit versions. Verify release chronology for recurrence.
+- Wire the Error Center routes, services, TanStack Query hooks, URL filters and capability-gated sidebar entries. Preserve source trust and tenant impact through grouping and feedback links.
+
+Exit checks: 1,000 identical eligible failures produce one issue with the correct occurrence count; replayed events count once; concurrent edits yield a conflict instead of overwriting; older-release events do not reopen a newer verified fix; new-release recurrence does; committed telemetry survives a failing CRM transaction in the production design. Local tests do not establish production collection durability.
+
+### Phase 3: Independent production collection and guarded log search
+
+AWS compute/region/log-group and Vercel drain decisions are required here. This is a production prerequisite for broad Phase 1 capture and Phase 2 automatic ticket creation, even though their repository work can start earlier.
+
+- Deploy the independent receiver, signature/schema validation, dedicated telemetry queue, dead-letter handling, CloudWatch delivery, durable grouping consumer, retention and least-privilege roles. Identify existing compatible infrastructure before creating resources. Isolate telemetry from CRM business jobs and collector diagnostics from subscription feedback loops.
+- Provide `LogStore` implementations for local development and CloudWatch. Expose bounded, server-built Logs Insights searches with start/poll/cancel, approved log groups, opaque result snapshots, audited exports and visible truncation/freshness.
+- Verify deployment-specific API/worker logging, Vercel drain signature validation, private release source maps, receiver abuse controls, backlog monitoring and restart/replay recovery.
+
+Exit checks: with the CRM database stopped, accepted events remain available in CloudWatch and the durable queue until grouping resumes; with FastAPI stopped, a browser error still reaches the independent receiver; replay/restart does not double-count; a failing collector produces visible lag/drop states without a feedback loop; exported diagnostics are bounded, redacted and audited.
+
+### Phase 4: Analytics, alerts and operations
+
+Restore a verified compatible public-analytics change or implement the documented collection contract afresh. Add authenticated curated analytics, opaque identity/reset lifecycle, authoritative backend completion events, cached Vercel/Mixpanel reporting and `/superadmin/analytics`. Configure error-rate, collector-lag and dead-letter alerts only after recipients and channels are established.
+
+Exit checks: a synthetic funnel is verified; logout/tenant switching clears identity; committed completions count once; blocked/offline analytics does not break CRM writes/login; synthetic operational incidents reach configured alerts and issue triage; retention/purge and export audit work. Keep email/Slack delivery disabled until configured.
+
+The first production observability release requires Phase 3 collection plus the Phase 1/2 interfaces, before extensive analytics dashboards. Optional later improvements include trace waterfalls, availability/performance objectives, tenant-impact dashboards, usage/cost monitoring and an external issue tracker integration when justified.
 
 ## Verification and rollout
 
@@ -200,11 +260,13 @@ Backend targeted tests: platform-session/CSRF/revocation and capability checks, 
 
 Frontend tests: ticket filters/status/assignment/comments, stale edit conflict, full error capture without duplicates, identity switching, URL state, provider unavailable UI, source-map release matching, paginated log links and export authorization. Run TypeScript, focused ESLint, localization checks and real component/browser fixtures using synthetic failures.
 
-Roll out in development, then staging, then production with independent switches for analytics collection, diagnostic capture, log browsing and ticket creation. Backfill only eligible existing feedback links and retained safe logs; do not claim recovery of failures that were never collected. Deploy collector/redaction and retention before broad capture. Show actual provider connectivity, queue lag and data freshness throughout.
+Roll out in development, then staging, then production with independent default-off switches for new analytics collection, diagnostic capture, log browsing and ticket creation. These switches do not disable Phase 0 fixes. Test rollback against pipeline preservation and sanitized error/health responses; never roll back to destructive resets or raw diagnostic disclosure. Backfill only eligible existing feedback links and retained safe logs; do not claim recovery of failures that were never collected. Deploy independent collector/redaction and retention before enabling production capture or automatic tickets. Show actual provider connectivity, queue lag and data freshness throughout.
 
-## Decisions to confirm before implementation
+## Decisions and implementation gates
 
 Already confirmed: Vercel frontend, AWS backend, and a Mixpanel account to be created. Remaining decisions: AWS compute/worker services and region, existing CloudWatch infrastructure, Vercel account capabilities/project IDs, Mixpanel region and reporting access, monthly collection budget, retention windows, consent/data-region requirements, authorized platform operators and alert recipients. Use CloudWatch as the proposed runtime log store and conservative curated analytics as planning assumptions.
+
+Phase 0 can proceed independently of AWS/provider setup. Phase 1/2 repository work can use local fixtures, but final operator grants require owner decisions and their production capture/ticket flags remain off until Phase 3 durability is verified. Confirm whether public analytics was intentionally removed before choosing restoration; absence in current source does not establish the reason. Provider credentials, retention/budget and alert destinations gate Phase 3/4 deployment and enablement rather than these safety fixes.
 
 Account/configuration checklist:
 
