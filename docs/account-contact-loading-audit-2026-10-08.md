@@ -54,6 +54,8 @@ The real browser search for `Review` made one `/search/global?q=Review&category=
 
 ## Remaining work
 
+Follow-up: [Campaign audience audit](campaign-audience-loading-audit-2026-10-08.md) addresses recipient browsing, all-matching ID selection, composer and review loading from item 1 below. Existing Campaign detail monitoring and very large selection/worker scaling remain separate.
+
 1. Campaign recipient/composer/review paths still contain 100,000-row Lead/Contact reads. Replace them with searchable bounded lookups and an explicit server-side all-matching selection contract; merely lowering the limit would silently drop recipients.
 2. Lead/Deal Kanban still needs bounded per-column loading while preserving totals, filters, drag-and-drop and aggregate values.
 3. Contact Deal-note fan-out and unpaged parent notes need a scoped batching/pagination contract.
