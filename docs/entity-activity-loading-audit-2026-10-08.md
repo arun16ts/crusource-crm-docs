@@ -50,6 +50,8 @@ No imported business records were modified for browser inspection. No push or de
 
 ## Remaining work
 
+Follow-up: [Active activity timelines and post-pull validation](global-timeline-loading-audit-2026-10-08.md) records the subsequent implementation of active timeline paging, Contact-related Deal paging and correction of the eight baseline test fixtures. The list below describes what remained at the end of this earlier batch; use the follow-up's remaining-work list for current status.
+
 1. Replace the active `useGlobalTimeline` broad reads with scoped pages and continuation, including Contact-related Deals and their notes. Modal gating alone does not optimize a timeline once opened.
 2. Audit the existing Contact related-Deals and Account related-Contacts consumers; their first-page global lists can omit related records outside that page.
 3. Continue the earlier dense Calendar, Kanban, campaign recipient/composer and global-search work. Bound response size independently of request count.
