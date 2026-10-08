@@ -16,7 +16,7 @@ These bytes describe completed local development responses, not a production ben
 
 The Dashboard also requested both broad lists. Source tracing tied them to `useDashboardMetrics`, which calculated counts/trends and produced agendas/work-queue items in JavaScript. Calendar tracing tied its reads to `useCalendarEvents`, mounted before the Google connection landing-page decision. Request count alone hid the size of these two requests.
 
-After backend auto-reload, the application listener on port 8000 repeatedly stopped answering even `/health/ready`. A read-only PostgreSQL probe returned `SELECT 1` in approximately 29 ms, with no observed lock wait among the inspected connections. This narrows the live verification blocker to the API/reloader process; it does not establish that process's root cause. A backend restart was requested. **The final live HTTP/browser comparison is pending; fixture checks are not represented as that comparison.**
+After backend auto-reload, the application listener on port 8000 repeatedly stopped answering even `/health/ready`. A read-only PostgreSQL probe returned `SELECT 1` in approximately 29 ms, with no observed lock wait among the inspected connections. This narrows the live verification blocker to the API/reloader process; it does not establish that process's root cause. A backend restart was requested. **This was the original verification blocker; the post-restart live comparison below now resolves it.**
 
 ## Changes
 
@@ -56,14 +56,30 @@ Initial handler observations showed dashboard summaries at approximately 55–18
 
 Evidence scripts/logs are under `.worktrees/dashboard-calendar-20261008/`. Frontend validation uses Node 20 and a detached local snapshot of the final source. No changes have been pushed or deployed. New backend endpoints must precede a compatible frontend rollout; no rollout is authorized by this audit.
 
-Both disposable audit containers were removed after final verification. The application PostgreSQL/Redis services and imported records were preserved. A final port-8000 readiness probe still timed out; the live verification blocker remains open.
+Both disposable audit containers were removed after final verification. The application PostgreSQL/Redis services and imported records were preserved. The original final port-8000 readiness probe timed out. The post-restart verification below records restored readiness and the completed live checks.
 
 ## Still outstanding
 
-1. Finish live Dashboard/Calendar before/after verification when localhost API readiness is restored, including cache reuse, navigation, errors and continuation with the imported data.
+1. Post-restart live verification is complete for the Dashboard and disconnected Calendar scenarios described below. Connected Google Calendar remains fixture-only; no real account was connected.
 2. Optimize dense Calendar month/year overviews further. Date scoping prevents unrelated dates, but automatic continuation still loads every event in a populated visible window. Year/count-only and month-preview projections need a separate contract; this batch does not establish a fixed total response bound for those views. Calendar SLA markers also retain the existing first-page Lead limitation.
-3. Rewire related activity drawers and global timelines to scoped pages with continuation, preserving linked contact, attendee and email matching. Meeting conflict/context validation requires its own complete scoped read.
+3. Related Lead/Deal/Contact/Account activity drawers now use scoped pages with continuation; see the subsequent [entity activity audit](entity-activity-loading-audit-2026-10-08.md). Active global activity-modal timelines and Meeting conflict/context validation still require their own scoped read contracts.
 4. Replace global-search collection downloads, Leads/Deals 10,000-record Kanban loading and campaign recipient/composer bulk lookups with appropriate searchable or stage-scoped contracts. Some standalone Sales widgets still share the bounded Lead/Deal metrics hook and warrant narrower reads.
 5. Profile database query plans/indexes and realistic concurrent polling. Address the eight baseline backend failures separately. No new index/migration was introduced without plan evidence.
 
 Typography was not changed in this batch. The independently reproduced temporary font fallback and prior fix remain documented in the initial audit. This batch does not claim that every section, dialog, dataset size or deployed environment is optimized.
+
+
+## Post-restart live verification
+
+After the user restarted the API, `/health/ready` returned 200. Authenticated Chrome inspection completed against the actual imported local dataset:
+
+- Disconnected Calendar refresh made zero Task/Meeting collection or page requests. Existing connection-status and legitimate application-shell requests remained; no page errors were observed.
+- Dashboard made six completed bounded activity responses: Task/Meeting summaries, the first 50 active Tasks, the urgent Task page, the today/tomorrow Meeting page and the five-row future Meeting preview. Combined completed activity transfer was approximately 51,107 bytes, versus the original 100,510,214-byte broad lists. The Task agenda response carried 50 rows and total 41,401; Meeting summary total was 35,445. Urgent Tasks matched one row; the observed urgent/future Meeting queries matched zero.
+- Dashboard agenda Next Page requested skip 50/limit 50, returned another 50 records and preserved the 41,401 global total and continuation. The user dataset was not modified.
+- In-app Dashboard -> Leads -> Dashboard navigation within the freshness window issued zero additional Task/Meeting page or dashboard-summary GETs. No page errors were observed in that check.
+- After refresh, Instrument Sans and the Material Symbols font reported loaded. The computed body family was Instrument Sans followed by its Next.js fallback. The two locally served WOFF2 resources completed in approximately 18 and 13 ms in that cached development run. This is a loaded-state smoke check, not a new slow-network typography benchmark; no font implementation was changed here.
+- Development Strict Mode can cancel signal-consuming probe requests, and profile hydration initially replaced UTC urgency queries with Asia/Kolkata queries. These canceled requests are distinct from completed duplicate responses. Date/preference hydration remains a potential separate refinement.
+
+The Dashboard KPI label “Tasks Due / Today” currently displays the active-open total (41,401 in this dataset). That copy/metric mismatch needs a separate behavior decision; this audit does not change its underlying count or claim it means 41,401 Tasks are due today.
+
+The next entity-drawer batch is documented in [entity activity audit](entity-activity-loading-audit-2026-10-08.md). Live readiness and the preceding scenarios resolve the original API-process blocker; stage and a connected real Google account remain unverified.

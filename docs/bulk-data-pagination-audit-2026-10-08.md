@@ -67,7 +67,7 @@ Any eventual rollout must make the new backend endpoints available before deploy
 
 ## Remaining bulk-data paths
 
-The subsequent [Dashboard/Calendar audit](dashboard-calendar-loading-audit-2026-10-08.md) implements scoped dashboard projections, bounded agenda reads, and connection/date-window Calendar gating. It records the remaining live verification blocker and dense-calendar limits. The list below records the outstanding paths at the end of this original batch; use that follow-up for their current status.
+The subsequent [Dashboard/Calendar audit](dashboard-calendar-loading-audit-2026-10-08.md) implements scoped dashboard projections, bounded agenda reads, and connection/date-window Calendar gating; its post-restart section completes the live verification. The [entity activity audit](entity-activity-loading-audit-2026-10-08.md) replaces broad activity reads in Lead/Deal/Contact/Account drawers with scoped pages and Overview summaries. The list below records outstanding paths at the end of this original batch; use those follow-ups for their current status and remaining limits.
 
 This batch does **not** establish that every screen/tab/dialog fetches only bounded current-view data. Source tracing confirmed these separate contracts still need work:
 
