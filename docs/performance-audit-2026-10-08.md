@@ -43,13 +43,13 @@ All baseline CRM responses that completed were successful. No retry storm was re
 | `/documents`, `/admin/approvals/requests`                   | Closed LeadDetailDrawer ran hooks before returning null; missing lead ID became an unfiltered documents request | Mount drawer only for an open selected lead                                                 |
 | `/meetings/google/status`                                   | Closed drawer → useEntityActivities → disabled useMeetings → unconditional useGoogleStatus                      | Removed from initial Leads load by deferring drawer mounting                                |
 
-Sources: [Header](../src/components/layout/Header.tsx), [AuthGuard](../src/components/auth/AuthGuard.tsx), [LeadBoard](../src/components/leads/LeadBoard.tsx), [LeadBoardModals](../src/components/leads/board/LeadBoardModals.tsx), [LeadDetailDrawer](../src/components/leads/LeadDetailDrawer.tsx), [useEntityActivities](../src/hooks/useEntityActivities.ts), [useMeetings](../src/hooks/useMeetings.ts), [useDocuments](../src/hooks/useDocuments.ts), [notifications service](../src/services/notifications.service.ts).
+Sources: [Header](../../crusource-crm-frontend/src/components/layout/Header.tsx), [AuthGuard](../../crusource-crm-frontend/src/components/auth/AuthGuard.tsx), [LeadBoard](../../crusource-crm-frontend/src/components/leads/LeadBoard.tsx), [LeadBoardModals](../../crusource-crm-frontend/src/components/leads/board/LeadBoardModals.tsx), [LeadDetailDrawer](../../crusource-crm-frontend/src/components/leads/LeadDetailDrawer.tsx), [useEntityActivities](../../crusource-crm-frontend/src/hooks/useEntityActivities.ts), [useMeetings](../../crusource-crm-frontend/src/hooks/useMeetings.ts), [useDocuments](../../crusource-crm-frontend/src/hooks/useDocuments.ts), [notifications service](../../crusource-crm-frontend/src/services/notifications.service.ts).
 
 Global creation/import dialogs now use `next/dynamic`; the Leads add/import/detail implementations are also deferred. Add and import forms remain mounted after first use to preserve form/import lifecycle state, with closed Add Lead pipeline queries disabled. Shared activity forms mount only when their respective dialog opens.
 
 ## Caching and polling
 
-[QueryClient](../src/lib/queryClient.ts) already supplies two-minute freshness, fifteen-minute garbage collection, no default window-focus refetch, and bounded retries. Hard refresh starts a new in-memory cache. Multiple hooks alone are not evidence of duplicate HTTP calls.
+[QueryClient](../../crusource-crm-frontend/src/lib/queryClient.ts) already supplies two-minute freshness, fifteen-minute garbage collection, no default window-focus refetch, and bounded retries. Hard refresh starts a new in-memory cache. Multiple hooks alone are not evidence of duplicate HTTP calls.
 
 Profile and permission hooks intentionally override freshness/focus defaults (15 and 10 seconds respectively). Permission-revision changes cancel and reset cached feature data. These security-related behaviors were preserved. Notification polling remains every 10 seconds; reply and pending counts poll approximately every 30 seconds. A 22-second idle observation captured two notification polls and one each of pending/reply counts, with no Leads/documents/dashboard refetch cascade. Hidden-tab polling is not enabled by these queries.
 
@@ -61,7 +61,7 @@ No query scope was widened or cached across users. [Scope resolution](../../crus
 
 ## Independent font investigation
 
-[Root layout](../src/app/layout.tsx) defines Instrument Sans via `next/font/google`, preloaded and served locally as a WOFF2 under `/_next/static/media/`. It originally used `display: swap`. The external Google CSS/WOFF2 requests are Material Symbols icons, not the application text font.
+[Root layout](../../crusource-crm-frontend/src/app/layout.tsx) defines Instrument Sans via `next/font/google`, preloaded and served locally as a WOFF2 under `/_next/static/media/`. It originally used `display: swap`. The external Google CSS/WOFF2 requests are Material Symbols icons, not the application text font.
 
 Three cache-disabled login refreshes and repeated authenticated Leads refreshes loaded the text font successfully. Chrome's `CSS.getPlatformFontsForNode` confirmed Instrument Sans for the header, navigation and table text. In the initial capture the local font took approximately 16 ms. No permanent mismatch, font download failure, class replacement, or navigation/refresh configuration difference reproduced.
 
@@ -83,7 +83,7 @@ Initial sandbox checks encountered Node account lookup and SWC cache ownership b
 
 ## Separate follow-ups
 
-- Contacts navigation reproduced eager documents/deals/Google-status requests from its own feature tree. The global unused task fetch is fixed there too; other route drawer loading needs the same focused audit.
+- The subsequent cross-route audit below addresses the eager Contacts, Accounts, and Deals queries and other closed-dialog requests.
 - Entity activity loading still downloads broad tasks/meetings lists and filters them in React; meetings requests default to `limit=100000`. A scoped entity-activity API should preserve related-contact and attendee-email matching before replacing this behavior.
 - Leads Kanban requests up to 10000 records, while cards are limited only in the DOM. Server pagination per stage is a separate contract/UI change; lowering the cap would hide data.
 - Ten-second notification polling remains a possible steady-state load target, but changing it alters notification latency. Measure with representative users/data before choosing batching, a badge endpoint, or a broader event stream.
@@ -92,3 +92,35 @@ Initial sandbox checks encountered Node account lookup and SWC cache ownership b
 - Graphify update completed at 22147 nodes/61492 edges, but reported missing Terraform/HCL/SQL parsers, an empty pyproject extraction, and partial parsing of five existing TSX files. Community labels were retained or replaced by hub names where clustering changed; semantic relabeling was not run. Those graph coverage limitations do not replace direct source verification.
 
 The discarded list fetch, unused aggregates and eager drawer hooks can also run in production; these optimizations apply beyond development. Strict Mode replay, HMR/chunk counts and Kaspersky traffic should not be treated as deployed PostgreSQL traffic. No stage readiness or deployment approval is implied by this audit.
+
+## Cross-route follow-up on 2026-10-08
+
+The authenticated local browser sweep covered 38 route entries: Contacts, Accounts, Deals, Tasks, Meetings, Calls, Dashboard, Documents, Calendar, Analytics, Reports, Forecast, Campaigns, Inbox, Teamspace and its pool/requests/dashboard routes, Organization, Billing, Settings, Feedback, and 16 Admin routes. Onboarding submission and individual profile-detail flows were not part of this read-only route sweep. Measurements used Chrome DevTools Protocol network events through Playwright, attributed requests to the new document loader, and redacted SSE tokens. API totals exclude assets, Next.js development traffic, and injected antivirus traffic; include the legitimate import SSE connection; and measure the initial window before periodic notification refreshes.
+
+| Page | Initial API requests before | After | Confirmed unnecessary work removed |
+| --- | ---: | ---: | --- |
+| Contacts | 15 | 12 | Closed drawer's Deals list, unfiltered Documents, Google status |
+| Accounts | 16 | 13 | Closed drawer's Contacts list, unfiltered Documents, Google status |
+| Deals | 22 | 14 | Closed add form's Accounts/Contacts/Users; closed drawers' Documents/Google status/Approvals/Deals list; preliminary unfiltered Deals fetch |
+| Tasks | 14 | 13 | Closed task editor's Users list |
+| Meetings | 15 | 14 | Closed minutes dialog's Users list |
+| Admin Profiles | 14 | 13 | Closed comparison dialog's 100-profile list |
+| Dashboard | 22 | 21 | Pipeline-health aggregate before a pipeline was selected |
+
+Teamspace Dashboard also stopped requesting unselected team statistics and hierarchy before Admin's default team resolved: each endpoint now executes once for the selected team. Its visible Goals request completed inside the later measurement window, so the aggregate page total is not used to claim a precise two-request reduction. Non-Admin implicit team scope and the no-teams fallback are preserved. Loading UI remains visible while selection resolves.
+
+Changes are focused query gates, preserving existing mounted forms, drafts, query keys, freshness, mutation invalidation, and backend authorization. Deals, Contacts, Accounts, Documents, Google status, and approval hooks accept optional `enabled` configuration. Existing permission checks remain conjunctive with this option. Nested `useMeetings` now passes its enabled state to Google status. Shared document-picker, lead drawer, profile-user drawer, and Teamspace transfer dialogs also disable their hidden queries, protecting callers outside the directly measured pages.
+
+Source evidence: [Deals page](../../crusource-crm-frontend/src/app/dashboard/deals/page.tsx), [Contact drawer](../../crusource-crm-frontend/src/components/contacts/ContactDetailDrawer.tsx), [Account drawer](../../crusource-crm-frontend/src/components/accounts/AccountDetailDrawer.tsx), [Deal form](../../crusource-crm-frontend/src/components/deals/AddDealModal.tsx), [Teamspace dashboard](../../crusource-crm-frontend/src/components/teamspace/TeamspaceDashboard.tsx), [Pipeline health](../../crusource-crm-frontend/src/components/dashboard/sections/PipelineHealthWidget.tsx), [browser regression](../../crusource-crm-frontend/tests/test_session_startup_browser.mjs), [Deals repository](../../crusource-crm-backend/src/modules/deals/repositories/deals_repository.py), and [Documents repository](../../crusource-crm-backend/src/modules/documents/repositories/documents_repository.py).
+
+All post-change initial API responses on the changed routes returned 200. Populated Contact, Account, and Deal drawers opened and fetched notes, activities and entity-specific documents; their Documents tabs rendered without page errors. Deal, Task and Meeting creation dialogs opened and fetched their required options without failed API responses; no records were created or deleted. Contacts, Accounts and Deals reported the intended loaded Instrument Sans font after navigation. The earlier font fix is global and remains applicable to these routes.
+
+The expanded session-startup browser regression exercises real hooks under React Strict Mode: closed features make no requests, opening loads once, invalidation while closed does not refetch, and reopening refreshes invalidated data once. Existing permission and deletion browser regressions remain required. Only the supplied local account was used for live runtime checks; live Sales Manager/Rep accounts and stage were not exercised.
+
+Backend evidence: Deals, Accounts and Contacts lists execute scoped count and bounded row queries. Removing the two discarded Deals list requests avoids at least four list SQL statements per cold Deals load, plus the removed Accounts/Contacts/Users/Documents/Approvals reads. Documents eagerly joins its associated entities and validates parent visibility; avoiding the unused request avoids that entire path. This is source-based work elimination, not a PostgreSQL timing benchmark. No backend code, schema, API contract or authorization rule was changed.
+
+Other routes retain requests that power visible data: Reports' second list supplies unfiltered KPI cards; Calendar combines meetings/tasks/lead SLA events; Analytics runs visible board reports and funnel/cohort data; Forecast loads targets, pipelines and summary; Campaigns uses owner choices and statistics. Admin list/setup/history/storage/jobs requests serve their respective screens. Calls' duplicated request starts were cancelled Strict Mode requests before successful replacements, and small bulk-job receipts poll only while a job is active. These are distinguished from production duplicate successful reads.
+
+Remaining work is broader dataset loading: meetings default to `limit=100000`, entity activities still filter broad tasks/meetings locally, Contact/Account related lists currently use the first 50 rows, Deals/Leads Kanban load up to 10000 records, and Reports' KPI list caps at 500. Safe fixes require scoped/paginated API contracts that preserve related-contact, attendee-email, and role access semantics. Lowering limits alone could hide data. Notification polling and these dataset contracts remain separate performance work; the current changes do not claim an exhaustive database benchmark or stage readiness.
+
+Follow-up validation passed on Node 20.20.2: clean lockfile installation in a fresh isolated copy, changed-file formatting, full lint (zero errors, 1535 existing warnings), complete `npm test`, spreadsheets, TypeScript, all six CI browser commands, expanded session-startup browser regression, production build using CI test origins, and the configured dependency audit. The audit reports no high/critical runtime advisories and retains the existing temporary ESLint advisory exception. The first install attempt hit a Windows EBUSY lock in the reused test directory; the fresh copy resolved it and every final check exited zero. Browser sidebar navigation reused Contacts cache without another Contacts request; profile comparison fetched its options on opening; a Deal URL restored its drawer and Activities tab after hard refresh without failed API responses. Graphify was updated after the final code changes (22148 nodes, 61493 edges), with the same pre-existing parser coverage warnings. Backend code remains unchanged; backend CI and deployed-stage checks were not run for this frontend-only follow-up.
