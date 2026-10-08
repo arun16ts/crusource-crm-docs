@@ -67,6 +67,8 @@ Any eventual rollout must make the new backend endpoints available before deploy
 
 ## Remaining bulk-data paths
 
+The subsequent [Dashboard/Calendar audit](dashboard-calendar-loading-audit-2026-10-08.md) implements scoped dashboard projections, bounded agenda reads, and connection/date-window Calendar gating. It records the remaining live verification blocker and dense-calendar limits. The list below records the outstanding paths at the end of this original batch; use that follow-up for their current status.
+
 This batch does **not** establish that every screen/tab/dialog fetches only bounded current-view data. Source tracing confirmed these separate contracts still need work:
 
 - Dashboard metrics download broad Tasks/Meetings lists for agendas and trends. Replace them with scoped trend/summary queries and bounded agenda reads; truncating lists would make counts/trends inaccurate.
