@@ -63,6 +63,8 @@ ID selections and create payloads still scale with selected recipient count. Thi
 
 ## Remaining work
 
+Follow-up: [Campaign detail monitoring and recipient loading](campaign-monitoring-loading-audit-2026-10-08.md) implements the bounded monitoring contract described in item 1 below and records its live/fixture validation and separate remaining campaign work.
+
 1. **Existing Campaign detail monitoring** still loads its complete recipient breakdown and polls at 3 seconds while sending/draft or 10 seconds otherwise. Separate lightweight status/aggregate polling from paginated recipient rows, while retaining live opens/replies and retry/cancel controls. The inspected local campaign has only ten recipients, so that is not a large-volume runtime validation.
 2. Lead/Deal Kanban still needs per-column pagination and preserved counts/aggregates/drag behavior.
 3. Contact Deal-note batching and parent-note pagination remain.
