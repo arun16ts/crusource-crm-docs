@@ -54,6 +54,8 @@ Page reads now materialize related rows instead of downloading the full Task/Mee
 
 Remaining priorities:
 
+Follow-up: [Account Contacts audit](account-contact-loading-audit-2026-10-08.md) fixes item 2 below and verifies that the current global-search path already uses bounded server queries. The list below records the earlier batch's remaining state.
+
 1. Batch or page Contact Deal notes to reduce per-Deal requests when many Deals are related. Notes for one parent are also not uniformly paginated.
 2. Replace Account related-Contacts' first-global-page filter with a scoped paginated contract.
 3. Bound Kanban columns, campaign recipient/composer lookups, global search and meeting conflict/context reads; complete dense connected Calendar and concurrency checks.
