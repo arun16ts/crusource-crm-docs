@@ -69,6 +69,8 @@ Both backend edits were verified after the user restarted localhost. The new Not
 
 ## Remaining limitations and separate work
 
+Follow-up: [Year Calendar and scoped export loading](calendar-year-export-loading-audit-2026-10-09.md) implements the first two limitations below. It verifies compact year counts against the same imported Meetings and bounded server export generation; final binary download buffering, offset consistency and external deployment verification remain limits. The original observations below are retained as the baseline.
+
 - A Year Calendar view still downloads every full event in the visible year, rather than a compact daily aggregate. Pagination bounds each response; it does not make an 8,632-event year cheap. Each ordinary activity page also recomputes its scoped total. The current measurements do not justify claiming these reads are free. A compact Calendar-specific projection/aggregation and count-once or cursor continuation are potential follow-ups that must preserve Google deduplication, visible-window completeness and navigation to individual events.
 - Explicit exports retain all rows and create an additional file representation in browser memory. Very large CSV/XLSX exports need a separate scoped streaming/background-download design. This audit measured the existing behavior; it did not introduce arbitrary export caps or remove formats.
 - Deep offsets still scale with preceding rows, and offset-based continuation can shift under concurrent edits. Measurements at this volume were acceptable after the display-join optimization; they are not proof at millions of records.
