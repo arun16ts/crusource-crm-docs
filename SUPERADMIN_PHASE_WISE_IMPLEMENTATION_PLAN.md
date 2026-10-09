@@ -2,7 +2,7 @@
 
 Date: 9 October 2026
 
-Status: EXECUTION STARTED. Phases 0 and 1 completed locally on 9 October 2026; see the [Phase 0 review package](superadmin-phase0/README.md) and [Phase 1 review package](superadmin-phase1/README.md). Phases 2–9 remain planned. Local completion is not a production release or a claim of bug-free behavior.
+Status: EXECUTION STARTED. Phases 0–2 completed locally on 9 October 2026; see the [Phase 0 review package](superadmin-phase0/README.md), [Phase 1 review package](superadmin-phase1/README.md) and [Phase 2 review package](superadmin-phase2/README.md). Phases 3–9 remain planned. Local completion is not a production release or a claim of bug-free behavior.
 
 This is the execution companion to [SUPERADMIN_MASTER_UPGRADE_PLAN.md](SUPERADMIN_MASTER_UPGRADE_PLAN.md). It incorporates the original [analytics, Error Center and Logs requirements](superadmin_upgrade_plan.md), staff invitations/UI parity, and the newly requested demo pipeline and customer support tickets. The phase sequence below replaces the earlier phase sequence in the master plan.
 
@@ -105,6 +105,8 @@ Implement in order:
 **Complete when:** an owner can complete the full invitation flow through the UI against the test API, an invited staff member completes MFA, and the shell matches the CRM reference. Functional mocked browser tests alone do not establish visual parity.
 
 ## Phase 3 — All existing Super Admin screens
+
+Detailed execution companion: [SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md](SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md). **Status: PLANNED — ready for review.** The companion records current source findings, the Phase 1–2 boundaries, page work packages and verification gates; it does not claim Phase 3 is implemented.
 
 **Purpose:** finish the current portal before adding sales/support workspaces.
 

@@ -1,0 +1,14 @@
+{
+  "source_head": "d9e13de4758e7f4ca3e70fb957d9e519e021e315",
+  "matches_validated_snapshot": true,
+  "changed_files_sha256": {
+    ".github/workflows/ci.yml": "67939bc8372dc5dd6b822983c2d274896a8e821eeae1274f90f436f7bdba2aa2",
+    "package.json": "f696382735497451c32f1a9f49d470e0543451c71e98987315ee953742330603",
+    "src/app/superadmin/dashboard/page.tsx": "57f74ed84da071bfabd66f6ed0dc17b787f371660bb138a70d2e6ffb03632afe",
+    "src/components/superadmin/overview/SuperAdminOverview.tsx": "3c12bcdaa157f4b8cecf9aac593cb05011e8bd101769ac66c3dcc91f5e8c91cb",
+    "src/lib/platform/messages.ts": "fdb5027f8c5af083ead13e1223b9d4e6c8fe35d457d2ad2234b4a4851657a12c",
+    "src/services/superadmin.service.ts": "b05d1112f591064ce179ef2ed1d7cbaf4e5fb267cd0a9269f5a79cd2a4d47af2",
+    "tests/test_platform_overview_browser.mjs": "75825e625b8a541e459a55e8a61d1725d1151faedbf81f0d9333bc60c27032cd",
+    "tests/test_platform_overview_routes_browser.mjs": "8063444488ee0c7365cea2b3a5900701002252a364cbe2ae0ad664692ad560b7"
+  }
+}

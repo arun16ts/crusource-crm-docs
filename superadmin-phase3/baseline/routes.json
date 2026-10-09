@@ -1,0 +1,169 @@
+{
+  "captures": [
+    {
+      "route": "/dashboard",
+      "calls": [
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/dashboard/kpis",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/dashboard/kpis",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/dashboard/kpis",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/dashboard/kpis"
+      ],
+      "text": "Overview\n\nSuper Admin\n\nOpen CRM\nE\nPLATFORM MANAGEMENT\nSuper Admin Overview\n\nGlobal multi-tenant analytics, database entity volumes, subscription distribution, and user feedback stream.\n\nRefresh Telemetry\nTENANTS\n1\n(100% active)\n+1 in last 30d\nTOTAL USERS\n2\n(100% active)\n+2 in last 30d\nPIPELINE VALUE\n$0\nAcross 0 active deals\nPLATFORM CSAT\nN/A\n0 total reviews\nCROSS-TENANT DATA VOLUME TELEMETRY\nAggregated across all org partitions\n\nDEALS\n\n0\n\nLEADS\n\n0\n\nCONTACTS\n\n0\n\nACCOUNTS\n\n0\n\nTASKS\n\n0\n\nMEETINGS\n\n0\n\nCAMPAIGNS\n\n0\n\nAUDIT LOGS\n\n0\n\nSubscription Status Breakdown\n1 tenants\nTrialing\n1 (100%)\nManage billing & tenants\nView Organizations Directory\nUser Role & Security Distribution\n2 users\nAdmin\n1 (50%)\nPlatform Owner\n1 (50%)\nAUTH METHODS:\nGoogle: 0\nPassword: 0\nCustomer satisfaction\nExplore User Feedback"
+    },
+    {
+      "route": "/organizations",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations"
+      ],
+      "text": "Organizations\n\nSuper Admin\n\nOpen CRM\nE\nTENANT DIRECTORY\nOrganizations\n\nBrowse, search, and inspect customer tenant workspaces across the platform (1 total).\n\nRefresh Directory\nAll Subscriptions\nTrialing\nActive\nPast Due\nCanceled\nAll Statuses\nActive Tenants Only\nDisabled Tenants Only\nNewest First\nOldest First\nName (A-Z)\nName (Z-A)\nTENANT ORGANIZATION\tORG CODE / SLUG\tSUBSCRIPTION\tSTATUS\tMEMBERS\tCREATED DATE\tACTIONS\n\nE\nExample Workspace\n\t\nexample-workspace\nORG-D9CADC\n\tTrialing\t\nActive\n\t\n1\n\t2026-10-09\t\nInspect"
+    },
+    {
+      "route": "/login-history",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations",
+        "/api/v1/superadmin/login-history",
+        "/api/v1/superadmin/login-history/stats",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations",
+        "/api/v1/superadmin/login-history",
+        "/api/v1/superadmin/login-history/stats"
+      ],
+      "text": "Login history\n\nSuper Admin\n\nOpen CRM\nE\nSECURITY & AUDIT\nLogin Tracking\n\nReal-time cross-tenant authentication logs, IP addresses, client devices, and user session telemetry (0 total attempts).\n\nRefresh\nExport CSV\nTOTAL LOGINS\n0\n(0 today)\n0 logins recorded in last 30 days\nSUCCESS RATE (30D)\n100%\n(0 successful)\nReliable authentication throughput\nFAILED ATTEMPTS (30D)\n0\n(0% rate)\nIncludes bad passwords, unverified emails, & deactivated users\nACTIVE USERS (30D)\n0\nunique users\nActive across 0 top tenant workspaces\n🏢 All Organizations\nExample Workspace (example-workspace)\nAll Statuses\n✓ Successful Logins\n✕ Failed Logins\nAll Auth Methods\nPassword\nGoogle OAuth\nToken Refresh\nStored Token / Dashboard\nRegistration OTP\nInvite Acceptance\nAll Time\nToday\nLast 7 Days\nLast 30 Days\nCustom Range\nTIMESTAMP\tORGANIZATION\tUSER ACCOUNT\tMETHOD\tSTATUS\tIP ADDRESS\tCLIENT / DEVICE\tPROFILE\n\nNo Login Records Found\nNo sign-in events match the selected filters or date range across tenant organizations."
+    },
+    {
+      "route": "/trial-extensions",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/trial-extensions",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/trial-extensions"
+      ],
+      "text": "Trial extensions\n\nSuper Admin\n\nOpen CRM\nE\nSUBSCRIPTION LIFECYCLE\nTrial Extension Requests\n\nReview, evaluate, and grant free trial duration extensions submitted by tenant workspace administrators.\n\nRefresh Stream\nPENDING REVIEW\n0\nTOTAL REQUESTS\n0\nPLATFORM CONTROL\nAutomated Quota & Expiry Sync\nAll Requests\nPending\nApproved\nRejected\nORGANIZATION\tREQUESTER\tREQUESTED EXTENSION\tREASON\tSTATUS\tSUBMITTED\tACTIONS\n\n\nNo trial extension requests found\n\nNo extension requests match your search filters."
+    },
+    {
+      "route": "/feedback",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback/stats",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback/stats",
+        "/api/v1/superadmin/feedback"
+      ],
+      "text": "Feedback\n\nSuper Admin\n\nOpen CRM\nE\nCUSTOMER SENTIMENT\nUser Feedback & CSAT Stream\n\nLive product ratings, bug submissions, feature requests, and customer reviews from all tenant workspaces.\n\nRefresh Feedback\nAVERAGE CSAT\nN/A\nTOTAL REVIEWS\n0\n5-STAR RATINGS\n0\nCATEGORIES\n0 active\nAll Categories\nAll Ratings\n⭐⭐⭐⭐⭐ (5 Stars)\n⭐⭐⭐⭐ (4+ Stars)\n⭐⭐⭐ (3+ Stars)\n⭐⭐ (2+ Stars)\n⭐ (1+ Star)\n\nNo feedback submissions found\n\nAdjust your search keywords or clear the category filters."
+    }
+  ],
+  "responseStatuses": [
+    {
+      "path": "/api/v1/superadmin/auth/login",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/dashboard/kpis",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/dashboard/kpis",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,20 @@
+{
+  "local_only": true,
+  "checks": {
+    "ruff": 0,
+    "compile": 0,
+    "migrations": 0,
+    "pytest": 0,
+    "redis": 0,
+    "webhook-postgres": 0,
+    "postgres": 0,
+    "drift": 0,
+    "alembic-check": 0,
+    "platform-postgres": 0
+  },
+  "pytest": {
+    "passed": 1962,
+    "skipped": 49
+  },
+  "migration_head": "20261009_merge_exports_platform"
+}

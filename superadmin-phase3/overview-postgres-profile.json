@@ -1,0 +1,21 @@
+{
+  "before": {
+    "sql_statements": 21,
+    "elapsed_ms": 64.39,
+    "total_users": 3,
+    "customer_total_users": null,
+    "platform_total_users": null,
+    "pipeline": 0.0,
+    "status": "healthy"
+  },
+  "after": {
+    "sql_statements": 14,
+    "elapsed_ms": 47.33,
+    "total_users": 3,
+    "customer_total_users": 2,
+    "platform_total_users": 1,
+    "pipeline": null,
+    "status": "unknown"
+  },
+  "timing_note": "Single small synthetic run; statement counts are deterministic, timings are not a scale benchmark."
+}
