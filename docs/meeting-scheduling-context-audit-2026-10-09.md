@@ -49,3 +49,8 @@ The disposable test containers and their volumes were removed after validation. 
 ## Remaining scope
 
 Notes pagination/batching, dense Calendar volume checks, and concurrency/query-plan/accumulated-export profiling remain separate work. Legacy campaign-detail and per-representative leaderboard limitations remain as previously documented. Local tests do not establish stage behavior. No push or deployment was performed.
+
+
+### Follow-up: Notes, dense Calendar and scale audit
+
+The [Notes, Calendar and scale audit](notes-calendar-scale-audit-2026-10-09.md) completed parent Notes pagination/batching, dense imported-data Calendar checks and local SQL/concurrency/export-memory profiling. It also optimized Meetings display joins after profiling, and passed both repositories' complete local CI checks, including a fresh final migration-drift rerun. It records remaining year-window payload, accumulated-export memory and production-verification limitations explicitly. This supersedes the corresponding pending work above; it is not a claim that all application performance work is finished.
