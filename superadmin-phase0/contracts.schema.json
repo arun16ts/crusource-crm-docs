@@ -1,0 +1,2928 @@
+{
+  "status": "DESIGN_CONTRACT_NOT_LIVE_API",
+  "models": {
+    "PageQuery": {
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 20,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "maximum": 100000,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "search": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Search",
+          "type": "string"
+        },
+        "sort_order": {
+          "default": "desc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "title": "Sort Order",
+          "type": "string"
+        }
+      },
+      "title": "PageQuery",
+      "type": "object"
+    },
+    "VersionedCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "expected_version"
+      ],
+      "title": "VersionedCommand",
+      "type": "object"
+    },
+    "InviteStaff": {
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "format": "email",
+          "maxLength": 255,
+          "title": "Email",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "name"
+      ],
+      "title": "InviteStaff",
+      "type": "object"
+    },
+    "ResendInvitation": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "expected_version"
+      ],
+      "title": "ResendInvitation",
+      "type": "object"
+    },
+    "CancelInvitation": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "reason": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "reason"
+      ],
+      "title": "CancelInvitation",
+      "type": "object"
+    },
+    "ResetStaffSignIn": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "reason": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "reason"
+      ],
+      "title": "ResetStaffSignIn",
+      "type": "object"
+    },
+    "RevokeStaff": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "reason": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "reason"
+      ],
+      "title": "RevokeStaff",
+      "type": "object"
+    },
+    "Invitation": {
+      "$defs": {
+        "DeliveryStatus": {
+          "enum": [
+            "queued",
+            "sending",
+            "sent",
+            "retrying",
+            "failed",
+            "superseded"
+          ],
+          "title": "DeliveryStatus",
+          "type": "string"
+        },
+        "InvitationStatus": {
+          "enum": [
+            "pending",
+            "enrolling",
+            "accepted",
+            "cancelled",
+            "expired"
+          ],
+          "title": "InvitationStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "maxLength": 255,
+          "title": "Email",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/InvitationStatus"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "generation": {
+          "minimum": 1,
+          "title": "Generation",
+          "type": "integer"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "invited_by": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Invited By"
+        },
+        "accepted_user_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Accepted User Id"
+        },
+        "delivery_status": {
+          "$ref": "#/$defs/DeliveryStatus"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "name",
+        "status",
+        "version",
+        "generation",
+        "expires_at",
+        "created_at",
+        "invited_by",
+        "accepted_user_id",
+        "delivery_status"
+      ],
+      "title": "Invitation",
+      "type": "object"
+    },
+    "Staff": {
+      "$defs": {
+        "Capability": {
+          "enum": [
+            "demo.read",
+            "demo.manage",
+            "support.read",
+            "support.manage"
+          ],
+          "title": "Capability",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "title": "Email",
+          "type": "string"
+        },
+        "is_owner": {
+          "title": "Is Owner",
+          "type": "boolean"
+        },
+        "active": {
+          "title": "Active",
+          "type": "boolean"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "capabilities": {
+          "items": {
+            "$ref": "#/$defs/Capability"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "is_owner",
+        "active",
+        "version",
+        "capabilities"
+      ],
+      "title": "Staff",
+      "type": "object"
+    },
+    "InvitationQuery": {
+      "$defs": {
+        "InvitationStatus": {
+          "enum": [
+            "pending",
+            "enrolling",
+            "accepted",
+            "cancelled",
+            "expired"
+          ],
+          "title": "InvitationStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 20,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "maximum": 100000,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "search": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Search",
+          "type": "string"
+        },
+        "sort_order": {
+          "default": "desc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "title": "Sort Order",
+          "type": "string"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InvitationStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sort_by": {
+          "default": "created_at",
+          "enum": [
+            "created_at",
+            "email",
+            "expires_at"
+          ],
+          "title": "Sort By",
+          "type": "string"
+        }
+      },
+      "title": "InvitationQuery",
+      "type": "object"
+    },
+    "SubmitDemo": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "maxLength": 255,
+          "title": "Email",
+          "type": "string"
+        },
+        "company": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Company",
+          "type": "string"
+        },
+        "phone": {
+          "anyOf": [
+            {
+              "maxLength": 32,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phone"
+        },
+        "message": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Message",
+          "type": "string"
+        },
+        "locale": {
+          "default": "en",
+          "enum": [
+            "en",
+            "nl"
+          ],
+          "title": "Locale",
+          "type": "string"
+        },
+        "consent": {
+          "const": true,
+          "title": "Consent",
+          "type": "boolean"
+        },
+        "website": {
+          "const": "",
+          "default": "",
+          "title": "Website",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "company",
+        "consent"
+      ],
+      "title": "SubmitDemo",
+      "type": "object"
+    },
+    "DemoReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "receipt_id": {
+          "format": "uuid",
+          "title": "Receipt Id",
+          "type": "string"
+        },
+        "message": {
+          "const": "Your demo request has been received.",
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "receipt_id",
+        "message"
+      ],
+      "title": "DemoReceipt",
+      "type": "object"
+    },
+    "DemoRequest": {
+      "$defs": {
+        "DemoStage": {
+          "enum": [
+            "new",
+            "contacted",
+            "qualified",
+            "demo_scheduled",
+            "demo_completed",
+            "follow_up",
+            "converted",
+            "not_proceeding"
+          ],
+          "title": "DemoStage",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "title": "Email",
+          "type": "string"
+        },
+        "company": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Company",
+          "type": "string"
+        },
+        "phone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Phone"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "locale": {
+          "enum": [
+            "en",
+            "nl"
+          ],
+          "title": "Locale",
+          "type": "string"
+        },
+        "stage": {
+          "$ref": "#/$defs/DemoStage"
+        },
+        "disposition": {
+          "enum": [
+            "normal",
+            "spam"
+          ],
+          "title": "Disposition",
+          "type": "string"
+        },
+        "assignee_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Assignee Id"
+        },
+        "follow_up_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Follow Up At"
+        },
+        "scheduled_demo_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Scheduled Demo At"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "company",
+        "phone",
+        "message",
+        "locale",
+        "stage",
+        "disposition",
+        "assignee_id",
+        "follow_up_at",
+        "scheduled_demo_at",
+        "version",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "DemoRequest",
+      "type": "object"
+    },
+    "MoveDemo": {
+      "$defs": {
+        "DemoStage": {
+          "enum": [
+            "new",
+            "contacted",
+            "qualified",
+            "demo_scheduled",
+            "demo_completed",
+            "follow_up",
+            "converted",
+            "not_proceeding"
+          ],
+          "title": "DemoStage",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "stage": {
+          "$ref": "#/$defs/DemoStage"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "scheduled_demo_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scheduled Demo At"
+        }
+      },
+      "required": [
+        "expected_version",
+        "stage"
+      ],
+      "title": "MoveDemo",
+      "type": "object"
+    },
+    "AssignRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "assignee_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Assignee Id"
+        }
+      },
+      "required": [
+        "expected_version",
+        "assignee_id"
+      ],
+      "title": "AssignRecord",
+      "type": "object"
+    },
+    "SetDemoFollowUp": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "follow_up_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Follow Up At"
+        }
+      },
+      "required": [
+        "expected_version",
+        "follow_up_at"
+      ],
+      "title": "SetDemoFollowUp",
+      "type": "object"
+    },
+    "SetDemoDisposition": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "disposition": {
+          "enum": [
+            "normal",
+            "spam"
+          ],
+          "title": "Disposition",
+          "type": "string"
+        },
+        "reason": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "disposition",
+        "reason"
+      ],
+      "title": "SetDemoDisposition",
+      "type": "object"
+    },
+    "AddDemoNote": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "body"
+      ],
+      "title": "AddDemoNote",
+      "type": "object"
+    },
+    "DemoNote": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        },
+        "author_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Author Id"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "body",
+        "author_id",
+        "created_at"
+      ],
+      "title": "DemoNote",
+      "type": "object"
+    },
+    "DemoStageCount": {
+      "$defs": {
+        "DemoStage": {
+          "enum": [
+            "new",
+            "contacted",
+            "qualified",
+            "demo_scheduled",
+            "demo_completed",
+            "follow_up",
+            "converted",
+            "not_proceeding"
+          ],
+          "title": "DemoStage",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "stage": {
+          "$ref": "#/$defs/DemoStage"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "stage",
+        "total"
+      ],
+      "title": "DemoStageCount",
+      "type": "object"
+    },
+    "DemoCounts": {
+      "$defs": {
+        "DemoStage": {
+          "enum": [
+            "new",
+            "contacted",
+            "qualified",
+            "demo_scheduled",
+            "demo_completed",
+            "follow_up",
+            "converted",
+            "not_proceeding"
+          ],
+          "title": "DemoStage",
+          "type": "string"
+        },
+        "DemoStageCount": {
+          "additionalProperties": false,
+          "properties": {
+            "stage": {
+              "$ref": "#/$defs/DemoStage"
+            },
+            "total": {
+              "minimum": 0,
+              "title": "Total",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "stage",
+            "total"
+          ],
+          "title": "DemoStageCount",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/DemoStageCount"
+          },
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "title": "DemoCounts",
+      "type": "object"
+    },
+    "DemoQuery": {
+      "$defs": {
+        "DemoStage": {
+          "enum": [
+            "new",
+            "contacted",
+            "qualified",
+            "demo_scheduled",
+            "demo_completed",
+            "follow_up",
+            "converted",
+            "not_proceeding"
+          ],
+          "title": "DemoStage",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 20,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "maximum": 100000,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "search": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Search",
+          "type": "string"
+        },
+        "sort_order": {
+          "default": "desc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "title": "Sort Order",
+          "type": "string"
+        },
+        "stage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DemoStage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "disposition": {
+          "default": "normal",
+          "enum": [
+            "normal",
+            "spam"
+          ],
+          "title": "Disposition",
+          "type": "string"
+        },
+        "assignee_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assignee Id"
+        },
+        "unassigned": {
+          "default": false,
+          "title": "Unassigned",
+          "type": "boolean"
+        },
+        "sort_by": {
+          "default": "created_at",
+          "enum": [
+            "created_at",
+            "updated_at",
+            "follow_up_at"
+          ],
+          "title": "Sort By",
+          "type": "string"
+        }
+      },
+      "title": "DemoQuery",
+      "type": "object"
+    },
+    "CreateTicket": {
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Subject",
+          "type": "string"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        },
+        "category": {
+          "default": "general",
+          "enum": [
+            "general",
+            "account",
+            "billing",
+            "bug",
+            "feature_request"
+          ],
+          "title": "Category",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subject",
+        "body"
+      ],
+      "title": "CreateTicket",
+      "type": "object"
+    },
+    "ReplyToTicket": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "body"
+      ],
+      "title": "ReplyToTicket",
+      "type": "object"
+    },
+    "AddInternalNote": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "body"
+      ],
+      "title": "AddInternalNote",
+      "type": "object"
+    },
+    "ChangeTicketStatus": {
+      "$defs": {
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/TicketStatus"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "expected_version",
+        "status"
+      ],
+      "title": "ChangeTicketStatus",
+      "type": "object"
+    },
+    "ReopenTicket": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_version": {
+          "minimum": 1,
+          "title": "Expected Version",
+          "type": "integer"
+        },
+        "reason": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_version",
+        "reason"
+      ],
+      "title": "ReopenTicket",
+      "type": "object"
+    },
+    "CustomerTicket": {
+      "$defs": {
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "subject": {
+          "title": "Subject",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "general",
+            "account",
+            "billing",
+            "bug",
+            "feature_request"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/TicketStatus"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "subject",
+        "category",
+        "status",
+        "version",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "CustomerTicket",
+      "type": "object"
+    },
+    "PlatformTicket": {
+      "$defs": {
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "subject": {
+          "title": "Subject",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "general",
+            "account",
+            "billing",
+            "bug",
+            "feature_request"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/TicketStatus"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        },
+        "org_id": {
+          "format": "uuid",
+          "title": "Org Id",
+          "type": "string"
+        },
+        "requester_id": {
+          "format": "uuid",
+          "title": "Requester Id",
+          "type": "string"
+        },
+        "assignee_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Assignee Id"
+        }
+      },
+      "required": [
+        "id",
+        "subject",
+        "category",
+        "status",
+        "version",
+        "created_at",
+        "updated_at",
+        "org_id",
+        "requester_id",
+        "assignee_id"
+      ],
+      "title": "PlatformTicket",
+      "type": "object"
+    },
+    "CustomerMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "author_kind": {
+          "enum": [
+            "customer",
+            "staff"
+          ],
+          "title": "Author Kind",
+          "type": "string"
+        },
+        "author_name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Author Name",
+          "type": "string"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "ticket_id",
+        "author_kind",
+        "author_name",
+        "body",
+        "created_at"
+      ],
+      "title": "CustomerMessage",
+      "type": "object"
+    },
+    "PlatformMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "author_kind": {
+          "enum": [
+            "customer",
+            "staff"
+          ],
+          "title": "Author Kind",
+          "type": "string"
+        },
+        "author_name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Author Name",
+          "type": "string"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "internal"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "author_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Author Id"
+        }
+      },
+      "required": [
+        "id",
+        "ticket_id",
+        "author_kind",
+        "author_name",
+        "body",
+        "created_at",
+        "visibility",
+        "author_id"
+      ],
+      "title": "PlatformMessage",
+      "type": "object"
+    },
+    "CustomerTicketQuery": {
+      "$defs": {
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 20,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "maximum": 100000,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "search": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Search",
+          "type": "string"
+        },
+        "sort_order": {
+          "default": "desc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "title": "Sort Order",
+          "type": "string"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TicketStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sort_by": {
+          "default": "updated_at",
+          "enum": [
+            "created_at",
+            "updated_at"
+          ],
+          "title": "Sort By",
+          "type": "string"
+        }
+      },
+      "title": "CustomerTicketQuery",
+      "type": "object"
+    },
+    "PlatformTicketQuery": {
+      "$defs": {
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 20,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "maximum": 100000,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "search": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Search",
+          "type": "string"
+        },
+        "sort_order": {
+          "default": "desc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "title": "Sort Order",
+          "type": "string"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TicketStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sort_by": {
+          "default": "updated_at",
+          "enum": [
+            "created_at",
+            "updated_at"
+          ],
+          "title": "Sort By",
+          "type": "string"
+        },
+        "org_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Org Id"
+        },
+        "assignee_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assignee Id"
+        },
+        "unassigned": {
+          "default": false,
+          "title": "Unassigned",
+          "type": "boolean"
+        }
+      },
+      "title": "PlatformTicketQuery",
+      "type": "object"
+    },
+    "MessageQuery": {
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 30,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "before_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Before Id"
+        }
+      },
+      "title": "MessageQuery",
+      "type": "object"
+    },
+    "HistoryEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "action": {
+          "maxLength": 80,
+          "title": "Action",
+          "type": "string"
+        },
+        "actor_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Actor Id"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "from_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "From State"
+        },
+        "to_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "To State"
+        }
+      },
+      "required": [
+        "id",
+        "action",
+        "actor_id",
+        "reason",
+        "created_at",
+        "from_state",
+        "to_state"
+      ],
+      "title": "HistoryEntry",
+      "type": "object"
+    },
+    "ApiError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "validation_error",
+            "unauthenticated",
+            "forbidden",
+            "not_found",
+            "version_conflict",
+            "idempotency_conflict",
+            "invalid_transition",
+            "rate_limited",
+            "temporarily_unavailable"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "request_id": {
+          "title": "Request Id",
+          "type": "string"
+        },
+        "current_version": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Current Version"
+        },
+        "field_errors": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Field Errors",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "request_id"
+      ],
+      "title": "ApiError",
+      "type": "object"
+    },
+    "item": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "author_kind": {
+          "enum": [
+            "customer",
+            "staff"
+          ],
+          "title": "Author Kind",
+          "type": "string"
+        },
+        "author_name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Author Name",
+          "type": "string"
+        },
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "internal"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "author_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Author Id"
+        }
+      },
+      "required": [
+        "id",
+        "ticket_id",
+        "author_kind",
+        "author_name",
+        "body",
+        "created_at",
+        "visibility",
+        "author_id"
+      ],
+      "title": "PlatformMessage",
+      "type": "object"
+    },
+    "InvitationPage": {
+      "$defs": {
+        "DeliveryStatus": {
+          "enum": [
+            "queued",
+            "sending",
+            "sent",
+            "retrying",
+            "failed",
+            "superseded"
+          ],
+          "title": "DeliveryStatus",
+          "type": "string"
+        },
+        "Invitation": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "email": {
+              "format": "email",
+              "maxLength": 255,
+              "title": "Email",
+              "type": "string"
+            },
+            "name": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Name",
+              "type": "string"
+            },
+            "status": {
+              "$ref": "#/$defs/InvitationStatus"
+            },
+            "version": {
+              "minimum": 1,
+              "title": "Version",
+              "type": "integer"
+            },
+            "generation": {
+              "minimum": 1,
+              "title": "Generation",
+              "type": "integer"
+            },
+            "expires_at": {
+              "format": "date-time",
+              "title": "Expires At",
+              "type": "string"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "invited_by": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Invited By"
+            },
+            "accepted_user_id": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Accepted User Id"
+            },
+            "delivery_status": {
+              "$ref": "#/$defs/DeliveryStatus"
+            }
+          },
+          "required": [
+            "id",
+            "email",
+            "name",
+            "status",
+            "version",
+            "generation",
+            "expires_at",
+            "created_at",
+            "invited_by",
+            "accepted_user_id",
+            "delivery_status"
+          ],
+          "title": "Invitation",
+          "type": "object"
+        },
+        "InvitationStatus": {
+          "enum": [
+            "pending",
+            "enrolling",
+            "accepted",
+            "cancelled",
+            "expired"
+          ],
+          "title": "InvitationStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Invitation"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "InvitationPage",
+      "type": "object"
+    },
+    "StaffPage": {
+      "$defs": {
+        "Capability": {
+          "enum": [
+            "demo.read",
+            "demo.manage",
+            "support.read",
+            "support.manage"
+          ],
+          "title": "Capability",
+          "type": "string"
+        },
+        "Staff": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "name": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Name",
+              "type": "string"
+            },
+            "email": {
+              "format": "email",
+              "title": "Email",
+              "type": "string"
+            },
+            "is_owner": {
+              "title": "Is Owner",
+              "type": "boolean"
+            },
+            "active": {
+              "title": "Active",
+              "type": "boolean"
+            },
+            "version": {
+              "minimum": 1,
+              "title": "Version",
+              "type": "integer"
+            },
+            "capabilities": {
+              "items": {
+                "$ref": "#/$defs/Capability"
+              },
+              "title": "Capabilities",
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email",
+            "is_owner",
+            "active",
+            "version",
+            "capabilities"
+          ],
+          "title": "Staff",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Staff"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "StaffPage",
+      "type": "object"
+    },
+    "DemoRequestPage": {
+      "$defs": {
+        "DemoRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "name": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Name",
+              "type": "string"
+            },
+            "email": {
+              "format": "email",
+              "title": "Email",
+              "type": "string"
+            },
+            "company": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Company",
+              "type": "string"
+            },
+            "phone": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Phone"
+            },
+            "message": {
+              "title": "Message",
+              "type": "string"
+            },
+            "locale": {
+              "enum": [
+                "en",
+                "nl"
+              ],
+              "title": "Locale",
+              "type": "string"
+            },
+            "stage": {
+              "$ref": "#/$defs/DemoStage"
+            },
+            "disposition": {
+              "enum": [
+                "normal",
+                "spam"
+              ],
+              "title": "Disposition",
+              "type": "string"
+            },
+            "assignee_id": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Assignee Id"
+            },
+            "follow_up_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Follow Up At"
+            },
+            "scheduled_demo_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Scheduled Demo At"
+            },
+            "version": {
+              "minimum": 1,
+              "title": "Version",
+              "type": "integer"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "updated_at": {
+              "format": "date-time",
+              "title": "Updated At",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email",
+            "company",
+            "phone",
+            "message",
+            "locale",
+            "stage",
+            "disposition",
+            "assignee_id",
+            "follow_up_at",
+            "scheduled_demo_at",
+            "version",
+            "created_at",
+            "updated_at"
+          ],
+          "title": "DemoRequest",
+          "type": "object"
+        },
+        "DemoStage": {
+          "enum": [
+            "new",
+            "contacted",
+            "qualified",
+            "demo_scheduled",
+            "demo_completed",
+            "follow_up",
+            "converted",
+            "not_proceeding"
+          ],
+          "title": "DemoStage",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/DemoRequest"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "DemoRequestPage",
+      "type": "object"
+    },
+    "DemoNotePage": {
+      "$defs": {
+        "DemoNote": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "body": {
+              "maxLength": 10000,
+              "minLength": 1,
+              "title": "Body",
+              "type": "string"
+            },
+            "author_id": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Author Id"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "body",
+            "author_id",
+            "created_at"
+          ],
+          "title": "DemoNote",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/DemoNote"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "DemoNotePage",
+      "type": "object"
+    },
+    "CustomerTicketPage": {
+      "$defs": {
+        "CustomerTicket": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "subject": {
+              "title": "Subject",
+              "type": "string"
+            },
+            "category": {
+              "enum": [
+                "general",
+                "account",
+                "billing",
+                "bug",
+                "feature_request"
+              ],
+              "title": "Category",
+              "type": "string"
+            },
+            "status": {
+              "$ref": "#/$defs/TicketStatus"
+            },
+            "version": {
+              "minimum": 1,
+              "title": "Version",
+              "type": "integer"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "updated_at": {
+              "format": "date-time",
+              "title": "Updated At",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "subject",
+            "category",
+            "status",
+            "version",
+            "created_at",
+            "updated_at"
+          ],
+          "title": "CustomerTicket",
+          "type": "object"
+        },
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/CustomerTicket"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "CustomerTicketPage",
+      "type": "object"
+    },
+    "PlatformTicketPage": {
+      "$defs": {
+        "PlatformTicket": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "subject": {
+              "title": "Subject",
+              "type": "string"
+            },
+            "category": {
+              "enum": [
+                "general",
+                "account",
+                "billing",
+                "bug",
+                "feature_request"
+              ],
+              "title": "Category",
+              "type": "string"
+            },
+            "status": {
+              "$ref": "#/$defs/TicketStatus"
+            },
+            "version": {
+              "minimum": 1,
+              "title": "Version",
+              "type": "integer"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "updated_at": {
+              "format": "date-time",
+              "title": "Updated At",
+              "type": "string"
+            },
+            "org_id": {
+              "format": "uuid",
+              "title": "Org Id",
+              "type": "string"
+            },
+            "requester_id": {
+              "format": "uuid",
+              "title": "Requester Id",
+              "type": "string"
+            },
+            "assignee_id": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Assignee Id"
+            }
+          },
+          "required": [
+            "id",
+            "subject",
+            "category",
+            "status",
+            "version",
+            "created_at",
+            "updated_at",
+            "org_id",
+            "requester_id",
+            "assignee_id"
+          ],
+          "title": "PlatformTicket",
+          "type": "object"
+        },
+        "TicketStatus": {
+          "enum": [
+            "open",
+            "in_progress",
+            "waiting_customer",
+            "resolved",
+            "closed"
+          ],
+          "title": "TicketStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/PlatformTicket"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "PlatformTicketPage",
+      "type": "object"
+    },
+    "HistoryEntryPage": {
+      "$defs": {
+        "HistoryEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "action": {
+              "maxLength": 80,
+              "title": "Action",
+              "type": "string"
+            },
+            "actor_id": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Actor Id"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "maxLength": 2000,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reason"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "from_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From State"
+            },
+            "to_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To State"
+            }
+          },
+          "required": [
+            "id",
+            "action",
+            "actor_id",
+            "reason",
+            "created_at",
+            "from_state",
+            "to_state"
+          ],
+          "title": "HistoryEntry",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/HistoryEntry"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "limit": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "items",
+        "total",
+        "limit",
+        "offset"
+      ],
+      "title": "HistoryEntryPage",
+      "type": "object"
+    },
+    "CustomerMessagePage": {
+      "$defs": {
+        "CustomerMessage": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "ticket_id": {
+              "format": "uuid",
+              "title": "Ticket Id",
+              "type": "string"
+            },
+            "author_kind": {
+              "enum": [
+                "customer",
+                "staff"
+              ],
+              "title": "Author Kind",
+              "type": "string"
+            },
+            "author_name": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Author Name",
+              "type": "string"
+            },
+            "body": {
+              "maxLength": 10000,
+              "minLength": 1,
+              "title": "Body",
+              "type": "string"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "ticket_id",
+            "author_kind",
+            "author_name",
+            "body",
+            "created_at"
+          ],
+          "title": "CustomerMessage",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/CustomerMessage"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "next_before_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Next Before Id"
+        },
+        "has_more": {
+          "title": "Has More",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "items",
+        "next_before_id",
+        "has_more"
+      ],
+      "title": "CustomerMessagePage",
+      "type": "object"
+    },
+    "PlatformMessagePage": {
+      "$defs": {
+        "PlatformMessage": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "title": "Id",
+              "type": "string"
+            },
+            "ticket_id": {
+              "format": "uuid",
+              "title": "Ticket Id",
+              "type": "string"
+            },
+            "author_kind": {
+              "enum": [
+                "customer",
+                "staff"
+              ],
+              "title": "Author Kind",
+              "type": "string"
+            },
+            "author_name": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Author Name",
+              "type": "string"
+            },
+            "body": {
+              "maxLength": 10000,
+              "minLength": 1,
+              "title": "Body",
+              "type": "string"
+            },
+            "created_at": {
+              "format": "date-time",
+              "title": "Created At",
+              "type": "string"
+            },
+            "visibility": {
+              "enum": [
+                "public",
+                "internal"
+              ],
+              "title": "Visibility",
+              "type": "string"
+            },
+            "author_id": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Author Id"
+            }
+          },
+          "required": [
+            "id",
+            "ticket_id",
+            "author_kind",
+            "author_name",
+            "body",
+            "created_at",
+            "visibility",
+            "author_id"
+          ],
+          "title": "PlatformMessage",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/PlatformMessage"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "next_before_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Next Before Id"
+        },
+        "has_more": {
+          "title": "Has More",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "items",
+        "next_before_id",
+        "has_more"
+      ],
+      "title": "PlatformMessagePage",
+      "type": "object"
+    }
+  }
+}

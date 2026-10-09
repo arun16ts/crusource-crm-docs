@@ -872,21 +872,25 @@ Implementation evidence: frontend `src/components/teamspace/TeamsPoolSection.tsx
 
 14. **Architecture conventions.** The frontend uses Next.js App Router, TanStack Query for server state, and Redux Toolkit for shared client UI state. The backend follows module-level CQRS conventions with route, handler, repository, and service boundaries. These conventions are recorded in `AGENTS.md`; a feature is not upgraded to IMPLEMENTED merely because a file follows the directory pattern.
 
-## Platform administration access (2026-10-04)
+## Platform administration access (2026-10-09)
 
 | Capability | Status | Source evidence |
 |---|---|---|
 | Dedicated internal sign-in with password and authenticator enrollment/verification | IMPLEMENTED | `crusource-crm-frontend/src/components/superadmin/auth/PlatformEntry.tsx`, `src/hooks/usePlatformEntry.ts`, `src/services/platformAuth.service.ts`; `crusource-crm-backend/src/modules/platform_auth/routes.py`, `handlers/login.py`, `handlers/verify_challenge.py` |
-| Verified access requests, owner-only approval/rejection, activation email and activation | IMPLEMENTED | `/superadmin/request-access`, `/superadmin/activate`, `/superadmin/access`; frontend `PlatformAccessManagement.tsx`; backend `handlers/request_access.py`, `verify_email.py`, `review_request.py`, `activate.py`, `services/email.py` |
-| Owner-only operator revocation and confirmed sign-in reset | IMPLEMENTED | Frontend `PlatformAccessManagement.tsx`, `usePlatformAuth.ts`; backend `handlers/revoke.py`, `review_request.py`, owner dependency in `services/sessions.py` |
+| Invitation-only staff entry; legacy public application retirement | IMPLEMENTED | Frontend `PlatformEntry.tsx` and request-access page render invitation-only guidance; management uses Invitations/Staff, with no retired writer calls. Backend `platform_auth/routes.py` returns 410 for legacy public application/review/old revoke writes; `tests/test_platform_auth_browser.mjs` verifies retirement. |
+| Owner-only invitations, resend/cancel, staff reset/revocation and enrollment resume | IMPLEMENTED | Frontend `PlatformAccessManagement.tsx`, `PlatformAccessDialog.tsx`, `usePlatformAccess.ts`, `platformAccess.service.ts`, `usePlatformEntry.ts`; backend `platform_auth/invitation_routes.py`, focused handlers/repositories and `handlers/resume_enrollment.py`; real Next.js/API flow in `tests/test_platform_routes_browser.mjs`. |
+| Durable platform invitation email delivery and visible delivery state | IMPLEMENTED | Frontend `PlatformAccessTable.tsx` renders API delivery status; backend `platform_auth/handlers/dispatch_delivery.py`, `repositories/delivery_repository.py`, `services/platform_mail_adapter.py` and scheduler; real-command/fake-mail integration plus failure/lease/rotation tests. Production provider/recipient delivery remains a release check. |
+| Shared CRM presentation frame and isolated responsive platform workspace | IMPLEMENTED | Frontend `WorkspaceFrame.tsx`, `PlatformWorkspace.tsx`, `SuperAdminSidebar.tsx`, `platformNavigation.ts`, `platformUiSlice.ts`; real-route captures and five pixel-identical CRM presentation regression pairs in `superadmin-phase2/`. Complete existing-page content redesign remains PLANNED / DOCUMENTED ONLY for Phase 3. |
 | Isolated platform sessions for existing dashboard, organizations, feedback, trial extensions and login-history exports | IMPLEMENTED | Frontend `src/app/superadmin/layout.tsx`, `src/lib/api/platformHttpClient.ts`, platform services/query hooks; backend `src/shared/auth/superadmin_guard.py`, `src/modules/platform_auth/services/sessions.py` |
 | Initial owner bootstrap and owner recovery through the trusted server | INTERNAL | `crusource-crm-backend/scripts/platform_owner.py`, `handlers/bootstrap.py`, `handlers/recover.py` |
 | Platform security-event persistence | BACKEND ONLY | `crusource-crm-backend/src/modules/platform_auth/repositories/models.py`, `repositories/repository.py`; no security-event browser is wired |
 
 The first owner is provisioned interactively after secret/SES/origin configuration;
-existing CRM accounts are not promoted or rewritten. The local additive migration
-is `20261004_platform_auth`. These flows have API, PostgreSQL concurrency and browser
-fixture coverage (`tests/test_platform_auth.py`, `tests/test_platform_auth_postgres.py`,
-frontend `tests/test_platform_auth_browser.mjs`). Actual production email delivery and
-TLS/proxy configuration depend on deployment settings. See
-`crusource-crm-backend/docs/platform-auth.md` for setup and operational limits.
+existing CRM accounts are not promoted or rewritten. Platform tables originate in
+`20261004_platform_auth`; Phase 1 adds `20261009_platform_invitations` with normalized
+identity uniqueness and rerunnable legacy backfill. API, migration and PostgreSQL
+concurrency checks use synthetic isolated fixtures. Phase 2 replaces the legacy UI
+and verifies real Next.js/API management/enrollment through an isolated SQLite
+fixture with fake delivery. See [Phase 1 evidence](superadmin-phase1/README.md) and
+[Phase 2 UI/integration evidence](superadmin-phase2/README.md).
+Actual production email delivery and TLS/proxy configuration remain deployment checks.

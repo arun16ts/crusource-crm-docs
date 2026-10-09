@@ -1,0 +1,34 @@
+{
+  "dataset": "SYNTHETIC_IN_MEMORY_ONLY",
+  "as_of": "2026-10-09T09:00:00+00:00",
+  "legacy_request_status_counts": {
+    "activated": 1,
+    "approved": 3,
+    "enrolling": 1,
+    "pending": 3,
+    "rejected": 1,
+    "unverified": 1
+  },
+  "users": 6,
+  "owner_credentials": 1,
+  "active_operator_credentials": 1,
+  "inactive_credentials": 2,
+  "superadmin_flags_without_credentials": 2,
+  "normalized_collision_groups": {
+    "users": 1,
+    "access_requests": 1
+  },
+  "live_approved_activation_links": 2,
+  "session_counts": {
+    "total": 5,
+    "revoked": 1,
+    "expired": 1,
+    "live_enrollment": 1
+  },
+  "migration_executed": false,
+  "limitations": [
+    "No deployed database inspected",
+    "SQLite does not establish PostgreSQL locking/index safety",
+    "No passwords, encrypted secrets or tokens copied from real accounts"
+  ]
+}

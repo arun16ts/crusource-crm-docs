@@ -12,7 +12,7 @@ role, security profile or `is_super_admin` flag.
 1. Install the updated backend requirements and frontend dependencies.
 2. Configure `SUPERADMIN_MFA_KEY` in the backend's secret configuration. It must be
    a Fernet key, generated once with
-   `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`.
+   `python -c "from cryptography.fernet import Fernet; print(Fernet.generte_key().decode())"`.
    Keep it private and backed up. Existing authenticator secrets require the same
    key to decrypt; replacing it is not a normal configuration refresh.
 3. Set `SUPERADMIN_FRONTEND_URL` to the exact portal origin, for example
