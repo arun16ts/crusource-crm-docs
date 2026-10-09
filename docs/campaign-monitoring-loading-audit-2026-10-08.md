@@ -63,7 +63,7 @@ Both disposable audit containers on ports 15432/16379 were removed after final v
 
 ## Remaining work
 
-1. Campaign list/statistics/leaderboard legacy telemetry reads still synchronize organization-wide recipients. Move that repair work to an intentional command/background workflow with appropriate migration/legacy-data reconciliation; do not silently discard validation semantics.
+1. Follow-up completed: [Campaign read work audit — 2026-10-09](campaign-read-work-audit-2026-10-09.md) removes organization-wide repair from list/statistics/leaderboard/detail reads, preserves explicit reconciliation and send validation, and records the new bulk-data browser evidence. See that report for current remaining work.
 2. The backend/full analytics contract returns unpaged attributed deals, while the current detail modal has no open action. If that UI is wired up, separate aggregate KPIs from a lazy, scoped, paginated drilldown. The new monitoring metadata does not fetch those unused analytics.
 3. Recipient SQL counts, high offsets, and explicit very large exports need plan/concurrency profiling at representative production volumes. CSV export is bounded per request but accumulates the requested export in browser memory; a streaming/snapshot export is a separate improvement.
 4. The backward-compatible full-detail endpoint and old exported query hook remain available for older clients. Upgraded UI uses the new endpoints. Remove compatibility paths only after callers and rollout are verified.
