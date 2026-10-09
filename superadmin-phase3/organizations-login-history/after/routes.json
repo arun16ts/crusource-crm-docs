@@ -1,0 +1,200 @@
+{
+  "seeded": {
+    "organization_id": "e8e1c38c-0252-4982-a40b-06bf6f8977d5",
+    "other_org_id": "108ce95c-d0d1-45c1-b492-27de628c4ebe",
+    "member_id": "f2226005-581c-4b75-a8ef-882993570bf7",
+    "members": 76,
+    "logins": 275
+  },
+  "captures": [
+    {
+      "route": "/organizations",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations"
+      ],
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif"
+    },
+    {
+      "route": "/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/summary",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/summary",
+        "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/members"
+      ],
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif"
+    },
+    {
+      "route": "/login-history",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/login-history",
+        "/api/v1/superadmin/login-history/stats",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/login-history",
+        "/api/v1/superadmin/login-history/stats"
+      ],
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif"
+    },
+    {
+      "route": "/login-history?date=custom&from=2026-10-01&to=2026-10-01",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/login-history",
+        "/api/v1/superadmin/login-history/stats",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/login-history",
+        "/api/v1/superadmin/login-history/stats"
+      ],
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif"
+    }
+  ],
+  "responseStatuses": [
+    {
+      "path": "/api/v1/superadmin/auth/login",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/dashboard/kpis",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/summary",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/members",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/members",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/summary",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations/e8e1c38c-0252-4982-a40b-06bf6f8977d5/members",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history/users/e5e1df00-b6c2-4f39-9760-9c62ea60bd0b",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/organizations/43082143-3cf7-4037-843b-ad28bac35105/summary",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history/export",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/login-history",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "exportRows": 183
+}

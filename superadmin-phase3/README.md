@@ -1,8 +1,10 @@
-# Super Admin Phase 3 — first implementation package
+# Super Admin Phase 3 — implementation packages
 
-Date: 9 October 2026. Status: **IN PROGRESS; first Overview package verified locally.**
+Date: 9 October 2026. Status: **IN PROGRESS; 3A, 3B and 3C verified locally.**
 
-Scope delivered in this package: Overview (3A) and the independently reproduced trial partial-commit correction. Phase 3 is not complete. Organizations, login history/export, full trial-review concurrency/authority/dialog work and Feedback remain separate packages in the [implementation plan](../SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md).
+Delivered: Overview (3A), [Organizations and Login History/member profiles/export (3B/3C)](ORGANIZATIONS_LOGIN_HISTORY.md), and the independently reproduced trial partial-commit correction. Phase 3 is not complete: full trial-review concurrency/authority/dialog work (3D), Feedback (3E) and integrated acceptance remain in the [implementation plan](../SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md).
+
+The sections below preserve the first Overview package’s historical evidence. Its source edits were subsequently committed as frontend `70ee05da` and backend `151c28b`; the linked 3B/3C package records the newer local changes and verification.
 
 ## Baseline and environment
 

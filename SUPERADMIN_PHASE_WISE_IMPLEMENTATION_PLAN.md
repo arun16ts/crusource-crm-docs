@@ -106,7 +106,7 @@ Implement in order:
 
 ## Phase 3 — All existing Super Admin screens
 
-Detailed execution companion: [SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md](SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md). **Status: PLANNED — ready for review.** The companion records current source findings, the Phase 1–2 boundaries, page work packages and verification gates; it does not claim Phase 3 is implemented.
+Detailed execution companion: [SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md](SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md). **Status: IN PROGRESS — 3A, 3B and 3C verified locally.** [Review evidence](superadmin-phase3/README.md) and [Organizations/Login History package](superadmin-phase3/ORGANIZATIONS_LOGIN_HISTORY.md). Full trial-review integrity/UI (3D), Feedback (3E), integrated acceptance and operational release verification remain.
 
 **Purpose:** finish the current portal before adding sales/support workspaces.
 

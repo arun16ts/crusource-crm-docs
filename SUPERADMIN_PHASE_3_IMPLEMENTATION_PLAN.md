@@ -1,10 +1,10 @@
 # Super Admin Phase 3 implementation plan
 
-Date: 9 October 2026. Status: **PLANNED — ready for review, not implemented.**
+Date: 9 October 2026. Status: **IN PROGRESS — 3A, 3B and 3C verified locally; 3D, 3E and final acceptance remain.**
 
 This is the execution companion for Phase 3 of [the phase-wise roadmap](SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md). It builds on [Phase 1](superadmin-phase1/README.md), [Phase 2](superadmin-phase2/README.md), their architecture/verification packages and the [Phase 3 handoff](superadmin-phase2/PHASE_3_HANDOFF.md). Current source takes precedence over historical specifications. Reviewed baseline: frontend `d9e13de4`, backend `48a98bc`, docs `e045602`.
 
-Implementation evidence and remaining work: [Phase 3 review package](superadmin-phase3/README.md). This first package is Overview plus the separately reproduced trial partial-commit fix; it does not complete all Phase 3 screens.
+Implementation evidence and remaining work: [Phase 3 review package](superadmin-phase3/README.md). Overview and the separately reproduced trial partial-commit fix are recorded in the initial package. [Organizations and Login History (3B/3C)](superadmin-phase3/ORGANIZATIONS_LOGIN_HISTORY.md) are now verified locally. Full trial review (3D), Feedback (3E) and final integrated acceptance remain.
 
 ## 1. Outcome and boundaries
 

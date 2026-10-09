@@ -1,0 +1,24 @@
+{
+  "fixture": {
+    "members": 76,
+    "loginRows": 5003
+  },
+  "measurements": {
+    "legacyDetail": {
+      "sqlStatements": 79,
+      "milliseconds": 299.4,
+      "returnedMembers": 76
+    },
+    "summaryAndMemberPage": {
+      "sqlStatements": 5,
+      "milliseconds": 25.77,
+      "returnedMembers": 25
+    }
+  },
+  "export": {
+    "rows": 5003,
+    "peakOrmObjects": 500,
+    "batchSize": 500,
+    "milliseconds": 279.78
+  }
+}
