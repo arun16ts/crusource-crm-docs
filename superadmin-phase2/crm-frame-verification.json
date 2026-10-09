@@ -1,0 +1,38 @@
+{
+  "browser": "154.0.4258.62",
+  "sourceBefore": "git HEAD DashboardShell.tsx",
+  "scope": "Presentation regression with deterministic CRM effects; actual-route platform evidence is separate",
+  "fontFile": "f06bf9da926bae75-s.p.2874ccu1_u7jf.woff2",
+  "comparisons": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "collapsed": false,
+      "identical": true
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "collapsed": true,
+      "identical": true
+    },
+    {
+      "width": 1024,
+      "height": 1000,
+      "collapsed": false,
+      "identical": true
+    },
+    {
+      "width": 768,
+      "height": 1000,
+      "collapsed": false,
+      "identical": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "collapsed": false,
+      "identical": true
+    }
+  ]
+}

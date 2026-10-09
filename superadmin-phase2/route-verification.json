@@ -1,0 +1,42 @@
+{
+  "browser": "154.0.4258.62",
+  "api": "Real FastAPI handlers/guards with in-memory SQLite and fake delivery",
+  "origin": "http://superadmin.localhost:3107",
+  "captures": [
+    {
+      "file": "platform-access-1440.png",
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "sidebar": 236,
+      "header": 64
+    },
+    {
+      "file": "platform-access-1024.png",
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "sidebar": 236,
+      "header": 64
+    },
+    {
+      "file": "platform-access-768.png",
+      "documentWidth": 768,
+      "viewport": 768,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "sidebar": 236,
+      "header": 64
+    },
+    {
+      "file": "platform-access-390.png",
+      "documentWidth": 390,
+      "viewport": 390,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "sidebar": 0,
+      "header": 64
+    }
+  ],
+  "apiRequestCount": 99,
+  "crmRequests": 0,
+  "pageErrors": []
+}
