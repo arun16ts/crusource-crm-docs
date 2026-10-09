@@ -342,12 +342,18 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/meetings/page
 - Create, edit, view, delete, and bulk-delete call logs.
 - Call subject/notes, direction, status, start/end or duration, recording URL/metadata, and related record.
 - Filter and manage call history from Calls and related CRM record timelines.
+- Import CSV calls and delete large selections through durable background jobs, with import-dialog progress, temporary background/result notifications, saved-operation retries, scoped link validation, and preserved approval/audit/recovery behavior.
+- Approved background deletions disappear immediately from the current Calls table and board after server acceptance; approval-required calls stay visible, and failed deletions restore their calls.
 
 **User actions:** Log a call, update its outcome, link it to a record, and review call history.
 
 **Status:** IMPLEMENTED.
 
 Implementation evidence: `crusource-crm-frontend/src/app/dashboard/calls/page.tsx`, `crusource-crm-frontend/src/components/dashboard/calls`, `crusource-crm-frontend/src/services/calls.service.ts`, `crusource-crm-backend/src/modules/calls`.
+
+Bulk-operation evidence: frontend `src/hooks/useImportCalls.ts`, `src/hooks/mutations/useCallsMutations.ts`, `src/components/dashboard/calls/CallBulkJobsPanel.tsx`; backend Calls `routes/calls_routes.py`, `handlers/process_call_bulk_job_handler.py`, `repositories/bulk_job_models.py`, and `docs/calls-bulk-operations.md`. Deployment requires the additive `20261008_call_bulk_jobs` migration and an enabled scheduler (plus the existing worker when using SQS).
+
+Immediate-removal evidence: frontend `src/lib/calls/pendingCallDeletions.ts`, `src/hooks/useVisibleCalls.ts`, wired through `src/hooks/useCallsScreenData.ts` and `src/hooks/useCallsPage.ts`; backend Calls `handlers/queue_call_delete_handler.py` returns approved IDs. This session-scoped interface behavior does not guarantee physical deletion has finished or retain hidden calls across a full browser reload.
 
 ### Activity Timeline
 
@@ -637,6 +643,8 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/settings/page
 
 - Organization information and organization-level settings.
 - Organization onboarding.
+- New-workspace setup requires a country-selected phone number with national length limits matching Leads, has no skip-setup action, and uses a centered responsive card with decorative workspace artwork.
+- Selecting Other during new-workspace industry selection requires a specific industry name and saves that name in the organization profile.
 - Admin Hub overview.
 - Data import and export administration.
 - Backup API and backup administration screen.
@@ -648,6 +656,8 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/settings/page
 **Status:** PARTIALLY IMPLEMENTED. Organization, billing, import/export, audit, and settings APIs are present, while several data-administration areas have backend capability without a complete equivalent user workflow.
 
 Implementation evidence: `crusource-crm-frontend/src/app/dashboard/organization/page.tsx`, `crusource-crm-frontend/src/app/dashboard/organization/onboarding/page.tsx`, `crusource-crm-frontend/src/app/dashboard/billing/page.tsx`, `crusource-crm-frontend/src/app/dashboard/admin/data-import/page.tsx`, `crusource-crm-frontend/src/app/dashboard/admin/data-export/page.tsx`, `crusource-crm-frontend/src/app/dashboard/admin/data-backup/page.tsx`, `crusource-crm-frontend/src/app/dashboard/admin/storage/page.tsx`, `crusource-crm-backend/src/modules/organization`, `crusource-crm-backend/src/modules/org_settings`, `crusource-crm-backend/src/modules/billing`, `crusource-crm-backend/src/modules/data_admin`.
+
+New-workspace setup evidence: frontend `src/app/onboarding/page.tsx`, `src/components/onboarding/OnboardingWizard.tsx`, `Step3CompanyProfile.tsx`, `OnboardingProgress.tsx`, `OnboardingBackdrop.tsx`, and `src/lib/validations/onboardingSchema.ts`; backend `src/modules/organization/routes/organization_routes.py`, `commands/organization_commands.py`, `commands/setup_phone_validation.py`, and `handlers/setup_org_handler.py`. The slug is a stored unique identifier; the previewed workspace URL is not currently a working organization route.
 
 ### Roles, profiles, and teams
 
@@ -861,3 +871,22 @@ Implementation evidence: frontend `src/components/teamspace/TeamsPoolSection.tsx
 13. **Inventory verification method (2026-09-26).** Statuses were rechecked against the current `src/app` routes, frontend component/service/hook wiring, backend router registration in `src/main.py`, and backend module routes/handlers. Graphify was used to locate relationships, but source remains authoritative. The workspace root is not a Git worktree; the frontend and backend are separate nested repositories, so inventory status is not inferred from root-level Git state.
 
 14. **Architecture conventions.** The frontend uses Next.js App Router, TanStack Query for server state, and Redux Toolkit for shared client UI state. The backend follows module-level CQRS conventions with route, handler, repository, and service boundaries. These conventions are recorded in `AGENTS.md`; a feature is not upgraded to IMPLEMENTED merely because a file follows the directory pattern.
+
+## Platform administration access (2026-10-04)
+
+| Capability | Status | Source evidence |
+|---|---|---|
+| Dedicated internal sign-in with password and authenticator enrollment/verification | IMPLEMENTED | `crusource-crm-frontend/src/components/superadmin/auth/PlatformEntry.tsx`, `src/hooks/usePlatformEntry.ts`, `src/services/platformAuth.service.ts`; `crusource-crm-backend/src/modules/platform_auth/routes.py`, `handlers/login.py`, `handlers/verify_challenge.py` |
+| Verified access requests, owner-only approval/rejection, activation email and activation | IMPLEMENTED | `/superadmin/request-access`, `/superadmin/activate`, `/superadmin/access`; frontend `PlatformAccessManagement.tsx`; backend `handlers/request_access.py`, `verify_email.py`, `review_request.py`, `activate.py`, `services/email.py` |
+| Owner-only operator revocation and confirmed sign-in reset | IMPLEMENTED | Frontend `PlatformAccessManagement.tsx`, `usePlatformAuth.ts`; backend `handlers/revoke.py`, `review_request.py`, owner dependency in `services/sessions.py` |
+| Isolated platform sessions for existing dashboard, organizations, feedback, trial extensions and login-history exports | IMPLEMENTED | Frontend `src/app/superadmin/layout.tsx`, `src/lib/api/platformHttpClient.ts`, platform services/query hooks; backend `src/shared/auth/superadmin_guard.py`, `src/modules/platform_auth/services/sessions.py` |
+| Initial owner bootstrap and owner recovery through the trusted server | INTERNAL | `crusource-crm-backend/scripts/platform_owner.py`, `handlers/bootstrap.py`, `handlers/recover.py` |
+| Platform security-event persistence | BACKEND ONLY | `crusource-crm-backend/src/modules/platform_auth/repositories/models.py`, `repositories/repository.py`; no security-event browser is wired |
+
+The first owner is provisioned interactively after secret/SES/origin configuration;
+existing CRM accounts are not promoted or rewritten. The local additive migration
+is `20261004_platform_auth`. These flows have API, PostgreSQL concurrency and browser
+fixture coverage (`tests/test_platform_auth.py`, `tests/test_platform_auth_postgres.py`,
+frontend `tests/test_platform_auth_browser.mjs`). Actual production email delivery and
+TLS/proxy configuration depend on deployment settings. See
+`crusource-crm-backend/docs/platform-auth.md` for setup and operational limits.
