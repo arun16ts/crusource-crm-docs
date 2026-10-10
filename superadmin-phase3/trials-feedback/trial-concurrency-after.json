@@ -1,0 +1,16 @@
+{
+  "native_tests": 10,
+  "same_request_competition": [
+    200,
+    409
+  ],
+  "same_key_replay": [
+    200,
+    200
+  ],
+  "approved_history_rows": 1,
+  "days_for_one_approval": 7,
+  "different_requests_same_org_days": 14,
+  "cached_revocation": 401,
+  "receipt_failure": "All request/subscription/org/history/receipt changes rolled back"
+}

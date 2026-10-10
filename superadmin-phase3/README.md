@@ -1,8 +1,8 @@
 # Super Admin Phase 3 — implementation packages
 
-Date: 9 October 2026. Status: **IN PROGRESS; 3A, 3B and 3C verified locally.**
+Date: 10 October 2026. Status: **COMPLETE — local implementation and verification, 3A–3E and integrated acceptance.**
 
-Delivered: Overview (3A), [Organizations and Login History/member profiles/export (3B/3C)](ORGANIZATIONS_LOGIN_HISTORY.md), and the independently reproduced trial partial-commit correction. Phase 3 is not complete: full trial-review concurrency/authority/dialog work (3D), Feedback (3E) and integrated acceptance remain in the [implementation plan](../SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md).
+Delivered: Overview (3A), [Organizations and Login History/member profiles/export (3B/3C)](ORGANIZATIONS_LOGIN_HISTORY.md), and [trial review, Feedback and final verification (3D/3E/3.6)](TRIALS_FEEDBACK.md). The [implementation plan](../SUPERADMIN_PHASE_3_IMPLEMENTATION_PLAN.md) is complete locally. [Phase 4 handoff](PHASE_4_HANDOFF.md) is recorded. Deployment, provider delivery and real stage account flows remain Phase 6 release verification; no push or deployment was performed.
 
 The sections below preserve the first Overview package’s historical evidence. Its source edits were subsequently committed as frontend `70ee05da` and backend `151c28b`; the linked 3B/3C package records the newer local changes and verification.
 
@@ -46,7 +46,7 @@ Single small-run timings were 64.39 ms before and 47.33 ms after. These timings 
 
 The trial integrity regression simulated a history-write failure after approval. Before the fix, the request was already `approved` despite rollback. Repository review helpers now flush; handlers own the commit/rollback, so request, subscription/organization dates and SubscriptionHistory persist together. Rejection now explicitly commits in its handler as well. The regression checks pending status, original expiry, zero extension days and absence of history after failure. Existing successful/expired/already-reviewed business tests pass.
 
-This is the partial-commit correction, **not completion of 3D**. Concurrent approve/approve or approve/reject locking, transactional revalidation after staff revocation, idempotent/conflict contracts and current-record action dialogs remain required. Existing admission guards and eligibility rules were preserved.
+This historical checkpoint delivered the partial-commit correction. The subsequent [3D package](TRIALS_FEEDBACK.md) completed concurrent review locking, transactional revalidation after staff revocation, idempotent/conflict contracts and current-record action dialogs. Existing admission guards and eligibility rules were preserved.
 
 ## Verification
 

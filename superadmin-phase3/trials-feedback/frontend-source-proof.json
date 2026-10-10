@@ -1,0 +1,114 @@
+{
+  "primary_head": "a4864f8705e14bff37515b0f2ee3679aae1cd874",
+  "validated_snapshot": "d1b01ace593d36058a3b60ae62544564a91b8cc3",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "406c9effde0627e28bd355bf4b39cb5a89c0ad960af7e8c32443928e7fde150b"
+    },
+    {
+      "path": "package.json",
+      "sha256": "31162fd5df86cbb51a30919fcf65a14c22f1ea6be786305c491d70531744e844"
+    },
+    {
+      "path": "src/app/superadmin/feedback/page.tsx",
+      "sha256": "d1b571a7da9080575ba7b429d571f62645fe52c33984b043f081da51ecef87b4"
+    },
+    {
+      "path": "src/app/superadmin/trial-extensions/page.tsx",
+      "sha256": "6c0e027e2b4acace6c255decfcf540b414c0a9b9a5651d59d7d389e2b708242d"
+    },
+    {
+      "path": "src/components/superadmin/feedback/FeedbackImageDialog.tsx",
+      "sha256": "b2f6ccdc3d04230b8ee4be82d84ba06d2ea0255ad2022ed23c85ccfc72e6bbcf"
+    },
+    {
+      "path": "src/components/superadmin/feedback/FeedbackScreen.tsx",
+      "sha256": "3cec4904180f5a062711192eca57cf61f6409ba5d705a8e380db01bdb3bdf6c2"
+    },
+    {
+      "path": "src/components/superadmin/trial-extensions/TrialExtensionsScreen.tsx",
+      "sha256": "ebe68507580a6c606f80b24776369ce969ffdad637c19ab674b8e7497249f367"
+    },
+    {
+      "path": "src/components/superadmin/trial-extensions/TrialReviewDialog.tsx",
+      "sha256": "451f6d4bfd6d45839a6b88a62b0a5ea19bad6e67cebad9f108c3d229caf81aa7"
+    },
+    {
+      "path": "src/hooks/queries/useSuperAdmin.ts",
+      "sha256": "a7275e4617c3eb38457c5129a173b8dcb0fe461573e9a52241dca8b1d9df4a6e"
+    },
+    {
+      "path": "src/hooks/queries/useTrialReview.ts",
+      "sha256": "635174a9f011be6df54c9a760774d4b46fb393c5deb137302cc6c4b304b4d49e"
+    },
+    {
+      "path": "src/hooks/usePlatformDataView.ts",
+      "sha256": "381d5a109e58bb78218fa8d57a1c1bf68825f2f74688a03c86e2d4f51c249889"
+    },
+    {
+      "path": "src/lib/platform/messages.ts",
+      "sha256": "32091ec0d92dbd4963bef1ed1fe69f35e9b4abfb95bdb5a5dd4f9063a01bdba1"
+    },
+    {
+      "path": "src/lib/platform/reviewViews.ts",
+      "sha256": "2e20b5e38152c0eceb430634593069b205a97792b39c2a3161218ff3d1d52edc"
+    },
+    {
+      "path": "src/services/platformFeedbackImages.service.ts",
+      "sha256": "51d8777befd1f7e4d406195814ce88030e7c77ea064ff4ee32965258d1d49771"
+    },
+    {
+      "path": "src/services/superadmin.service.ts",
+      "sha256": "c26be4e07ab231b57dc52b35cf2172263abe348073c5c7af8f3314db073d6a90"
+    },
+    {
+      "path": "src/store/store.ts",
+      "sha256": "43123f0796936e67eb5e9c3850ab1f3d5dee301080fff6517344b4a6204daf9b"
+    },
+    {
+      "path": "src/types/billing.types.ts",
+      "sha256": "e13763931066cca028cc6e9af2929e9c628d92c1c6d80406ba841c831b1b11c9"
+    },
+    {
+      "path": "tests/helpers/platformBrowserApi.mjs",
+      "sha256": "5fa3fdaef6b8deeeb5a6a40071c90aaf6f973ad68180fb4deb9ebbe37c5ae1f7"
+    },
+    {
+      "path": "tests/platform/api_fixture.py",
+      "sha256": "57e517dd06434462881f854521a0f825169d9837f3f2cc0b9bc3c3a47163bbdc"
+    },
+    {
+      "path": "tests/test_platform_data_routes_browser.mjs",
+      "sha256": "69d09caac37d08736b9cd69267cbfb44700b956126ce57aa79010a78a7326d71"
+    },
+    {
+      "path": "tests/test_platform_overview_routes_browser.mjs",
+      "sha256": "0529499e9b319d59f70c582dd8600e60303b8ab17159f81500b11b4ee5e0da82"
+    },
+    {
+      "path": "tests/test_platform_review_browser.mjs",
+      "sha256": "2b283822ce49fd62ad260ca7d4c7a190a6a251dc8a5da2cefe7b2881de8dfaf0"
+    },
+    {
+      "path": "tests/test_platform_review_contracts.ts",
+      "sha256": "393d020c703f90ae3e575ff2aa8e2f8f7a752bd438681bb4f328a63aa9d2dc08"
+    },
+    {
+      "path": "tests/test_platform_review_routes_browser.mjs",
+      "sha256": "0d4c63a2cfcc4f4b00b5e91cf9fc3bcec078fca5db7f169ebab5a72ade8afebf"
+    }
+  ],
+  "deleted": [
+    "src/components/superadmin/trial-extensions/ApproveTrialExtensionModal.tsx",
+    "src/components/superadmin/trial-extensions/RejectTrialExtensionModal.tsx",
+    "src/components/superadmin/trial-extensions/TrialExtensionDetailsModal.tsx",
+    "src/components/superadmin/trial-extensions/TrialExtensionFilterBar.tsx",
+    "src/components/superadmin/trial-extensions/TrialExtensionStatsCards.tsx",
+    "src/components/superadmin/trial-extensions/TrialExtensionStatusBadge.tsx",
+    "src/components/superadmin/trial-extensions/TrialExtensionTable.tsx",
+    "src/components/superadmin/trial-extensions/TrialExtensionTableRow.tsx",
+    "src/components/superadmin/trial-extensions/index.ts",
+    "src/store/slices/trialExtensionsUiSlice.ts"
+  ]
+}

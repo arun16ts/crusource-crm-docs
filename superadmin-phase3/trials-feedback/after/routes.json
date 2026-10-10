@@ -1,0 +1,547 @@
+{
+  "seeded": {
+    "request_id": "063a6360-389e-49a7-97a1-22be7d7f67fe",
+    "organization_id": "acfdd9b2-7d64-4e1f-ab04-0361910cfdf7"
+  },
+  "captures": [
+    {
+      "route": "/trial-extensions?status=pending&limit=25&page=2",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/trial-extensions",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/trial-extensions"
+      ]
+    },
+    {
+      "route": "/feedback?category=bug&min_rating=5&limit=25&page=2",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/feedback/stats",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/feedback/stats"
+      ]
+    },
+    {
+      "route": "/feedback?search=no-such-synthetic-review",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/feedback/stats",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/feedback/stats"
+      ]
+    }
+  ],
+  "responseStatuses": [
+    {
+      "path": "/api/v1/superadmin/auth/login",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/dashboard/kpis",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/a32f8636-572a-44c7-acfd-57d7d1b7b95a",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/a32f8636-572a-44c7-acfd-57d7d1b7b95a/approve",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/a32f8636-572a-44c7-acfd-57d7d1b7b95a",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/a15c20fd-6a38-48de-82e7-11b6bb8076b5",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/a15c20fd-6a38-48de-82e7-11b6bb8076b5/approve",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/a15c20fd-6a38-48de-82e7-11b6bb8076b5",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/9cca26d3-5629-4fd2-9237-c739e46e7adb",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/9cca26d3-5629-4fd2-9237-c739e46e7adb/reject",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/9cca26d3-5629-4fd2-9237-c739e46e7adb/reject",
+      "status": 409
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/9cca26d3-5629-4fd2-9237-c739e46e7adb",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/26bf12a9-b051-473b-9882-caad69f847f5/images/0",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/26bf12a9-b051-473b-9882-caad69f847f5/images/1",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/063a6360-389e-49a7-97a1-22be7d7f67fe/approve",
+      "status": 403
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 503
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 503
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/fe770480-5d47-4447-b27a-8c0d4af704c3",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/trial-extensions/fe770480-5d47-4447-b27a-8c0d4af704c3",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/stats",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/feedback/ff913242-bc1a-4981-8b77-5f1452394d60/images/0",
+      "status": 200
+    }
+  ],
+  "visuals": [
+    {
+      "route": "/trial-extensions",
+      "width": 1440,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/trial-extensions",
+      "width": 1024,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/trial-extensions",
+      "width": 768,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/trial-extensions",
+      "width": 390,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/feedback",
+      "width": 1440,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/feedback",
+      "width": 1024,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/feedback",
+      "width": 768,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "route": "/feedback",
+      "width": 390,
+      "overflow": false,
+      "font": "\"Instrument Sans\", \"Instrument Sans Fallback\", sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Instrument Sans",
+          "status": "unloaded"
+        },
+        {
+          "family": "Instrument Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Instrument Sans Fallback",
+          "status": "loaded"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "slimBytes": 11116
+}

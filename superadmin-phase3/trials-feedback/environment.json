@@ -1,0 +1,9 @@
+{
+  "fixture": "Actual Next.js/FastAPI, synthetic owner/customer, SQLite; native PostgreSQL/Redis isolated containers",
+  "main_localhost_3000": "Chrome DevTools MCP connection refused",
+  "stage": "Not verified/deployed",
+  "crm_frame": "Identical screenshot hashes at expanded/collapsed 1440 and 1024/768/390; only injected Kaspersky host blocked in controlled fixture",
+  "graphify": "Final update exit 0; existing parser/dependency and old validation-directory access warnings",
+  "migration_head": "20261009_merge_exports_platform",
+  "test_service_cleanup": "Disposable test containers removed; original crusource-postgres:5432 and crusource-redis:6379 preserved and running"
+}

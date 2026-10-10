@@ -1,0 +1,14 @@
+{
+  "legacy": {
+    "rows": 25,
+    "total": 1000,
+    "bytes": 4384670,
+    "milliseconds": 70.12
+  },
+  "slim": {
+    "rows": 25,
+    "total": 1000,
+    "bytes": 11020,
+    "milliseconds": 41.52
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "primary_head": "4e3d075c889a77a7b468511d6032750f533f4923",
+  "validated_snapshot": "Validated directly in primary backend after final edits",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "17be8c7f0fde05e37d9b10e2301243a60d38ee30b70b05ed95b32b5aca4814d1"
+    },
+    {
+      "path": "src/modules/billing/schemas/billing_schemas.py",
+      "sha256": "9d404cca6ebc4147e3c2cd5ddb4c37565de83a7d9256a5d1038f52c36ac7de41"
+    },
+    {
+      "path": "src/modules/feedback/commands/feedback_commands.py",
+      "sha256": "b173b8dd017783b68fa999fbd2f3d33f811cc97ea8f7318fe3bf6979781505cc"
+    },
+    {
+      "path": "src/modules/feedback/repositories/feedback_repository.py",
+      "sha256": "7a48a67221bd287417e44b231fb79a8134e891c45a7420a38e785bd70c38a077"
+    },
+    {
+      "path": "src/modules/feedback/services/images.py",
+      "sha256": "e468f68c7a261cdf89f87a3f2394da686bf634aa9777d7c4d802012f140de0c6"
+    },
+    {
+      "path": "src/modules/platform_auth/services/owner_command.py",
+      "sha256": "90edf3e99a5e0dea87074716a03a022675a5d4bb585e29c615b21d4954c0103d"
+    },
+    {
+      "path": "src/modules/superadmin/commands/approve_trial_extension_command.py",
+      "sha256": "1079f129afe608796d6f7a9038ab73008eeec8b85ec512c296fca113079878cc"
+    },
+    {
+      "path": "src/modules/superadmin/commands/reject_trial_extension_command.py",
+      "sha256": "0b5f09ace7483695e4fb824cf12dbf26f08fec9947f817f7def22c3ff68a7167"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/approve_trial_extension_handler.py",
+      "sha256": "c6edc1529eced899fe9d6e4fdcd11343f27af39a5c2abbd465882717b7afaed7"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/feedback_handler.py",
+      "sha256": "81c8e99cbad74de3c2fc91d5aad5ee7745857871b7714cce172d641708769ff2"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/get_feedback_image_handler.py",
+      "sha256": "ef3b964834713ad5d0e188daddf472374271cecee6350721487aedacdffcee70"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/get_trial_extension_handler.py",
+      "sha256": "bd686428159e1fb7cd55b012079dc25671e32065c37569e2f7df773191747aa3"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/list_trial_extensions_handler.py",
+      "sha256": "b3ba55960c4c437c3e8feab9ab51e63e2a42e11ff0f4e06646956048b250c4f9"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/reject_trial_extension_handler.py",
+      "sha256": "56534832dc1a512af2951ac6144cccb8e4c36929f1fe1dab8a91c35ea507755e"
+    },
+    {
+      "path": "src/modules/superadmin/handlers/review_trial_extension_handler.py",
+      "sha256": "192657c910ce029b5eea79b956e492fbf556f7b93e82d5bb6245190894ff052e"
+    },
+    {
+      "path": "src/modules/superadmin/queries/feedback_queries.py",
+      "sha256": "c85451b9d0c14dc10c774631e28a6ef236ec36a4ec4a91ca8d20163982924d97"
+    },
+    {
+      "path": "src/modules/superadmin/queries/list_trial_extensions_query.py",
+      "sha256": "7dcb47bb1b338804f1b3de8f2fb614d31d05988a1f9eeff3d8ddd33fd668fe76"
+    },
+    {
+      "path": "src/modules/superadmin/repositories/superadmin_trial_extension_repo.py",
+      "sha256": "93f5d4fbc10d20d9b7c25027044fc5f492a675d01a16b3350ad447f10a9ce9f0"
+    },
+    {
+      "path": "src/modules/superadmin/routes/feedback_routes.py",
+      "sha256": "e0bc9a8ec5541d7f7fbbca223d76b3637f913342bcb016e52acc5d3ea4254de8"
+    },
+    {
+      "path": "src/modules/superadmin/routes/trial_extension_routes.py",
+      "sha256": "65946273360e20d046441bb77b0201d88dad4ee08e0b583b7e3504e3ff8d1e6a"
+    },
+    {
+      "path": "tests/test_feedback_images.py",
+      "sha256": "49a6f3c73d4c9037f908bca1bcfc01535b22820eb5abbdbd53b5e42982becad8"
+    },
+    {
+      "path": "tests/test_platform_trial_review_postgres.py",
+      "sha256": "477efb976ab9ab4fd18827b414e774e4e1a46824d26f993bf440c0eedd835b29"
+    }
+  ],
+  "deleted": []
+}

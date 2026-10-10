@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "ruff": "0",
+    "compile": "0",
+    "migrations": "0",
+    "pytest": "0",
+    "redis": "0",
+    "webhook-postgres": "0",
+    "postgres": "0",
+    "drift": "0",
+    "alembic-check": "0",
+    "platform-postgres": "0"
+  },
+  "scope": "Local CI parity; no remote CI/deployment claim",
+  "additional_notes": [
+    "1976 passed / 60 skipped; Redis 33; webhook/production PostgreSQL 59; recovery/import PostgreSQL 10; drift 1; native platform PostgreSQL 35; Alembic check passed"
+  ]
+}

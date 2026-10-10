@@ -1,0 +1,51 @@
+{
+  "seeded": {
+    "request_id": "0c5b602d-27bd-4870-8604-5de06efa0298",
+    "organization_id": "d75381fc-1360-43c9-80eb-1ae1d5007efd"
+  },
+  "captures": [
+    {
+      "route": "/trial-extensions",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/dashboard/kpis",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/dashboard/kpis",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/trial-extensions",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/trial-extensions",
+        "/api/v1/superadmin/feedback"
+      ],
+      "feedback": {
+        "status": 200,
+        "bytes": 12908,
+        "inlineImages": true
+      }
+    },
+    {
+      "route": "/feedback",
+      "calls": [
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/me",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback/stats",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/auth/invitations",
+        "/api/v1/superadmin/feedback/stats",
+        "/api/v1/superadmin/feedback",
+        "/api/v1/superadmin/feedback"
+      ],
+      "feedback": {
+        "status": 200,
+        "bytes": 12908,
+        "inlineImages": true
+      }
+    }
+  ],
+  "errors": []
+}

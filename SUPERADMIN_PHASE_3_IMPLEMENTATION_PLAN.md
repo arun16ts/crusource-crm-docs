@@ -1,10 +1,10 @@
 # Super Admin Phase 3 implementation plan
 
-Date: 9 October 2026. Status: **IN PROGRESS — 3A, 3B and 3C verified locally; 3D, 3E and final acceptance remain.**
+Date: 10 October 2026. Status: **COMPLETE — 3A–3E and integrated local acceptance verified. Operational release verification remains separate.**
 
 This is the execution companion for Phase 3 of [the phase-wise roadmap](SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md). It builds on [Phase 1](superadmin-phase1/README.md), [Phase 2](superadmin-phase2/README.md), their architecture/verification packages and the [Phase 3 handoff](superadmin-phase2/PHASE_3_HANDOFF.md). Current source takes precedence over historical specifications. Reviewed baseline: frontend `d9e13de4`, backend `48a98bc`, docs `e045602`.
 
-Implementation evidence and remaining work: [Phase 3 review package](superadmin-phase3/README.md). Overview and the separately reproduced trial partial-commit fix are recorded in the initial package. [Organizations and Login History (3B/3C)](superadmin-phase3/ORGANIZATIONS_LOGIN_HISTORY.md) are now verified locally. Full trial review (3D), Feedback (3E) and final integrated acceptance remain.
+Implementation evidence and remaining work: [Phase 3 review package](superadmin-phase3/README.md). Overview and the separately reproduced trial partial-commit fix are recorded in the initial package. [Organizations and Login History (3B/3C)](superadmin-phase3/ORGANIZATIONS_LOGIN_HISTORY.md) are now verified locally. [Trial review, Feedback and integrated acceptance (3D/3E/3.6)](superadmin-phase3/TRIALS_FEEDBACK.md) are now verified locally; [Phase 4 handoff](superadmin-phase3/PHASE_4_HANDOFF.md) is recorded.
 
 ## 1. Outcome and boundaries
 
@@ -33,7 +33,7 @@ Paths below are relative to the owning application repository.
 | Trial approval's repository helper commits before the handler writes SubscriptionHistory; reads are not locked for competing reviews | Backend `approve_trial_extension_handler.py` and `superadmin_trial_extension_repo.py` | Review and correct transaction/concurrency behavior before polishing action dialogs. |
 | Feedback list supports several server filters, while stats accept only organization ID | Backend feedback routes/handlers; frontend feedback route | Label global statistics explicitly or extend stats with the same typed filter contract; do not imply they describe the filtered list. |
 
-These are source findings. Phase 3 has not yet reproduced all of them in an authenticated running browser. Step 3.0 records actual request, interaction and SQL baselines before edits.
+These were planning-time source findings. The linked implementation packages record local runtime reproductions, contract decisions and before/after browser/PostgreSQL verification.
 
 ## 3. Foundations to retain
 

@@ -2,7 +2,7 @@
 
 Date: 9 October 2026. Status: **3B and 3C VERIFIED LOCALLY; Phase 3 remains in progress.**
 
-This package combines Organizations (3B) and Login History/member profiles/export (3C). It preserves the committed Overview and trial partial-commit correction. Trial review concurrency/transactional authority/current-record dialogs (3D), Feedback (3E), and final integrated Phase 3 acceptance remain separate work.
+This historical package combines Organizations (3B) and Login History/member profiles/export (3C). It preserves the committed Overview and trial partial-commit correction. At this checkpoint, trial review (3D), Feedback (3E), and integrated acceptance were separate work; they are now complete in [the final package](TRIALS_FEEDBACK.md).
 
 ## Evidence and environment
 
@@ -59,4 +59,4 @@ Final Graphify update exited 0 and rebuilt the application code graph. Existing 
 
 Export processing is synchronous and temporary-file disk usage grows with the matching dataset. Cancelling the browser request prevents download and delivery cleanup runs, but it does not forcibly terminate a SQL worker already generating the file. Larger production exports need measured duration/disk budgets before deciding on a platform-authorized job design. The current fixture establishes bounded ORM loading, not arbitrarily large throughput.
 
-Real deployed staff sessions, Vercel/ECS configuration and stage/customer flows remain release verification. Packages 3D, 3E and final integrated acceptance are still required before Phase 3 is complete.
+Real deployed staff sessions, Vercel/ECS configuration and stage/customer flows remain release verification. The subsequent [3D/3E and integrated local acceptance package](TRIALS_FEEDBACK.md) is now complete. The evidence above records the earlier 9 October checkpoint; operational release verification remains separate.
