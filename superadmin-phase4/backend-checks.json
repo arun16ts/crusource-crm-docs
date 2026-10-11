@@ -1,0 +1,42 @@
+[
+  {
+    "name": "ruff",
+    "exit_code": 0
+  },
+  {
+    "name": "compile",
+    "exit_code": 0
+  },
+  {
+    "name": "migrations",
+    "exit_code": 0
+  },
+  {
+    "name": "pytest",
+    "exit_code": 0
+  },
+  {
+    "name": "redis",
+    "exit_code": 0
+  },
+  {
+    "name": "webhook-postgres",
+    "exit_code": 0
+  },
+  {
+    "name": "recovery-import-postgres",
+    "exit_code": 0
+  },
+  {
+    "name": "platform-postgres",
+    "exit_code": 0
+  },
+  {
+    "name": "drift",
+    "exit_code": 0
+  },
+  {
+    "name": "alembic-check",
+    "exit_code": 0
+  }
+]

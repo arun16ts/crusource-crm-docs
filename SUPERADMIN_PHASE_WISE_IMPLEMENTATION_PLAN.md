@@ -2,7 +2,7 @@
 
 Date: 9 October 2026
 
-Status: EXECUTION STARTED. Phases 0–2 completed locally on 9 October 2026; see the [Phase 0 review package](superadmin-phase0/README.md), [Phase 1 review package](superadmin-phase1/README.md) and [Phase 2 review package](superadmin-phase2/README.md). Phases 3–9 remain planned. Local completion is not a production release or a claim of bug-free behavior.
+Status: EXECUTION STARTED. Phases 0–2 completed locally on 9 October 2026 and Phase 3 completed locally on 10 October 2026; see the [Phase 0 review package](superadmin-phase0/README.md), [Phase 1 review package](superadmin-phase1/README.md), [Phase 2 review package](superadmin-phase2/README.md) and [Phase 3 review package](superadmin-phase3/README.md). Phases 4–9 remain planned. Local completion is not a production release or a claim of bug-free behavior.
 
 This is the execution companion to [SUPERADMIN_MASTER_UPGRADE_PLAN.md](SUPERADMIN_MASTER_UPGRADE_PLAN.md). It incorporates the original [analytics, Error Center and Logs requirements](superadmin_upgrade_plan.md), staff invitations/UI parity, and the newly requested demo pipeline and customer support tickets. The phase sequence below replaces the earlier phase sequence in the master plan.
 
@@ -127,6 +127,8 @@ Use focused screen components and hooks rather than large route files. TanStack 
 **Complete when:** every existing route and action works using the shared design, and no remaining developer branding or fabricated health claims appear. New Analytics/Errors/Logs links remain disabled/absent until usable screens exist.
 
 ## Phase 4 — Website demo requests and Super Admin pipeline
+
+Detailed execution companion: [SUPERADMIN_PHASE_4_IMPLEMENTATION_PLAN.md](SUPERADMIN_PHASE_4_IMPLEMENTATION_PLAN.md). **Status: COMPLETE — local implementation and verification, 4.0 and 4A–4F.** [Review package](superadmin-phase4/README.md), [contracts](superadmin-phase4/CONTRACTS.md), [verification](superadmin-phase4/VERIFICATION.md) and [Phase 5 handoff](superadmin-phase4/PHASE_5_HANDOFF.md) record the persisted public/billing intake, owner-managed sales access, board/list/detail workflow and durable notifications. Deployed/provider verification remains Phase 6; no deployment or application-database migration was performed.
 
 **Purpose:** visitors can submit a real enquiry and staff can track every accepted request through a sales process.
 

@@ -1,7 +1,7 @@
 # Super Admin master upgrade plan
 
 Date: 9 October 2026  
-Status: EXECUTION STARTED — Phase 0 completed locally; later application phases remain planned. See the [Phase 0 review package](superadmin-phase0/README.md).  
+Status: EXECUTION STARTED — Phases 0–4 completed locally under the [phase-wise sequence](SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md); Phase 5 onward remains planned. See the [Phase 4 review package](superadmin-phase4/README.md). Deployed/provider acceptance remains separate.
 Scope: platform staff invitations, the complete Super Admin UI, website demo requests with a sales pipeline board, customer support tickets, and integration of the existing analytics, Error Center and Application Logs roadmap.
 
 Revision: added demo intake/board and customer-submitted support tickets on 9 October 2026. The detailed delivery sequence is in [SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md](SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md).

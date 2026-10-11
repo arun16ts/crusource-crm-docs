@@ -1,0 +1,180 @@
+[
+  {
+    "name": "lint",
+    "exit_code": 0
+  },
+  {
+    "name": "test",
+    "exit_code": 0
+  },
+  {
+    "name": "test:spreadsheets",
+    "exit_code": 0
+  },
+  {
+    "name": "test:loop-ai",
+    "exit_code": 0
+  },
+  {
+    "name": "test:public",
+    "exit_code": 0
+  },
+  {
+    "name": "typecheck",
+    "exit_code": 0
+  },
+  {
+    "name": "test:sales-delete:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:deals:import:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:teamspace:pool-scope:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:activities-delete:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:activities-pagination:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:meeting-schedule:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:dashboard-activities:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:related-activities:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:global-timeline:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:parent-notes:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:dense-calendar:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:calendar-year:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:export-downloads:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:account-contacts:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:campaign-audience:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:campaign-monitor:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:sales-kanban:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:recovery:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:editors:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:loop-ai:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:ai-drafts:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:public-ai:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:overview:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:data:contracts",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:data:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:review:contracts",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:review:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:demo:contracts",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:demo:browser",
+    "exit_code": 0,
+    "initial_exit_code": 1,
+    "rerun_log": "frontend-demo-browser-rerun.log"
+  },
+  {
+    "name": "build",
+    "exit_code": 0
+  },
+  {
+    "name": "audit",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:contracts",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform-auth:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:crm-frame:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:session-startup:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:public:browser",
+    "exit_code": 0
+  },
+  {
+    "name": "test:public:analytics",
+    "exit_code": 0
+  },
+  {
+    "name": "test:platform:demo:routes:browser",
+    "exit_code": 0
+  }
+]

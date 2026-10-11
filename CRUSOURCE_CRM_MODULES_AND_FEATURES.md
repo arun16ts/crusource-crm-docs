@@ -894,3 +894,18 @@ and verifies real Next.js/API management/enrollment through an isolated SQLite
 fixture with fake delivery. See [Phase 1 evidence](superadmin-phase1/README.md) and
 [Phase 2 UI/integration evidence](superadmin-phase2/README.md).
 Actual production email delivery and TLS/proxy configuration remain deployment checks.
+
+## Platform sales and demo intake (2026-10-11)
+
+This section updates only Phase 4 capabilities. Status describes wired local application behavior; deployed/provider verification is separate. [Review package](superadmin-phase4/README.md) and [verification](superadmin-phase4/VERIFICATION.md) record actual Next/FastAPI synthetic flows and complete applicable local checks.
+
+| Capability | Status | Source evidence |
+| --- | --- | --- |
+| Public EN/NL Request a demo, persisted receipt and actual marketing entry points | IMPLEMENTED | Frontend `src/app/request-demo`, `src/app/[locale]/request-demo`, `components/demo-requests`, `landing/DemoLink.tsx`, Navbar/MarketingNavbar/Hero/Footer/PricingSection/PublicInformation; backend `modules/demo_requests/routes/intake_routes.py`, `handlers/submit_demo.py`; `tests/test_demo_requests_routes_browser.mjs` |
+| Authenticated billing Contact Sales enquiry with server-derived CRM context | IMPLEMENTED | Frontend `components/billing/ContactSalesModal.tsx`, `services/demoRequests.service.ts`, `hooks/queries/useDemoRequests.ts`; backend authenticated intake route and `get_user_scope`; real modal/JWT/API flow in the route regression |
+| Owner-managed sales capabilities and revision-aware platform access | IMPLEMENTED | Backend `platform_auth/services/capabilities.py`, `handlers/set_capabilities.py`, `services/owner_command.py`; frontend `auth/SalesCapabilityEditor.tsx`, PlatformAccessTable, PlatformSessionBoundary, navigation and sales hooks; role/revocation/receipt/PostgreSQL tests |
+| Platform demo board/list/detail, bounded server filters/counts, assignment, stages, schedule/follow-up, notes and activity | IMPLEMENTED | Frontend `src/app/superadmin/demo-requests`, `components/superadmin/demo-requests`, `lib/platform/demoView.ts`; backend `modules/demo_requests/{commands,queries,handlers,repositories,routes,services}`; real-route persistence/reload and portable browser checks |
+| Durable business notification intent, leased retry/fencing and manager delivery status | INTERNAL | Backend `shared/notifications`, scheduler registration and `handlers/submit_demo.py`; frontend DemoDetail; fake-provider restart/revocation/concurrent delivery/six-attempt tests. Actual SES inbox delivery and approved recipient setup remain release checks |
+| Customer support tickets and conversations | PLANNED / DOCUMENTED ONLY | Phase 5 roadmap and `superadmin-phase4/PHASE_5_HANDOFF.md`; Phase 4 adds no support ticket routes/models/UI |
+
+Demo enquiries are platform sales records, separate from CRM Leads and customer organizations. Converted records an outcome without provisioning, subscription activation or revenue attribution. Follow-ups are stored dates/overdue indicators; no automated reminder campaign or calendar invitation is wired. Public intake has no public list/detail lookup and no customer acknowledgement email. Normal application databases must receive `20261011_platform_sales` before using the new schema; verification used disposable databases only.

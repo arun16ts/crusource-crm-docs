@@ -1,0 +1,297 @@
+{
+  "responseStatuses": [
+    {
+      "path": "/api/v1/superadmin/auth/login",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/dashboard/kpis",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/dashboard/kpis",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/assignees",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/counts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/assignment",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/stage",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/stage",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/stage",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/follow-up",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/notes",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/659756bd-390f-4db9-bdea-e29a7b154f2e/history",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/assignees",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/counts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/me",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/auth/invitations",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/assignees",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/superadmin/demo-requests/counts",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "receiptKeys": [
+    "reference",
+    "message"
+  ],
+  "coverage": [
+    "EN/NL public form",
+    "public intake to real API",
+    "real billing modal and authenticated CRM API",
+    "real platform cookie/MFA/CSRF",
+    "board/list/detail",
+    "assignment",
+    "stage/schedule",
+    "follow-up",
+    "note/reload",
+    "responsive widths"
+  ]
+}

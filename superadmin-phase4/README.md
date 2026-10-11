@@ -1,0 +1,20 @@
+# Super Admin Phase 4 review package
+
+Date: 11 October 2026. Status: **COMPLETE — local implementation and verification, packages 4.0 and 4A–4F.** Final results are recorded in [VERIFICATION.md](VERIFICATION.md).
+
+Phase 4 implements public English/Dutch demo intake, real billing sales enquiries, owner-controlled sales access, and a persisted platform sales board/list/detail workflow. Assignment, stage changes, scheduling, follow-up, spam classification and append-only notes produce durable activity. Concurrent updates require the latest record version. All work is local and uncommitted; no application database, stage environment, or mail provider was used for verification.
+
+The reviewed source baseline was frontend `00008920`, backend `ec6a67f`, documentation `be78fd9`. Changes live in the respective nested repositories. The original frontend dependency directory was restored after a Windows native-library lock interrupted a clean install; verification uses an isolated source snapshot with a successful lockfile install.
+
+| Package | Delivered behavior                                                                                                        | Source evidence                                                                                                                                       |
+| ------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4.0     | API, architecture, recovery and configuration contracts; layout references and actual UI captures                         | [CONTRACTS.md](CONTRACTS.md), [UI_LAYOUTS.md](UI_LAYOUTS.md), [OPERATIONS.md](OPERATIONS.md), [SCREENSHOTS.md](SCREENSHOTS.md)                        |
+| 4A      | Owner grants `demo.read`/`demo.manage`; revision-aware identity, navigation and caches; guarded commands                  | Backend `platform_auth/services/capabilities.py`, `handlers/set_capabilities.py`; frontend `SalesCapabilityEditor.tsx`, `PlatformSessionBoundary.tsx` |
+| 4B/4C   | Additive schema, accepted intake/receipts/outbox, bounded reads and atomic workflow commands                              | Backend `modules/demo_requests/`, `shared/notifications/`, `20261011_platform_sales.py`                                                               |
+| 4D      | `/request-demo`, `/nl/request-demo`, marketing links and persisted Contact Sales modal                                    | Frontend `components/demo-requests/`, `landing/DemoLink.tsx`, `billing/ContactSalesModal.tsx`, `services/demoRequests.service.ts`                     |
+| 4E      | Board/list, URL filters, independently paginated columns, detail, eligible assignments, schedule/follow-up, notes/history | Frontend `components/superadmin/demo-requests/`, `hooks/queries/useDemoRequests.ts`, thin app routes                                                  |
+| 4F      | CI registrations, SQLite/Redis/PostgreSQL/browser/real-route checks, review and Phase 5 handoff                           | [VERIFICATION.md](VERIFICATION.md), [PHASE_5_HANDOFF.md](PHASE_5_HANDOFF.md)                                                                          |
+
+The public page acknowledges a saved enquiry; it does not promise a booked appointment, response deadline, calendar invitation, subscription or paid revenue. Converted is a staff-recorded outcome. Follow-ups are stored timestamps with overdue indicators. The protected detail flags other enquiries with the same normalized email; public receipts reveal no previous submissions.
+
+Real-route browser verification runs Next.js with real CSS and FastAPI guards against synthetic in-memory records. PostgreSQL tests establish transaction/migration behavior separately. These checks do not establish deployed ECS/Vercel configuration or SES inbox delivery. Those release checks remain Phase 6.

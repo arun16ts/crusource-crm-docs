@@ -1,0 +1,12 @@
+# Phase 5 handoff: customer support tickets
+
+Phase 4 supplies verified local public/CRM intake, a platform sales workspace, revision-aware capabilities and a business-notification delivery foundation. Support remains PLANNED / DOCUMENTED ONLY and requires its own customer conversations, internal notes, statuses and models.
+
+- Reuse platform cookie/MFA/origin/CSRF authority and guarded command transactions. Add explicit support capabilities to the capability policy; owner authority and manage-implies-read must be intentional for support too. Preserve sales grants when editing support access and keep defaults restrictive.
+- Reuse revision-aware TanStack query scopes, URL filter state, bounded reads, expected-version/idempotency commands and permission-loss handling. No fetched ticket data should be mirrored into Redux.
+- Derive customer reporter and organization from CRM Scope. Default customer visibility to their own tickets. Organization administrators do not automatically read coworkers' private conversations. Separate customer-visible messages/status from internal staff notes and assignments.
+- Extend `shared/notifications` with focused supported templates and current recipient authorization for each event. Do not attach business messages to invitation-token tables. Keep delivery intent atomic with the ticket/message; provider delivery remains after commit with truthful status.
+- Record action/message history and reason requirements; preserve actor history on deactivation. Define reopen behavior and whether changes increment the parent version. Do not add support attachments, email ingestion or SLA automation without their own scope/contract.
+- Add typed support routes/handlers/repositories/models, explicit router/test registration, additive migrations, PostgreSQL authorization/concurrency tests, portable browser regressions and real CRM/platform route integration. Run both repositories' complete current CI and separate migration drift checks.
+
+Phase 6 still owns operational release acceptance: approved customer/privacy copy and retention, real staff grants/recipients, SES delivery, Redis Cloud connectivity, scheduler execution, exact ECS/Vercel commits, migration logs/revision and authorized deployed sign-in/customer/staff flows. Local Phase 4 evidence does not establish those facts. No push, deployment, provider mail, stage migration or customer-data changes occurred here.

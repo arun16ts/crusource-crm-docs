@@ -1,0 +1,406 @@
+[
+  {
+    "file": "crusource-crm-frontend/.github/workflows/ci.yml",
+    "sha256": "6787f28c8c5819f62974da6b1c19b9f57ab4200b63d19c667813c85a4bd4b34b"
+  },
+  {
+    "file": "crusource-crm-frontend/.gitignore",
+    "sha256": "ead0e2552e5654330334f588adbd427ef7b2cb4ed6c2803d25672ad77a9bee89"
+  },
+  {
+    "file": "crusource-crm-frontend/eslint.config.mjs",
+    "sha256": "eacf1f2a3d924877267739774d68b171cc39399a13742369993be8858828874f"
+  },
+  {
+    "file": "crusource-crm-frontend/package.json",
+    "sha256": "3f77cc3598dace32f1e239dc6b8f99b8f2e4d1c1ec6b3138e62e7924ccb292e5"
+  },
+  {
+    "file": "crusource-crm-frontend/src/app/[locale]/request-demo/page.tsx",
+    "sha256": "5e70c383227d6eee1b26ea8b1698f35dbff321012222e0749b5b301775d50f30"
+  },
+  {
+    "file": "crusource-crm-frontend/src/app/request-demo/page.tsx",
+    "sha256": "449149309eed6d710834b706f4136f1247bf517118775add32bb374a1adb3daf"
+  },
+  {
+    "file": "crusource-crm-frontend/src/app/superadmin/demo-requests/[id]/page.tsx",
+    "sha256": "8a97a67cc6d5293c1351a668a241007bf2b0d17b99f1b5b914c7af5d07b31295"
+  },
+  {
+    "file": "crusource-crm-frontend/src/app/superadmin/demo-requests/page.tsx",
+    "sha256": "653feb21ea55bf42d068c646357a1d38ec3d122da18eb9e789ec0703a1f7cef5"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/billing/ContactSalesModal.tsx",
+    "sha256": "3a573f1c8fd6a8f5a285173c5106c28f14d523516379a28428e3fb25cdb9d08d"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/demo-requests/DemoIntakeForm.tsx",
+    "sha256": "e04ad6d6b734bf8a4b925a2bd35077688f96480a09e00d18301a9f39d7dc8d22"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/demo-requests/PublicDemoPage.tsx",
+    "sha256": "b0d4e739d9eba075cda47c29845beec53be43f360acc0ff80520b7be30ade90d"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/DemoLink.tsx",
+    "sha256": "c90ebb7a59dd08e67bc6e7d06809878852d7eb535bd660a8e582b0005642a8f6"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/Footer.tsx",
+    "sha256": "2cf3b74dcaaa302b78d58fb9c639db9bbc43df0d18b30c83df25aae8a87e2ddd"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/Hero.tsx",
+    "sha256": "e5cb0b8c5c57ed182d33f196b5653a975db9149e1575ffa274e16957b8f8c70c"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/MarketingNavbar.tsx",
+    "sha256": "a752ba88e2cc44fbd5aabf9b9ebd1e4cec529a84c6d24746c40a7da2494358cb"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/Navbar.tsx",
+    "sha256": "53c34e9c0e7394aebf41b25d3fa4e8e1bcadb9c6e4fd5b4c1713c120fdc37a5a"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/PricingSection.tsx",
+    "sha256": "6fa59e99bead0e0fae831cb1efa49996a27dfbae3a81dadf6f1680d761b9986d"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/landing/PublicInformation.tsx",
+    "sha256": "a1ea81d101a2e993d512ee7ecb488a89c734f821130517e07e4a7e62ffc21431"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/PlatformSessionBoundary.tsx",
+    "sha256": "8541b321572ba75c894b2d90534fc5f6a6ca0fdb6a8ba0ad2f81b3dd2a7c7cab"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/PlatformSessionContext.tsx",
+    "sha256": "70dcab26b9f0fbe7ff17bfadfb47339a2a4ebc9aaf4df008959e509914f64af6"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/PlatformWorkspace.tsx",
+    "sha256": "2bcb985caeb2e808146f312d851876099c1d8b55eed6831417cdbabbfbefd693"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/SuperAdminSidebar.tsx",
+    "sha256": "6291f0c6d537dd81119fcb8871a668e8e1fcb92826dbd89ffea5c8b6bb6c209e"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/auth/PlatformAccessTable.tsx",
+    "sha256": "e475e482a77124f386ac31db9c247849b43e48744d11c76ac5adb0688bee10d3"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/auth/SalesCapabilityEditor.tsx",
+    "sha256": "796ec5787819a374169b0bf939e940c45dc847e93935c4db124c6cb742222c9f"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/demo-requests/DemoActionDialog.tsx",
+    "sha256": "2695d146b4af5dad40dc1bd200ae7930a335b7cf91dc0cef58782bb9cb51b4b6"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/demo-requests/DemoAssigneeFilter.tsx",
+    "sha256": "49ce42881050b1b84fb36c0dcfd1f5c41aa7d4d3331a4f06e0930271300adf62"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/demo-requests/DemoCard.tsx",
+    "sha256": "b7ffe4a9fe6885dfc3c8f0b61e200a47c71778c4dda780bac4be48ce5999457e"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/demo-requests/DemoColumn.tsx",
+    "sha256": "b651b0fce8c4f24ed1a5011eb8e291a3cbd01b0565452257abb7cc29fec3d506"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/demo-requests/DemoDetail.tsx",
+    "sha256": "0de64cdf5ba3c343c8d537ad0f3aef8c40c4c936f25d0b774fe7038526d564f7"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/demo-requests/DemoWorkspace.tsx",
+    "sha256": "5fb2fc7f8c7a11f10bebbd13a80ac908ed708456a8369db034a85b5ac05ef45c"
+  },
+  {
+    "file": "crusource-crm-frontend/src/components/superadmin/platformNavigation.ts",
+    "sha256": "b2549fbfc7e7b6ad0a5befe91809cb182a922622b9a1958c7f01fbf774376aa7"
+  },
+  {
+    "file": "crusource-crm-frontend/src/hooks/queries/useDemoRequests.ts",
+    "sha256": "711012100a96ea1dbab55bd1decca972ee0d89934277b43b0c7f5617a57ff4df"
+  },
+  {
+    "file": "crusource-crm-frontend/src/hooks/queries/usePlatformAuth.ts",
+    "sha256": "ab32ff0c009d0622f0f5591709265cd4d97f28194c6805e923a2fcde5256cd90"
+  },
+  {
+    "file": "crusource-crm-frontend/src/hooks/useDemoView.ts",
+    "sha256": "e2e5ce092bfaf4cc82acf88753e4e9b5ceeeabbb7cc7fc52faf13118b729df44"
+  },
+  {
+    "file": "crusource-crm-frontend/src/hooks/useSalesClock.ts",
+    "sha256": "1fe7c7e7164f3ead8e45c14cf54da1a19c30dc627fe61cd822b9a54ccb2a0083"
+  },
+  {
+    "file": "crusource-crm-frontend/src/lib/marketing/publicNavigation.ts",
+    "sha256": "3946efc204730691f204e8c2060a37904dac41b13d578b33cbd8aed42a7d51db"
+  },
+  {
+    "file": "crusource-crm-frontend/src/lib/platform/capabilities.ts",
+    "sha256": "57408d50714c0fb8b66b5c0ce657f856739c51442468862156fec177e2dc3f63"
+  },
+  {
+    "file": "crusource-crm-frontend/src/lib/platform/demoMessages.ts",
+    "sha256": "86d385a38bcace0aff48a8fb591228d36c08708b5f250c7c0464a2906a39d3ee"
+  },
+  {
+    "file": "crusource-crm-frontend/src/lib/platform/demoView.ts",
+    "sha256": "5b1b0574de0567f0d5495297a14a7451384b52293d18216223ba9b30a9f1a1bc"
+  },
+  {
+    "file": "crusource-crm-frontend/src/lib/platform/messages.ts",
+    "sha256": "5faefd38adbb499ed5ca088009f72923babb930d4f0f7fcc8869ae23d64e9518"
+  },
+  {
+    "file": "crusource-crm-frontend/src/proxy.ts",
+    "sha256": "7d4dafd391b1de76007e73347927e6c2638e84932c3d1f9fad2efbc110436f84"
+  },
+  {
+    "file": "crusource-crm-frontend/src/services/demoRequests.service.ts",
+    "sha256": "ba3af100e6d796e92a05c67845f9b50c157275d51ea49a9817947ac746aa7f73"
+  },
+  {
+    "file": "crusource-crm-frontend/src/services/platformAccess.service.ts",
+    "sha256": "2df01c00b1c5f4d6a19a05c6993f66228b2474b1d4b499502010d322075e2590"
+  },
+  {
+    "file": "crusource-crm-frontend/src/services/platformAuth.service.ts",
+    "sha256": "8a9d8c21cdf226dcbf3d3048863ea1b565a3bbcd0bfc4891d2fd35b17570a5d1"
+  },
+  {
+    "file": "crusource-crm-frontend/src/types/demoRequests.types.ts",
+    "sha256": "cafcb5d50a01a50d3d42c023252ae53ed6231ffc04a828980c5890b7faca2d72"
+  },
+  {
+    "file": "crusource-crm-frontend/src/types/platformAccess.types.ts",
+    "sha256": "b11dd5c3886993c696bc270c542dffc59e54e310286cf385fe40f392408e1187"
+  },
+  {
+    "file": "crusource-crm-frontend/tests/platform/api_fixture.py",
+    "sha256": "4196c4bd3a092d319a3baa825432fa96089756ce6a4fef036f76f560c1f97089"
+  },
+  {
+    "file": "crusource-crm-frontend/tests/test_demo_requests_browser.mjs",
+    "sha256": "f43a874df2e76722e371eb98afd953eda3f911b07b8e21bdfeeca313934396e2"
+  },
+  {
+    "file": "crusource-crm-frontend/tests/test_demo_requests_contracts.ts",
+    "sha256": "50448e61e94338142987d15e580a726486412d8ba3b132fd45dcc2483dfba407"
+  },
+  {
+    "file": "crusource-crm-frontend/tests/test_demo_requests_routes_browser.mjs",
+    "sha256": "ef7325b3bae5f81bcb9a2804e63e138ce9de5d0b3baeaab9ae44ebad024cf985"
+  },
+  {
+    "file": "crusource-crm-frontend/tests/test_platform_crm_frame_browser.mjs",
+    "sha256": "604a3f4160006616c8a0c79af17241a93e804482cb8aad4dcc30a07c7cfb4e77"
+  },
+  {
+    "file": "crusource-crm-backend/.github/workflows/ci.yml",
+    "sha256": "85010739cb7fe82ac89174e7e81aeb848c2ee5d3d4767324b15a2d7141971c3d"
+  },
+  {
+    "file": "crusource-crm-backend/alembic/versions/20261011_platform_sales.py",
+    "sha256": "b6b197a04667266281002514841854615c26ca5c8ee3aeceb1ab7faafec5bda5"
+  },
+  {
+    "file": "crusource-crm-backend/src/main.py",
+    "sha256": "455001d4eeff7fb6f211eae4442e7bc42a1a7e04f4e09370e00d000f6d3628ad"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/commands/intake_commands.py",
+    "sha256": "711ecca58b296e88ad6940dfece4cc53979c2205c897ccbc6666dbf2e14f3d99"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/commands/workflow_commands.py",
+    "sha256": "ba33e8ba60aba5bc4280e10122631d48d285592b4a35827abd60c21dbf339b31"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/add_demo_note.py",
+    "sha256": "98213fc02ec6783947e3a796df308f0cdd797aa06d9df35d8601335d971e67b2"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/assign_demo.py",
+    "sha256": "7a8468278555e932d599a81e144f68c6bbd249fb647d58734607c47543281d18"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/execute_demo_command.py",
+    "sha256": "ed70e6db8e12444c9a08f9c12db639f0b49c33aaa3549532b6eca437bbedfbcc"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/move_demo.py",
+    "sha256": "8d1c215f611fc47525e743f84ee64d8aefbe8dcab12fdb74dd512d1597eee14c"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/query_demos.py",
+    "sha256": "37a4e7268e1601b73f3f682bfbfc7d274bba7f9570500579ee62fa1f77e1b3fc"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/schedule_demo.py",
+    "sha256": "1b76f3c842980248cc390bf3e548975e2301bed55c25cb3e1d797f1eac8d66d1"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/set_disposition.py",
+    "sha256": "588acd310a947440930474091478a4a0a06de58d4900aa63b91c54aacc18dd02"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/set_follow_up.py",
+    "sha256": "ca6c3a9f9f9742891b140807d5eab167bd77faa72886653adb7d024d28c91d16"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/handlers/submit_demo.py",
+    "sha256": "7e0498e5b19519ed8bd64785a633353bfb92ff29129c2dbc6bfbaa377746ff55"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/queries/demo_queries.py",
+    "sha256": "2b8f4697b14ea36fab7a1b2b86696af5a739ec5380c9b3a729202fb1e82c8ad8"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/repositories/demo_repository.py",
+    "sha256": "75005043df179abac1fb9c0d1061756d5ce5160cb9767a976b2b2d7126625c13"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/repositories/intake_repository.py",
+    "sha256": "b095c9c47668a9e6a77abced813f831f63129e659cfbc21ad97a1d587dd78af3"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/repositories/models.py",
+    "sha256": "6e86b45808f16520a3a881c8ad290e1d93d146c81f83ecd08329e2d590f4fbfa"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/routes/demo_routes.py",
+    "sha256": "0f9d8628d85ba306f151db9f43ef56f64cad7f984535318950c00f5bd184344b"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/routes/intake_routes.py",
+    "sha256": "bc059fc05e8e40dc31c7155c147643b218383ea3e88783e5f97f56fc166c661c"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/services/access_logging.py",
+    "sha256": "d31eeecd78aeacd5030a5b274ef3a54739a3d257f28e16eb5ce8fdceb0a4c820"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/services/admission.py",
+    "sha256": "74179766663d6ff575972400bd02b4b633d7a844f119a42ce2a348826ba27571"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/services/command_changes.py",
+    "sha256": "2ab3b401cdeb567a504db3b5a28d5613e561340680dbea3308157265fb34a21f"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/services/safe_route.py",
+    "sha256": "8c6cf95b47420707921caf47c740031be55daeada0124904e2d963f44cc7ce6c"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/demo_requests/services/workflow.py",
+    "sha256": "cde973bd5b256950a172cb996ecd64b208219d3b0383741057b9ebfaa35a0a27"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/commands/capability_commands.py",
+    "sha256": "f4c98c4aa508ea44f44ce5b0c87442ca095cc21bd0e016f49b755a0bd718d1ac"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/handlers/set_capabilities.py",
+    "sha256": "2600a5cc22fce3f811808cc80a94545852d4f05224133d0e24b08b1cab6f4ee1"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/invitation_routes.py",
+    "sha256": "e9920e979760f88ad34e3a689692c4771e915a65cf520a7f8488a0c6fce00a38"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/invitation_schemas.py",
+    "sha256": "b5f0b55fa69392e27450b9318a0ea779047943e4ff6cdd12ce4081d15de52fea"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/repositories/models.py",
+    "sha256": "b4331fbe321ad1402c048bb0c4751d3d06c0f8127c3d1450ed251a229a56ecf9"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/routes.py",
+    "sha256": "9a36ad0090dddaec27ae65f9f27c5b622e4e57aae54605e8a159412f50780e75"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/services/capabilities.py",
+    "sha256": "1d48d9b587651280bdae97914b7ab5590f5c27568bb0f644b250febe43355952"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/services/invitation_projection.py",
+    "sha256": "ea3328c9ade47f97a927eb5f09ec287e56ae09641ce7d7396ded1249bc1071fa"
+  },
+  {
+    "file": "crusource-crm-backend/src/modules/platform_auth/services/owner_command.py",
+    "sha256": "1707f7a027c3ea6b5d2d49621b88f33aa12eab8015d197b6f29a50093ad9e884"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/database/core.py",
+    "sha256": "4222a7bb2f23bc6da68c74bc067c75ae6cb8146e8a18c4cd6f53052cbf3ca047"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/notifications/dispatcher.py",
+    "sha256": "0bdfdcb9b25c3d6cb1371e303db9eceb0f836acbc8464308d3d2d9c11478e583"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/notifications/mail_adapter.py",
+    "sha256": "1e9fb1555563dfa3dec123f129e071ed08f8e469a3c58b09ab1b9f11580e977c"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/notifications/models.py",
+    "sha256": "b9ab7d571c31345f1721fb2a7348099e93979c3c89e33bd426be1be7e1a75130"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/notifications/repository.py",
+    "sha256": "47de8b6beee98b8e3e6831bce93660563ac326aef5c461a419e71d11f74ea349"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/security/rate_limiter.py",
+    "sha256": "27e1c49e65ef084c785256ae5f713edca9f2983ebb35a206eb02d78974e765e3"
+  },
+  {
+    "file": "crusource-crm-backend/src/shared/services/scheduler/scheduler_engine.py",
+    "sha256": "5284c49c77e613c3b6e31c223dc409fe4d5c8f331dcfb14976c588ef719d954f"
+  },
+  {
+    "file": "crusource-crm-backend/tests/conftest.py",
+    "sha256": "e96422f1cb4faeb0391f72127334783412a10715e9ff3085af26dcd3e1cddbe2"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_business_notifications.py",
+    "sha256": "c4cadc061f678cd70197994b106631be726b316640419c498de9828b451b5204"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_demo_access_logging.py",
+    "sha256": "3ed337f8c28a61212b830fc519b700b066df0110c9a9d8c521333b1bd8227f90"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_demo_migration.py",
+    "sha256": "6b8a2bf5a0d66ecdee10157f263e287623f0a72554f54ada7ef2662fa08d413a"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_demo_requests.py",
+    "sha256": "62531d3ca48cf56eef49de7ed2f1d250e7be3ea2db86bea27e5572a52c0851bc"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_demo_requests_postgres.py",
+    "sha256": "bcf4905a2c755fc54ccd376d66f709e7163562078c2cd72c135440485d6ee4e2"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_migration_heads.py",
+    "sha256": "7d6d1117c5299b4e9b5d7a2e25d0246ec1ed56e4dee3a5ee3eb5471659950c4d"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_platform_invitation_migration.py",
+    "sha256": "40b9b92e474b257e75835e727a9dd94626b8e52716cf5e54df451408677f7824"
+  },
+  {
+    "file": "crusource-crm-backend/tests/test_shared_rate_limits.py",
+    "sha256": "e118debef5a3bafabad144270ac11ae327545a49bdf8bd351fc324fd05f2124d"
+  }
+]
