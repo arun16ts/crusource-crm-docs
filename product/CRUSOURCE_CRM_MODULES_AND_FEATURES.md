@@ -453,19 +453,21 @@ Implementation evidence: `crusource-crm-frontend/src/app/dashboard/analytics/pag
 
 ### Reports
 
-**Purpose:** Save, run, and share operational CRM reports.
+**Purpose:** Save and run operational CRM reports and visualize their saved scope in Analytics.
 
 **Features**
 
-- Saved report list and report detail.
-- Report builder with dimensions, measures, filters, grouping, and visualization.
-- Report preview with tabular/chart output.
-- Search/filtering of report definitions and report runs.
-- Ad-hoc report runs and report sharing.
+- Saved report library, visual builder, previews and paginated live runs.
+- Guided pipeline/currency criteria, advanced filters, meaningful monetary validation and result currency formatting.
+- Name search with quiet literal highlighting; URL filters/sort/pagination and personal saved views, including defaults and updates.
+- Scoped definition export and JSON import with validation, duplicate handling, destination reference mapping and atomic private imports.
+- CSV/XLSX result export, bulk deletion and field suggestions through wired user flows.
+- Forecast reports using existing authorized summary/detail calculations for a saved month/quarter and scope.
+- Report-backed Analytics widgets retain saved filters and scoped drill-down; native funnel/cohort widgets retain their own pipeline configuration.
 
-**Status:** PARTIALLY IMPLEMENTED. Report creation, retrieval, run, share, and ad-hoc run routes are registered and the frontend builder is present. Export, import, bulk delete, and field-suggestion handlers exist only as empty stubs, and the corresponding frontend filter/import-export components are empty, so those operations are not user-facing.
+**Status:** PARTIALLY IMPLEMENTED. The core library, builder, run, import/export, saved-view and Forecast flows are implemented. Report sharing/assignment APIs remain **BACKEND ONLY** where a complete corresponding user-facing flow is absent; unavailable sharing filters are hidden.
 
-Implementation evidence: `crusource-crm-frontend/src/app/dashboard/reports/page.tsx`, `crusource-crm-frontend/src/components/reports/ReportsHome.tsx`, `crusource-crm-frontend/src/components/reports`, `crusource-crm-frontend/src/services/reports.service.ts`, `crusource-crm-backend/src/modules/reports`.
+Implementation evidence: `crusource-crm-frontend/src/components/reports/ReportsHome.tsx`, `crusource-crm-frontend/src/components/reports/ReportBuilder.tsx`, `crusource-crm-frontend/src/components/reports/ReportsSavedViews.tsx`, `crusource-crm-frontend/src/components/reports/modal/ImportReportsModal.tsx`, `crusource-crm-frontend/src/components/analytics/Widget.tsx`, `crusource-crm-backend/src/modules/reports/routes/report_routes.py`, `crusource-crm-backend/src/modules/reports/services/forecast_report_source.py`. See the [Reports implementation report](../features/reports/REPORTS_IMPLEMENTATION_REPORT.md) for validation and deployment status.
 
 ### Forecast
 

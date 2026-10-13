@@ -14,19 +14,21 @@ This repository contains product drafts, reference material, implementation repo
 - [Security audit baseline](security/CRM_SECURITY_AUDIT.md), [approved repair plan](security/CRM_SECURITY_IMPLEMENTATION_PLAN.md), and [implementation evidence](security/CRM_SECURITY_IMPLEMENTATION_REPORT.md): distinguish original findings from local fixes and actual deployment status.
 - [Security rollout instructions](../crusource-crm-backend/docs/security-rollout.md): maintained beside the backend implementation.
 - [Forecast plan](features/forecast/FORECAST_IMPLEMENTATION_PLAN.md) and [implementation report](features/forecast/FORECAST_FIX_REPORT.md): feature-specific evidence at the time of writing. Older reported blockers are historical; consult newer validation evidence before treating them as current.
+- [Reports implementation plan](features/reports/REPORTS_IMPLEMENTATION_PLAN.md): verified Reports testing issues, saved pipeline/currency scope, Analytics changes, definition import and Forecast reporting.
+- [Reports implementation report](features/reports/REPORTS_IMPLEMENTATION_REPORT.md): delivered behavior, access/limits, source evidence and local verification.
 
 ## Organization
 
-| Folder | Purpose |
-| --- | --- |
-| `product/` | Requirements, stakeholder material, design guidance, and maintained feature inventory. |
-| `architecture/` | Architecture and flow diagrams. |
-| `features/` | Feature proposals, implementation plans, reports, and Superadmin phase handoffs. A proposal is not a delivered feature. |
-| `security/` | Security audit baseline, remediation plan, implementation report, and dependency/environment reviews. |
-| `operations/` | Operational guidance. Check commands against the current owning application repository. |
-| `reference/` | External-product references, implementation comparisons, and testing data. These are not Crusource implementation truth. |
-| `archive/` | Historical specifications, audits, agent notes, log exports, and configuration examples. Retained for provenance; not current operational instructions. |
-| `exports/` | Word/PDF handoffs. The paired Markdown draft is the editable source; exports can become stale after Markdown changes. |
+| Folder          | Purpose                                                                                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `product/`      | Requirements, stakeholder material, design guidance, and maintained feature inventory.                                                                  |
+| `architecture/` | Architecture and flow diagrams.                                                                                                                         |
+| `features/`     | Feature proposals, implementation plans, reports, and Superadmin phase handoffs. A proposal is not a delivered feature.                                 |
+| `security/`     | Security audit baseline, remediation plan, implementation report, and dependency/environment reviews.                                                   |
+| `operations/`   | Operational guidance. Check commands against the current owning application repository.                                                                 |
+| `reference/`    | External-product references, implementation comparisons, and testing data. These are not Crusource implementation truth.                                |
+| `archive/`      | Historical specifications, audits, agent notes, log exports, and configuration examples. Retained for provenance; not current operational instructions. |
+| `exports/`      | Word/PDF handoffs. The paired Markdown draft is the editable source; exports can become stale after Markdown changes.                                   |
 
 ## Maintenance
 

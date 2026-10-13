@@ -17,6 +17,8 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 
 ## Feature plans, reports, and phase handoffs
 
+- [features/reports/REPORTS_IMPLEMENTATION_PLAN.md](features/reports/REPORTS_IMPLEMENTATION_PLAN.md)
+- [features/reports/REPORTS_IMPLEMENTATION_REPORT.md](features/reports/REPORTS_IMPLEMENTATION_REPORT.md)
 - [features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md](features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md)
 - [features/ai/AI_Plan.md](features/ai/AI_Plan.md)
 - [features/forecast/FORECAST_FIX_REPORT.md](features/forecast/FORECAST_FIX_REPORT.md)
