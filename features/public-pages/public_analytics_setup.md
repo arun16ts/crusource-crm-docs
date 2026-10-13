@@ -2,7 +2,7 @@
 
 Current status: **PLANNED / DOCUMENTED ONLY**, checked against the source on 5 October 2026. The earlier implementation claim is stale: the current frontend has neither `@vercel/analytics` nor `mixpanel-browser` in `package.json`, no source references to those SDKs, no `.env.public-analytics.example`, and no `test:public:analytics` script or matching analytics test. Provider collection is not wired in the current application. The reason for removal has not been established from Git history.
 
-The following configuration and collection contract describe proposed restoration or reimplementation, not existing behavior. Provider accounts and production delivery have not been verified. Super Admin analytics reports, Error Center, centralized log search and authoritative AI-usage dashboards remain separate work; see [the revised upgrade plan](superadmin_upgrade_plan.md).
+The following configuration and collection contract describe proposed restoration or reimplementation, not existing behavior. Provider accounts and production delivery have not been verified. Super Admin analytics reports, Error Center, centralized log search and authoritative AI-usage dashboards remain separate work; see [the revised upgrade plan](../superadmin/superadmin_upgrade_plan.md).
 
 ## Proposed configuration
 

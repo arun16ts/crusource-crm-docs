@@ -891,13 +891,13 @@ existing CRM accounts are not promoted or rewritten. Platform tables originate i
 identity uniqueness and rerunnable legacy backfill. API, migration and PostgreSQL
 concurrency checks use synthetic isolated fixtures. Phase 2 replaces the legacy UI
 and verifies real Next.js/API management/enrollment through an isolated SQLite
-fixture with fake delivery. See [Phase 1 evidence](superadmin-phase1/README.md) and
-[Phase 2 UI/integration evidence](superadmin-phase2/README.md).
+fixture with fake delivery. See [Phase 1 evidence](../features/superadmin/superadmin-phase1/README.md) and
+[Phase 2 UI/integration evidence](../features/superadmin/superadmin-phase2/README.md).
 Actual production email delivery and TLS/proxy configuration remain deployment checks.
 
 ## Platform sales and demo intake (2026-10-11)
 
-This section updates only Phase 4 capabilities. Status describes wired local application behavior; deployed/provider verification is separate. [Review package](superadmin-phase4/README.md) and [verification](superadmin-phase4/VERIFICATION.md) record actual Next/FastAPI synthetic flows and complete applicable local checks.
+This section updates only Phase 4 capabilities. Status describes wired local application behavior; deployed/provider verification is separate. [Review package](../features/superadmin/superadmin-phase4/README.md) and [verification](../features/superadmin/superadmin-phase4/VERIFICATION.md) record actual Next/FastAPI synthetic flows and complete applicable local checks.
 
 | Capability | Status | Source evidence |
 | --- | --- | --- |

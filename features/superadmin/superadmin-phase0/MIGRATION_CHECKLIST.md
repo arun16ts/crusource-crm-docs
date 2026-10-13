@@ -8,10 +8,10 @@ Phase 1 update: an empty full-chain upgrade and synthetic legacy upgrades/backfi
 
 - Repository migration head: `20261008_webhook_receipts` (one head, `alembic heads`). This is repository state, not the deployed database revision.
 - Existing platform tables originate in `alembic/versions/20261004_platform_auth.py`: credentials, access requests, sessions and security events. Preserve the partial unique owner index and the owner user id.
-- Sources: [models](../../crusource-crm-backend/src/modules/platform_auth/repositories/models.py), [activation handler](../../crusource-crm-backend/src/modules/platform_auth/handlers/activate.py), [MFA handler](../../crusource-crm-backend/src/modules/platform_auth/handlers/verify_challenge.py), [review handler](../../crusource-crm-backend/src/modules/platform_auth/handlers/review_request.py), [repository](../../crusource-crm-backend/src/modules/platform_auth/repositories/repository.py).
+- Sources: [models](../../../../crusource-crm-backend/src/modules/platform_auth/repositories/models.py), [activation handler](../../../../crusource-crm-backend/src/modules/platform_auth/handlers/activate.py), [MFA handler](../../../../crusource-crm-backend/src/modules/platform_auth/handlers/verify_challenge.py), [review handler](../../../../crusource-crm-backend/src/modules/platform_auth/handlers/review_request.py), [repository](../../../../crusource-crm-backend/src/modules/platform_auth/repositories/repository.py).
 - MFA completion currently finds the legacy request through the user's email. New invitation lineage must replace that dependency deliberately, with a compatible legacy branch during cutover.
 - `User.email` and legacy request email have ordinary unique constraints. Repository lookups use case-insensitive comparison. Case-sensitive uniqueness can permit ambiguous identities; the synthetic inventory demonstrates this risk in the actual SQLite model schema. PostgreSQL collation/index behavior still requires verification.
-- The [existing outbox](../../crusource-crm-backend/src/shared/services/record_effect_outbox.py) is organization/record scoped. Preserve it; add platform delivery separately.
+- The [existing outbox](../../../../crusource-crm-backend/src/shared/services/record_effect_outbox.py) is organization/record scoped. Preserve it; add platform delivery separately.
 
 ## Safe rehearsal completed
 

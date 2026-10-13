@@ -83,7 +83,7 @@ graph LR
 
 ## 3. Business Functionality & Feature Inventory
 
-Based on [CRUSOURCE_CRM_MODULES_AND_FEATURES.md](file:///d:/GitHub/Crusource-CRM/crusource-crm-docs/CRUSOURCE_CRM_MODULES_AND_FEATURES.md) and current codebase inspection:
+Based on [CRUSOURCE_CRM_MODULES_AND_FEATURES.md](../../product/CRUSOURCE_CRM_MODULES_AND_FEATURES.md) and current codebase inspection:
 
 ### 3.1 Fully Implemented Modules (Primary E2E Candidates)
 
