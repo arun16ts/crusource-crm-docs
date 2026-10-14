@@ -1,7 +1,7 @@
 # Reports and Analytics fix implementation plan
 
 **Date:** 14 October 2026  
-**Status:** Proposed fixes; not implemented.  
+**Status:** Original approved repair sequence. Remediation is now present; see the [dated implementation/evidence matrix](REPORTS_ANALYTICS_REMEDIATION_REPORT.md) and post-pull verification it references.
 **Basis:** [Reports and Analytics audit](REPORTS_ANALYTICS_AUDIT.md), covering frontend `063e8c3c` and backend `3ef484a`.  
 **Scope:** Complete and repair the agreed CRM Reports/Analytics work. Do not add report sharing UI or unrelated VMS functionality.
 

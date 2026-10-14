@@ -1,7 +1,7 @@
 # Reports and Analytics audit
 
 **Date:** 14 October 2026  
-**Status:** Audit findings; application fixes have not been applied.  
+**Status at original audit:** Findings before application fixes. See the [dated remediation evidence](REPORTS_ANALYTICS_REMEDIATION_REPORT.md) for the later implementation; the original findings below are retained.
 **Scope:** CRM Reports, Analytics boards, report-backed charts, definition imports/exports, saved views and Forecast reports. The separate VMS applications are outside this audit.  
 **Next steps:** [Fix implementation plan](REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md).
 

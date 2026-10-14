@@ -4,6 +4,8 @@ Start with the [complete document index](INDEX.md). [Document locations](DOCUMEN
 
 See the [workspace cleanup report](operations/WORKSPACE_CLEANUP_REPORT.md) for what was moved, removed, verified, and retained.
 
+See the [14 October post-pull review](operations/POST_PULL_REVIEW_20261014.md) for the imported-change findings and the [subsequent repair report](operations/POST_PULL_FIX_REPORT_20261014.md) for current fixes and verification. These distinguish the older Reports audit baseline from the later implementation.
+
 This repository contains product drafts, reference material, implementation reports, and historical evidence. Application source and current CI/deployment configuration live in their owning repositories. A document's existence does not establish that a feature is implemented or deployed.
 
 ## Start here
@@ -16,7 +18,7 @@ This repository contains product drafts, reference material, implementation repo
 - [Forecast plan](features/forecast/FORECAST_IMPLEMENTATION_PLAN.md) and [implementation report](features/forecast/FORECAST_FIX_REPORT.md): feature-specific evidence at the time of writing. Older reported blockers are historical; consult newer validation evidence before treating them as current.
 - [Reports implementation plan](features/reports/REPORTS_IMPLEMENTATION_PLAN.md): verified Reports testing issues, saved pipeline/currency scope, Analytics changes, definition import and Forecast reporting.
 - [Reports implementation report](features/reports/REPORTS_IMPLEMENTATION_REPORT.md): delivered behavior, access/limits, source evidence and local verification.
-- [Reports and Analytics audit](features/reports/REPORTS_ANALYTICS_AUDIT.md) and [fix plan](features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md): follow-up findings from independent verification of the interrupted implementation; application fixes remain proposed.
+- [Reports and Analytics audit](features/reports/REPORTS_ANALYTICS_AUDIT.md), [fix plan](features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md), and [remediation evidence](features/reports/REPORTS_ANALYTICS_REMEDIATION_REPORT.md): historical findings, the approved sequence and source-backed implementation evidence.
 
 ## Organization
 

@@ -21,6 +21,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [features/reports/REPORTS_IMPLEMENTATION_REPORT.md](features/reports/REPORTS_IMPLEMENTATION_REPORT.md)
 - [features/reports/REPORTS_ANALYTICS_AUDIT.md](features/reports/REPORTS_ANALYTICS_AUDIT.md)
 - [features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md](features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md)
+- [features/reports/REPORTS_ANALYTICS_REMEDIATION_REPORT.md](features/reports/REPORTS_ANALYTICS_REMEDIATION_REPORT.md)
 - [features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md](features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md)
 - [features/ai/AI_Plan.md](features/ai/AI_Plan.md)
 - [features/forecast/FORECAST_FIX_REPORT.md](features/forecast/FORECAST_FIX_REPORT.md)
@@ -208,6 +209,8 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 
 ## Operations guidance
 
+- [operations/POST_PULL_FIX_REPORT_20261014.md](operations/POST_PULL_FIX_REPORT_20261014.md)
+- [operations/POST_PULL_REVIEW_20261014.md](operations/POST_PULL_REVIEW_20261014.md)
 - [operations/WORKSPACE_CLEANUP_REPORT.md](operations/WORKSPACE_CLEANUP_REPORT.md)
 - [operations/DOCKER_README.md](operations/DOCKER_README.md)
 

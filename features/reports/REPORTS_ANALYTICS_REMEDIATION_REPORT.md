@@ -1,0 +1,33 @@
+# Reports and Analytics remediation evidence
+
+**Date:** 14 October 2026  
+**Scope:** The twenty findings in the [original audit](REPORTS_ANALYTICS_AUDIT.md). CRM only.  
+**Implementation baseline:** Frontend `7a4bceb5`, backend `13fffc6`, including remediation committed during the interrupted work. The later [post-pull repair report](../../operations/POST_PULL_FIX_REPORT_20261014.md) records the additional uncommitted repairs and fresh verification.  
+**Deployment:** Not verified. Historical audit findings remain preserved; their original severity counts do not describe the current implementation.
+
+| Finding | Current implementation and evidence |
+| --- | --- |
+| RA-01 — Suggestions disclose denied source data | Implemented: suggestions use scoped source repositories and permission/field validation. `tests/test_reports_audit_fixes.py::test_denied_source_suggestions_do_not_disclose_names` exercises HTTP access. |
+| RA-02 — Assignment bypasses private report authority | Implemented: source report edit authority is checked independently of destination team management. `test_assignment_does_not_bypass_private_report_authority`. |
+| RA-03 — Foreign sharing references | Implemented: active users/teams are resolved within the tenant before mutation; team membership is validated. `test_foreign_assignee_is_rejected_before_create`. |
+| RA-04 — Executable matrix XLSX labels | Implemented: spreadsheet text sanitization also covers matrix row labels. `test_matrix_row_labels_export_as_literal_xlsx_text`. |
+| RA-05 — Lost native widget pipeline settings | Implemented: typed native configuration is accepted, validated and persisted by board APIs. `test_native_pipeline_configuration_roundtrips`; real browser/API create-update-reload check. |
+| RA-06 — Unsafe matrix totals | Implemented: full-query aggregates calculate totals, including average/min/max; mixed-currency totals are suppressed. `test_matrix_average_totals_use_full_data_not_visible_group_averages`, `test_matrix_min_max_and_missing_values`, `test_matrix_has_no_cross_currency_totals`. |
+| RA-07 — Drill values do not round-trip | Implemented: machine dimension values and field identities are separate from display labels; original criteria stay in the detail spec. `test_chart_dimensions_keep_owner_and_stage_ids`; real browser/API stage drill and Back flow. |
+| RA-08 — Unsupported chart shapes | Implemented: chart compatibility constrains dimensions/metrics; the mapper binds multi-dimension series rather than silently choosing one. `tests/test_reports_audit_fixes.ts` and backend chart/spec regressions. |
+| RA-09 — Forecast details stay in a chart | Implemented: Forecast detail drill switches to the detail table and restores the parent view on Back. `tests/test_forecast_drilldown.py`, `tests/test_reports_product_browser.mjs`. |
+| RA-10 — One legacy definition breaks the library | Implemented: invalid legacy specs are isolated with repair metadata; the repair modal preserves the original definition for explicit correction. `test_unknown_legacy_definition_does_not_break_paged_list`, frontend `components/reports/modal/RepairReportModal.tsx`. |
+| RA-11 — End dates and URL parsing | Implemented: inclusive end-of-day bounds and invalid date/range validation; integer URL pagination parsing. `test_end_day_includes_afternoon`, `test_http_calendar_dates_are_validated_before_scope_query`, frontend audit assertions. |
+| RA-12 — Full export silently truncated | Implemented: exceeding the synchronous export bound returns an explicit error rather than partial-success data. `test_large_export_fails_instead_of_returning_partial_success`. Large asynchronous export is not introduced. |
+| RA-13 — Sort aliases and discarded criteria | Implemented: typed sort normalization and builder save/preview preserve advanced saved settings. `test_sort_aliases_normalize_and_run`, `tests/test_reports_product_contracts.tsx`; real saved-scope API round trip. |
+| RA-14 — Incorrect default revenue predicate and hidden writes | Implemented: won classification and organization currency replace legacy stage labels; explicit initialization is guarded separately from the read query. `test_default_revenue_uses_won_classification_and_currency`, Analytics board tests. |
+| RA-15 — Forecast drag/drop enables matrix | Implemented: both the guided type selection and drop behavior respect Forecast's matrix restriction. Report builder and product browser regressions. |
+| RA-16 — View-only Analytics editing | Implemented: add/edit/drag/resize controls follow edit permission; APIs retain independent authorization. Analytics component and Reports browser regressions. |
+| RA-17 — Failed counts look like zeros | Implemented: count queries expose loading/error/retry states. Report library rendering and product browser checks distinguish errors from valid empty results. |
+| RA-18 — Service outages blamed on import files | Implemented: service errors remain retryable; structured invalid-file details are handled separately. `test_import_outages_are_retryable_not_invalid_file_details`, import modal. |
+| RA-19 — Picker stops at 200 reports | Implemented: paged searchable picker and separate selected-report metadata lookup replace the fixed initial cap. `components/analytics/AddWidgetModal.tsx` and focused query hooks; component/browser coverage supports the flow, not an exhaustive test of every library size. |
+| RA-20 — Calls/Meetings owner references | Implemented: `call_owner_id` and `host_user_id` use the correct validators/import mappings. `test_activity_import_references_are_validated` and Reports product scope tests. |
+
+Backend evidence is in [Reports audit regressions](../../../crusource-crm-backend/tests/test_reports_audit_fixes.py), [product scope tests](../../../crusource-crm-backend/tests/test_reports_product_scope.py), and [Analytics board tests](../../../crusource-crm-backend/tests/test_analytics_boards.py). Frontend evidence is in [audit contract tests](../../../crusource-crm-frontend/tests/test_reports_audit_fixes.ts), [product contracts](../../../crusource-crm-frontend/tests/test_reports_product_contracts.tsx), and [browser regressions](../../../crusource-crm-frontend/tests/test_reports_product_browser.mjs).
+
+The main scope/configuration/drill flow was additionally exercised using real React components and an actual local FastAPI/SQLAlchemy fixture. Passing these checks is not a guarantee for every legacy report, concurrency pattern or stage environment. Source-backed implementation, local verification, remote CI and deployment are separate claims; consult the dated repair report for current results and limitations.

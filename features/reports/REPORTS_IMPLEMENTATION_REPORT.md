@@ -4,7 +4,7 @@
 
 **Scope:** CRM frontend/backend. No VMS application changes.
 
-**Status:** Implemented locally and verified. Nothing deployed or pushed.
+**Status at original report:** Implemented locally and verified; nothing deployed or pushed as part of that original verification. Later commits and repairs are recorded in the [remediation evidence](REPORTS_ANALYTICS_REMEDIATION_REPORT.md) and its linked post-pull report.
 
 ## What users can do
 
