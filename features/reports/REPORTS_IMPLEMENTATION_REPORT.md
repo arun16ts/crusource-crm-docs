@@ -1,8 +1,10 @@
 # Reports and Analytics implementation
 
-**Date:** 13 October 2026  
-**Scope:** CRM frontend/backend. No VMS application changes.  
-**Status:** Application changes implemented locally; final validation in progress. Nothing deployed or pushed.
+**Date:** 14 October 2026
+
+**Scope:** CRM frontend/backend. No VMS application changes.
+
+**Status:** Implemented locally and verified. Nothing deployed or pushed.
 
 ## What users can do
 
@@ -51,6 +53,21 @@ All paths below are under `/api/v1/reports`, authenticated through the existing 
 
 ## Validation and deployment
 
-Final CI results will be recorded here once the running checks finish. Detailed local logs are under `validation/reports-implementation/` in the orchestration workspace; this directory is excluded from Graphify.
+Validation used the CRM workflow commands, Node 20.20.2 and the backend Python 3.12 venv. All frontend checks ran in an isolated checkout with a successful clean `npm ci`; the running application's dependencies were preserved.
 
-No commit, push, merge, deployment, staging account mutation or production database operation was performed. Local fixture/browser checks do not establish staging behavior. A deployment request still requires the workspace's complete deployment audit.
+| Verification | Result |
+| --- | --- |
+| Frontend workflow parity | 42 checks passed: changed-file formatting, full lint, tests, spreadsheet/Reports/AI contracts, TypeScript, all registered CI browser regressions, production build and configured dependency audit. |
+| Full backend suite | 2,088 passed; 73 opt-in/environment-specific tests skipped in this general run. Required integration groups were exercised separately below. |
+| Backend static checks | Ruff and compilation passed. |
+| PostgreSQL/Redis integration | Reports naming race 1 passed; shared quotas/security 49; production transactions 59; recovery/import locking 10; platform 45. All used isolated local test services/schemas. |
+| Migrations | Committed upgrade passed; empty-database migration drift 1 passed; encryption migration/rollback 1 passed; final `alembic check` passed. No application schema migration was added for Reports JSON settings. |
+| Dependency audits | Backend pinned-runtime audit found no known vulnerabilities. Frontend audit found no high/critical runtime advisories; its existing temporary ESLint advisory exception remains, expiring 4 November 2026. |
+| Graphify | Workspace code graph refreshed; existing CRM and VMS roots retained. Five pre-existing partial TSX extraction warnings remain; TypeScript/build checks passed. |
+| Documentation/conflicts | Local links checked; no missing references or unmerged entries in the affected repositories; `git diff --check` passed. |
+
+The backend emits existing deprecation warnings; frontend lint also contains existing warnings. These passing checks do not claim a warning-free repository. A frontend audit attempt failed to fetch registry advisory data and passed on retry. Earlier test runs exposed obsolete invalid-spec fixtures and a validation harness that reused an already-populated migration fixture; those were corrected before the final passing run.
+
+Detailed local logs are under `validation/reports-implementation/` in the orchestration workspace, including `backend-ci/full-tests-currency.log`, integration logs, `frontend-ci/results.json`, `frontend-ci/audit.log` and `backend-ci/audit-network.log`. This directory is excluded from Graphify. Disposable test services were removed after validation.
+
+This task did not issue a commit, push, merge, deployment, staging account mutation or production database operation. During the work the application repositories acquired commits `063e8c3c` (frontend) and `3ef484a` (backend); no reset or alteration of that Git history was performed. All 1,598 tracked frontend files match the tested CI snapshot after normalizing line endings. Local fixture/browser checks do not establish staging behavior. A deployment request still requires the workspace's complete deployment audit.

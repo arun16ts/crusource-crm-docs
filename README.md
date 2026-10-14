@@ -16,6 +16,7 @@ This repository contains product drafts, reference material, implementation repo
 - [Forecast plan](features/forecast/FORECAST_IMPLEMENTATION_PLAN.md) and [implementation report](features/forecast/FORECAST_FIX_REPORT.md): feature-specific evidence at the time of writing. Older reported blockers are historical; consult newer validation evidence before treating them as current.
 - [Reports implementation plan](features/reports/REPORTS_IMPLEMENTATION_PLAN.md): verified Reports testing issues, saved pipeline/currency scope, Analytics changes, definition import and Forecast reporting.
 - [Reports implementation report](features/reports/REPORTS_IMPLEMENTATION_REPORT.md): delivered behavior, access/limits, source evidence and local verification.
+- [Reports and Analytics audit](features/reports/REPORTS_ANALYTICS_AUDIT.md) and [fix plan](features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md): follow-up findings from independent verification of the interrupted implementation; application fixes remain proposed.
 
 ## Organization
 

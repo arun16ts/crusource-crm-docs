@@ -19,6 +19,8 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 
 - [features/reports/REPORTS_IMPLEMENTATION_PLAN.md](features/reports/REPORTS_IMPLEMENTATION_PLAN.md)
 - [features/reports/REPORTS_IMPLEMENTATION_REPORT.md](features/reports/REPORTS_IMPLEMENTATION_REPORT.md)
+- [features/reports/REPORTS_ANALYTICS_AUDIT.md](features/reports/REPORTS_ANALYTICS_AUDIT.md)
+- [features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md](features/reports/REPORTS_ANALYTICS_FIX_IMPLEMENTATION_PLAN.md)
 - [features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md](features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md)
 - [features/ai/AI_Plan.md](features/ai/AI_Plan.md)
 - [features/forecast/FORECAST_FIX_REPORT.md](features/forecast/FORECAST_FIX_REPORT.md)
