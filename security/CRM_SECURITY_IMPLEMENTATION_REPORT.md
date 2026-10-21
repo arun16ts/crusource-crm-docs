@@ -54,3 +54,30 @@ Backend CI is now reusable, and the staging pipeline calls it before the existin
 Before release, supply the dedicated provider encryption key to migrator/API/workers, configure exact CORS origins and shared Redis, configure authenticated Gmail Pub/Sub delivery, coordinate the encryption cutover with old instances, and recreate existing Calendar channels. The rollout document includes configuration, migration order, recovery constraints, and staging acceptance checks.
 
 The stronger CSP is report-only pending real integration compatibility checks. Frontend dependency exceptions/moderate advisories remain tracked; no blanket vulnerability-free claim is made. Existing browser-held CRM bearer storage and MFA choices are unchanged. This remediation does not constitute an exhaustive endpoint authorization review or independent penetration-test sign-off.
+
+## Follow-up local remediation and verification — 21 October 2026
+
+This addendum records a later local source pass for the revised phase plan. It does not rewrite the earlier report's findings or change its deployment status.
+
+| Area | Local source change and evidence |
+| --- | --- |
+| Login MFA | Password login always issues an email OTP challenge, account preferences cannot disable the required MFA policy, and Google OAuth exchange issues only a short-lived browser-bound identity code. No CRM access/refresh token is issued until the shared OTP verification succeeds, including for users who still need organization onboarding. Focused password/OAuth tests passed. |
+| Login throttling | Login and OTP rejection paths use the shared rate limiter and the protected-environment outage policy. The full suite and required Redis integration checks passed. |
+| Cross-tenant access | Added two-organization negative-path regression coverage and corrected fixture/route assumptions. Focused tenant isolation tests and the complete backend suite passed. This is regression evidence for covered routes, not an exhaustive endpoint authorization audit. |
+| Account/contact concurrent edits | Account and Contact responses now include integer versions; updates require the version read by the editor and rely on SQLAlchemy's atomic version check to return `409` on a stale write. The frontend edit forms pass the version. A migration adds the columns with version `1`; PostgreSQL upgrade and Alembic drift checks passed on disposable databases. |
+| CSP | Replaced the static/report-only scripts policy with per-request nonce-based enforcement for dynamic HTML, forwarded the nonce to Next rendering, disabled inline script attributes and objects, and kept dynamic pages private/no-store. Proxy-policy and browser security regressions passed. |
+
+### Verification record
+
+- Backend full suite against disposable PostgreSQL/Redis: **2,267 passed, 95 skipped**. The Windows default pytest temp directory denied access, so pytest used a repository-local temporary base, which was removed after the run.
+- Backend workflow-gated checks: document-search PostgreSQL **1 passed**; Redis integration **95 passed**; rate-limit PostgreSQL **20 passed**; reports PostgreSQL **1 passed**; webhook/production PostgreSQL **59 passed**; recovery/import PostgreSQL **10 passed**; platform PostgreSQL **35 passed**; demo-request PostgreSQL **10 passed**; pipeline/migration drift **2 passed**; credential-encryption migration **1 passed**. `alembic check` reported no new upgrade operations. Ruff and compileall passed.
+- Frontend format check, full lint, aggregate component/localization tests, report/spreadsheet/native-dialog/AI/public contracts, TypeScript check, all browser and platform-contract commands in the current CI workflow, production build, and project dependency audit passed. Lint emitted existing warnings but no errors. The project audit reported no high/critical runtime advisories and noted the already-tracked temporary ESLint-only exception expiring 4 November 2026.
+- A clean `npm ci` succeeded in an isolated lockfile-only directory (686 packages). Running it in the active checkout was blocked because a Windows Node process held a native SWC file; package files were restored from the isolated locked install while already-present native binaries were preserved, then frontend TypeScript/lint were rechecked. The npm install summary also reported 5 high and 5 moderate findings across its broader dependency view; the repository's runtime-policy audit result above is narrower and should not be described as a blanket clean npm audit.
+- CI results are local. No remote GitHub CI, cloud configuration, deployed image, stage behavior, real email delivery, or staging credentials were available or changed.
+
+### Still open before security closure
+
+- The browser still stores access, refresh, and onboarding tokens in `localStorage`. A same-origin BFF with `HttpOnly`/`Secure` cookies, CSRF controls, and session/refresh/logout compatibility remains an architectural migration; the current CSP and authorization regressions do not close direct token theft by same-origin XSS.
+- This source pass did not access/revoke the credential in the tester's original evidence, establish that the evidence was redacted/restricted, or verify whether it appears in shared history. Follow Phase 0 with the account owner and evidence custodian.
+- Changes and the new migration are uncommitted and undeployed. Stage must run the migration before the matching API rollout; verify effective MFA email delivery, CORS headers, CSP, tenant isolation, and release/image identity in the approved staging retest before marking any tester finding `Verified fixed`.
+- Full rate-limit behavior across multiple deployed API instances, limiter outage alerts, all endpoint-level authorization, and provider/email integration remain outside this local verification record.
