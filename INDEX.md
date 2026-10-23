@@ -18,6 +18,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 ## Feature plans, reports, and phase handoffs
 
 - [features/enterprise-crm/ENTERPRISE_CRM_STRATEGIC_FEATURES_IMPLEMENTATION_PLAN.md](features/enterprise-crm/ENTERPRISE_CRM_STRATEGIC_FEATURES_IMPLEMENTATION_PLAN.md)
+- [features/enterprise-crm/USER_TESTING_ISSUES_IMPLEMENTATION_PLAN.md](features/enterprise-crm/USER_TESTING_ISSUES_IMPLEMENTATION_PLAN.md)
 - [features/reports/REPORTS_IMPLEMENTATION_PLAN.md](features/reports/REPORTS_IMPLEMENTATION_PLAN.md)
 - [features/reports/REPORTS_IMPLEMENTATION_REPORT.md](features/reports/REPORTS_IMPLEMENTATION_REPORT.md)
 - [features/reports/REPORTS_ANALYTICS_AUDIT.md](features/reports/REPORTS_ANALYTICS_AUDIT.md)
