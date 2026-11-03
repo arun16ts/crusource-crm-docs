@@ -214,6 +214,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 
 ## Operations guidance
 
+- [operations/CRM_BACKEND_CI_OPTIMIZATION.md](operations/CRM_BACKEND_CI_OPTIMIZATION.md)
 - [operations/POST_PULL_FIX_REPORT_20261014.md](operations/POST_PULL_FIX_REPORT_20261014.md)
 - [operations/POST_PULL_REVIEW_20261014.md](operations/POST_PULL_REVIEW_20261014.md)
 - [operations/WORKSPACE_CLEANUP_REPORT.md](operations/WORKSPACE_CLEANUP_REPORT.md)
