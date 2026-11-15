@@ -39,6 +39,8 @@
   "ENVIRONMENT_SECURITY_AND_ARCHITECTURE_UPGRADE.md": "security/ENVIRONMENT_SECURITY_AND_ARCHITECTURE_UPGRADE.md",
   "FORECAST_FIX_REPORT.md": "features/forecast/FORECAST_FIX_REPORT.md",
   "FORECAST_IMPLEMENTATION_PLAN.md": "features/forecast/FORECAST_IMPLEMENTATION_PLAN.md",
+  "IMPLEMENTATION_PLAN.md": "IMPLEMENTATION_PLAN.md",
+  "features/presentation-fixes/IMPLEMENTATION_PLAN.md": "features/presentation-fixes/IMPLEMENTATION_PLAN.md",
   "GOOGLE_ADS_INTEGRATION_PROPOSAL.md": "features/integrations/GOOGLE_ADS_INTEGRATION_PROPOSAL.md",
   "landing_public_pages_implementation_report.md": "features/public-pages/landing_public_pages_implementation_report.md",
   "landing_public_pages_upgrade_plan.md": "features/public-pages/landing_public_pages_upgrade_plan.md",
