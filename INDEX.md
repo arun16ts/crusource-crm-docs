@@ -38,6 +38,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [features/public-pages/landing_public_pages_upgrade_plan.md](features/public-pages/landing_public_pages_upgrade_plan.md)
 - [features/public-pages/public_analytics_setup.md](features/public-pages/public_analytics_setup.md)
 - [features/superadmin/Superadmin login.md](features/superadmin/Superadmin%20login.md)
+- [features/superadmin/BUILT_IN_SUPERADMIN_RETIREMENT_PLAN.md](features/superadmin/BUILT_IN_SUPERADMIN_RETIREMENT_PLAN.md)
 - [features/superadmin/superadmin-phase0/BASELINE_REPORT.md](features/superadmin/superadmin-phase0/BASELINE_REPORT.md)
 - [features/superadmin/superadmin-phase0/capture-ui.mjs](features/superadmin/superadmin-phase0/capture-ui.mjs)
 - [features/superadmin/superadmin-phase0/contract-checks.json](features/superadmin/superadmin-phase0/contract-checks.json)
