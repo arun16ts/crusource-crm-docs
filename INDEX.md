@@ -35,6 +35,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [features/ai/IMPLEMENTATION_PLAN.md](features/ai/IMPLEMENTATION_PLAN.md)
 - [features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md](features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md)
 - [features/ai/AI_Plan.md](features/ai/AI_Plan.md)
+- [features/forecast/FORECAST_DASHBOARD_CONSOLIDATION_PLAN.md](features/forecast/FORECAST_DASHBOARD_CONSOLIDATION_PLAN.md)
 - [features/forecast/FORECAST_FIX_REPORT.md](features/forecast/FORECAST_FIX_REPORT.md)
 - [features/forecast/FORECAST_IMPLEMENTATION_PLAN.md](features/forecast/FORECAST_IMPLEMENTATION_PLAN.md)
 - [features/integrations/GOOGLE_ADS_INTEGRATION_PROPOSAL.md](features/integrations/GOOGLE_ADS_INTEGRATION_PROPOSAL.md)
@@ -296,6 +297,11 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [archive/V1-Docs/Crusource-CRM-User_Story-V1.0.pdf](archive/V1-Docs/Crusource-CRM-User_Story-V1.0.pdf)
 - [archive/V1-Docs/Crusource_Design_System.pdf](archive/V1-Docs/Crusource_Design_System.pdf)
 - [archive/V1.1-Docs/Crusource-CRM-PRD-V1.1.pdf](archive/V1.1-Docs/Crusource-CRM-PRD-V1.1.pdf)
+
+## Pricing, AI credits, and cost analysis
+
+- [Prices/CRM_PRICING_AI_CREDITS_AND_COMPETITIVE_ANALYSIS.md](Prices/CRM_PRICING_AI_CREDITS_AND_COMPETITIVE_ANALYSIS.md)
+- [Prices/Crusource_CRM_Pricing_And_Cost_Analysis.xlsx](Prices/Crusource_CRM_Pricing_And_Cost_Analysis.xlsx)
 
 ## Designer and stakeholder document exports
 
