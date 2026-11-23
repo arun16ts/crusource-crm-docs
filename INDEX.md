@@ -22,6 +22,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [features/calls-meetings-ui/IMPLEMENTATION_PLAN.md](features/calls-meetings-ui/IMPLEMENTATION_PLAN.md)
 - [features/accounts-enhancement/IMPLEMENTATION_PLAN.md](features/accounts-enhancement/IMPLEMENTATION_PLAN.md)
 - [features/contacts-enhancement/IMPLEMENTATION_PLAN.md](features/contacts-enhancement/IMPLEMENTATION_PLAN.md)
+- [features/tasks-enhancement/IMPLEMENTATION_PLAN.md](features/tasks-enhancement/IMPLEMENTATION_PLAN.md)
 - [features/enterprise-crm/ENTERPRISE_CRM_STRATEGIC_FEATURES_IMPLEMENTATION_PLAN.md](features/enterprise-crm/ENTERPRISE_CRM_STRATEGIC_FEATURES_IMPLEMENTATION_PLAN.md)
 - [features/enterprise-crm/USER_TESTING_ISSUES_IMPLEMENTATION_PLAN.md](features/enterprise-crm/USER_TESTING_ISSUES_IMPLEMENTATION_PLAN.md)
 - [features/reports/REPORTS_IMPLEMENTATION_PLAN.md](features/reports/REPORTS_IMPLEMENTATION_PLAN.md)
