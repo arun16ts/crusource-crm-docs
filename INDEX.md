@@ -300,6 +300,12 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 
 ## Pricing, AI credits, and cost analysis
 
+- [CRM application cost breakdown](Prices/CRM_APPLICATION_COST_BREAKDOWN.md)
+- [Revised CRM commercial proposal, quote calculator and payback workbook](Prices/Crusource_CRM_Commercial_Proposal_and_Payback_Revised.xlsx)
+- [Manager workbook for CRM pricing and payback](Prices/Crusource_CRM_Pricing_and_Payback_Manager.xlsx)
+- [Revised pricing proposal and research review](Prices/CRM_PRICING_REVIEW_AND_PROPOSAL.md)
+- [Revised pricing calculator](Prices/Crusource_CRM_Pricing_Review_Model.xlsx)
+
 - [Prices/CRM_PRICING_AI_CREDITS_AND_COMPETITIVE_ANALYSIS.md](Prices/CRM_PRICING_AI_CREDITS_AND_COMPETITIVE_ANALYSIS.md)
 - [Prices/Crusource_CRM_Pricing_And_Cost_Analysis.xlsx](Prices/Crusource_CRM_Pricing_And_Cost_Analysis.xlsx)
 
