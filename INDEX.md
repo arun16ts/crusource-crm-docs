@@ -36,6 +36,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [features/ai/IMPLEMENTATION_PLAN.md](features/ai/IMPLEMENTATION_PLAN.md)
 - [features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md](features/ai/AI_FEATURES_FRD_AND_VALUE_ANALYSIS.md)
 - [features/ai/AI_Plan.md](features/ai/AI_Plan.md)
+- [features/billing/SUPERADMIN_BILLING_AI_CREDITS_AND_STORAGE_IMPLEMENTATION_PLAN.md](features/billing/SUPERADMIN_BILLING_AI_CREDITS_AND_STORAGE_IMPLEMENTATION_PLAN.md)
 - [features/forecast/FORECAST_DASHBOARD_CONSOLIDATION_PLAN.md](features/forecast/FORECAST_DASHBOARD_CONSOLIDATION_PLAN.md)
 - [features/forecast/FORECAST_FIX_REPORT.md](features/forecast/FORECAST_FIX_REPORT.md)
 - [features/forecast/FORECAST_IMPLEMENTATION_PLAN.md](features/forecast/FORECAST_IMPLEMENTATION_PLAN.md)
