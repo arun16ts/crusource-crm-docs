@@ -215,6 +215,7 @@ Paths are relative to the docs repository. See [README](README.md) for status an
 - [features/superadmin/SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md](features/superadmin/SUPERADMIN_PHASE_WISE_IMPLEMENTATION_PLAN.md)
 - [features/superadmin/superadmin_upgrade_plan.md](features/superadmin/superadmin_upgrade_plan.md)
 - [features/teams/team_pool_upgrade_plan.md](features/teams/team_pool_upgrade_plan.md)
+- [features/teams/TEAMSPACE_POOL_PARITY_AND_BUGFIX_IMPLEMENTATION_PLAN.md](features/teams/TEAMSPACE_POOL_PARITY_AND_BUGFIX_IMPLEMENTATION_PLAN.md)
 
 ## Security findings, implementation evidence, and recommendations
 

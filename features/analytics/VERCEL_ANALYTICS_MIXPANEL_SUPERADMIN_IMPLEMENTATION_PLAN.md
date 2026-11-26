@@ -1,7 +1,8 @@
 # Vercel Analytics, Mixpanel Telemetry & Super Admin CRM Dashboard Implementation Plan
 
-- **Date:** 25 November 2026
-- **Status:** PROPOSED IMPLEMENTATION PLAN (Source-Verified Against Latest Codebase; Audited in Section 7)
+- **Date:** 25 November 2026 (Updated 26 November 2026)
+- **Status:** IMPLEMENTED ACROSS ALL FOUR REPOSITORIES (Stages 1–4 Code Complete; Server Flag `MIXPANEL_SERVER_INGEST_ENABLED` Default `false` Pending Production Credentials)
+- **26 November 2026 end-to-end implementation:** Completed Stage 1 (`crusource-crm-frontend` public fixes + authenticated CRM telemetry + compact toggle & opt-out confirmation modal under Settings → Feedback), Stage 2 (`crusource-crm-backend` Mixpanel `/import` client & closed-UTC growth stats), Stage 3 (`crusource-vms-backend` `admin_analytics_snapshots` Drizzle migration `0098`, RBAC, Vercel & Mixpanel reporting endpoints), and Stage 4 (`crusource-admin` real growth delta + `/crm/analytics` UI).
 - **Target Repositories:**
   - `crusource-crm-frontend/` (Next.js App Router — public landing + authenticated CRM workspace telemetry)
   - `crusource-crm-backend/` (FastAPI — authoritative server-side Mixpanel completion events & internal CRM stats)
@@ -149,7 +150,8 @@ Every item below was directly observed in the current repositories and MUST be f
 
 Applying `analytics`, `code-security`, `api-security`, and `threat-modeling` skills establishes non-negotiable boundaries:
 
-### 3.1 Strict Zero-PII & URL/Param Redaction Rules
+### 3.1 Data Minimization & URL Redaction
+- Use an explicit event and property allowlist for each provider. Block raw CRM content and URLs with record identifiers, search terms, credentials, or other customer data. Treat analytics identifiers as pseudonymous data wherever a person can be identified with additional information.
 - **Banned Properties (Client & Server Scrubbing Hook):** Both Mixpanel (`before_send_events`) and Vercel Analytics (`beforeSend`) MUST strip or block any property key matching `email`, `phone`, `name`, `full_name`, `address`, `token`, `password`, `secret`, `query`, `search`, `message`, `description`, `notes`, `lead_name`, `contact_name`, `deal_name`, `subject`, `body`, `authorization`.
 - **URL Sanitization:** Strip query strings (`?email=`, `?token=`, `?code=`, `?q=`), hash fragments (`#...`), and raw database UUID/slug detail paths where customer-identifying names might appear:
   - Example normalized route template in Vercel `beforeSend` and Mixpanel `$current_url`: `/dashboard/leads/[id]`, `/dashboard/deals/[id]`, `/dashboard/accounts/[id]`.
@@ -159,9 +161,10 @@ Applying `analytics`, `code-security`, `api-security`, and `threat-modeling` ski
   - Mixpanel UI/People profiles: Do **not** call `mixpanel.people.set({ $email, $name })`. Set only non-PII tenant metadata (`plan_tier`, `locale`, `role_category`, `region`, `trial_status`).
 
 ### 3.2 Consent & Session Separation (`publicMarketing` vs `crmProduct`)
-- Keep two separate Mixpanel instances in `crusource-crm-frontend`:
-  1. `publicMarketing` (public marketing pages only): **Strictly opt-in** via `PUBLIC_ANALYTICS_CONSENT_KEY`, disabled by default until user clicks `"Allow"`. Calls `mixpanel.opt_out_tracking()` + `reset()` on decline/revoke.
-  2. `crmProduct` (authenticated `/dashboard/**` only): Subject to workspace contractual telemetry policy / opt-out toggle in workspace settings, initialized only when `NEXT_PUBLIC_CRM_PRODUCT_ANALYTICS_ENABLED === "true"` and an authenticated session is established in `DashboardClientLayout`. Never leaks `publicMarketing` anonymous state into another tenant on the same shared browser: `performLogout()` in `src/lib/auth.utils.ts` MUST synchronously call `resetCrmAnalyticsSession()` (`mixpanel.reset()`) BEFORE redirecting to `/login`, and `DashboardSessionBoundary` MUST compare current `user_id`/`org_id` with the active analytics identity and call `reset()` on mismatch.
+- `publicMarketing`: Default off. Public visitors can allow or decline optional analytics and change their choice from the footer. Public consent does not authorize signed-in tracking.
+- `crmProduct`: Default off. Collection requires an authenticated, resolved workspace session and individual opt-in under **CRM Settings → Feedback → Usage analytics**, scoped to that account and workspace in the current browser. A workspace policy can further restrict availability. A contract or workspace administrator cannot enable analytics on a user's behalf. Vercel and Mixpanel both check the active grant before sending. Logout and workspace changes invalidate the old session scope. Withdrawal stops collection and clears the browser's consent identifier.
+- The first browser implementation limits collection to allowlisted CRM page views. Mixpanel receives only an event-scoped route template and a random consent identifier scoped to this browser and workspace, plus ingestion metadata. It uses no Mixpanel profile or durable SDK identity. Treat the identifier as pseudonymous while it can be linked to an individual. Label browser adoption metrics as opted-in usage. A browser identifier does not support cross-device distinct-user or distinct-workspace counts.
+- Before enabling production product analytics, confirm the applicable privacy basis, vendor retention, hosting regions, and processor terms. Verify both providers' deployed requests, including URLs, referrers, and route templates, against the documented payloads.
 
 ### 3.3 Server-Side Credentials & Upstream API Constraints
 - **Secrets Stay in `crusource-vms-backend` & `crusource-crm-backend` ONLY:**
@@ -248,25 +251,23 @@ Server-side events use `httpx.AsyncClient` against Mixpanel `/import` API (`stri
    - `src/proxy.ts`:
      - Update `createCsp(nonce)` so `script-src` allows `https://va.vercel-scripts.com` when `isDevelopment` is true (keeping `'self' 'nonce-${nonce}'` strict in production for `/_vercel/insights/script.js`), and ensure `connect-src` covers Mixpanel ingestion endpoints cleanly.
    - `src/components/providers/PublicAnalyticsProvider.tsx` & `src/components/landing/Footer.tsx`:
-     - Keep the first-visit consent banner when `PUBLIC_ANALYTICS_CONSENT_KEY` is unset; replace the overlapping floating `bottom-2 start-2` `"Analytics preferences"` pill with a Footer link/button trigger (`"Analytics preferences"`) in `Footer.tsx` backed by shared UI state/custom DOM event so `PublicAnalyticsProvider` opens the preference bar cleanly. Preserve fallback trigger rendering when `Footer` is absent so standalone harnesses (`tests/test_public_analytics_browser.mjs`) continue passing without regressions.
+     - Keep the first-visit consent banner when `PUBLIC_ANALYTICS_CONSENT_KEY` is unset. Use the `Analytics preferences` button in the footer to reopen it. The standalone browser fixture renders the same footer control.
      - Guard `<Analytics />` rendering in `PublicAnalyticsProvider` so it ONLY mounts `<Analytics />` on allowed public routes (`isAllowedPublicAnalyticsRoute(pathname)` && consent granted). That avoids injecting duplicate `/_vercel/insights/script.js` tags when `CrmAnalyticsProvider` mounts `<Analytics />` inside `/dashboard/**`, and note cleanly that `/_vercel/insights/script.js` only populates when hosted on Vercel (local/Docker non-Vercel builds must degrade silently if `/_vercel/insights/*` returns `404`).
    - `src/components/demo-requests/GyanDemoForm.tsx` & `src/components/enquiries/EnquiryForm.tsx`:
      - Emit `demo_form_submitted` and `enquiry_form_submitted` via `trackPublicEvent` with zero PII (and extend the allowlist in `publicAnalyticsPolicy.ts` / `publicAnalyticsService.ts`).
 3. **Add Authenticated CRM Product Analytics (Bug 4):**
    - Create `src/lib/analytics/routeSanitizer.ts`: maps authenticated `/dashboard/...` URLs to parameterized route templates (`/dashboard/leads/[id]`, etc.) and strips all query strings/hashes.
    - Create `src/services/crmAnalyticsService.ts`:
-     - Separate Mixpanel instance `mixpanel.init(token, { ... }, "crmProduct")` gated by `NEXT_PUBLIC_CRM_PRODUCT_ANALYTICS_ENABLED === "true"` and `NEXT_PUBLIC_MIXPANEL_CRM_TOKEN`.
-     - Zero-PII `before_send_events` scrubber (same forbidden key list + URL redactor).
-     - `identifyCrmSession({ userId, orgId, roleCategory, planTier, locale })`, `trackCrmEvent(name, props)`, `resetCrmAnalyticsSession()`.
+     - Gate the separate `crmProduct` instance on `NEXT_PUBLIC_CRM_PRODUCT_ANALYTICS_ENABLED`, a configured project token and region, and an active usage analytics grant.
+     - Use `before_send_events` to allow only `crm_module_viewed` and its approved properties. Use the browser-scoped consent ID on the event and keep SDK identity persistence off.
    - Create `src/components/providers/CrmAnalyticsProvider.tsx` and mount inside `src/components/layout/DashboardClientLayout.tsx`:
-     - Reads user/workspace identity from `sessionIdentity()` / `useWorkspaceBootstrap.ts` and `authSlice.ts`.
-     - Renders `@vercel/analytics/next` `<Analytics beforeSend={sanitizeVercelEvent} />` cleanly without double-counting route transitions when inside `/dashboard/**`.
-     - Calls `resetCrmAnalyticsSession()` if user/org changes unexpectedly.
-   - Update `src/lib/auth.utils.ts` inside `performLogout()`:
-     - Synchronously call `resetCrmAnalyticsSession()` alongside `resetSessionReads()` before clearing storage and redirecting to `/login`.
-   - Add `.env.crm-analytics.example` (never real credentials) documenting `NEXT_PUBLIC_CRM_PRODUCT_ANALYTICS_ENABLED`, `NEXT_PUBLIC_MIXPANEL_CRM_TOKEN`, `NEXT_PUBLIC_MIXPANEL_REGION`.
+     - Mounts after the signed-in workspace resolves. The grant is scoped to `sessionIdentity()` and the active session generation. The logout path invalidates that generation through `resetSessionReads()`.
+     - Mounts Vercel only when enabled and consented, passes a route template, and uses the shared `beforeSend` guard to block events outside the active scope.
+   - Document product flags and the vendor region in `.env.crm-analytics.example`.
 
 ### 5.2 `crusource-crm-backend/`
+
+Use CRM operational records for authoritative Super Admin counts. Each proposed server-to-Mixpanel export needs a documented collection rule. Optional exports require a server-verifiable choice for the relevant subject and purpose before sending. A browser-local preference cannot authorize a backend export. Leave those exports disabled until that rule can be enforced.
 
 1. **Non-Blocking Server-Side Mixpanel Ingestion Client:**
    - Create `src/shared/analytics/mixpanel_client.py`:
